@@ -4,9 +4,12 @@
   outputs = { nixpkgs, flake-utils, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = import nixpkgs { inherit system; };
+        pkgs = import nixpkgs {
+          inherit system;
+          config.permittedInsecurePackages = [ "nodejs-16.20.2" ];
+        };
       in
       {
-        packages.default = pkgs.callPackage ./humix.nix { };
+        packages.default = pkgs.callPackage ./humix.nix { pathToHumility = builtins.toString ./test; };
       });
 }

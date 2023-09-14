@@ -1,8 +1,7 @@
-{ pkgs, lib, stdenv, pathToHumility ? "~/humility" }:
+{ pkgs, lib, stdenv, writeShellScript, pathToHumility ? "~/humility" }:
 
 let
-  inherit (builtins) attrNames attrValues isFile mapAttrs pathExists;
-  inherit (pkgs) writeFile writeShellScript;
+  inherit (builtins) attrNames attrValues isString mapAttrs;
   inherit (lib.strings) concatLines;
 
   prepare-commit-message = writeShellScript "prepare-commit-message" ''
@@ -39,17 +38,22 @@ let
     concatLines
       (attrValues
         (mapAttrs
-          (path: contents:
-            let
-              file = writeFile (if pathExists contents then import contents else contents); in
+          (path: file:
             "ln -s -f ${file} ${dir}/${path}")
           files));
 
   # Add ignored files to .git/info/exclude
   setupIgnoreFiles = files: dir:
     "echo 'Adding ignored files to .git/info/exclude'"
-      concatLines
+    + concatLines
       (map (file: "echo ${file} >> ${dir}/.git/info/exclude") files);
+
+  # Run any additional setup
+  runExtraScript = name: script: dir:
+    let
+      shellScript = writeShellScript "${name}-post-setup" script;
+    in
+    "cd ${dir} || return; direnv exec ${dir} ${shellScript}";
 
   #########################################
   # Main project applications config list #
@@ -60,21 +64,15 @@ let
     in
     {
       admin = {
-        packages =
-          let
-            pkgs' = pkgs.overrideConfig {
-              permittedInsecurePackages = [ "nodejs-16.20.2" ];
-            };
-          in
-          with pkgs'; [
-            php81
-            php81Packages.composer
-            php81Packages.psalm
-            phpactor
-            nodejs-16_x
-            nodePackages.vls
-            yarn
-          ];
+        packages = with pkgs; [
+          php81
+          php81Packages.composer
+          php81Packages.psalm
+          phpactor
+          nodejs-16_x
+          nodePackages.vls
+          yarn
+        ];
 
         extraEnvrc = [ "layout php" ];
 
@@ -149,9 +147,8 @@ let
 
   # Script that builds drv for each application and appends it to use nix in envrc
   # Writes any declared files and creates symlinks for them
+  # Runs extra script and sets up git hook
   # Adds .envrc and declared files to .git/info/exclude
-  # Runs extra script
-  # Sets up git hook
   script = concatLines (attrValues (mapAttrs
     (name:
       { packages ? [ ]
@@ -170,9 +167,10 @@ let
         ${setupNix devShell extraEnvrc path}
         ${linkExtraFiles files path}
         ${setupIgnoreFiles (attrNames files) path}
+
         direnv allow ${path}
 
-        ${if (isFile extraScript) then "cd ${path}; direnv exec ${path} ${extraScript}" else ""}
+        ${if (isString extraScript) then (runExtraScript name extraScript path) else ""}
       '')
     projects));
 
@@ -185,10 +183,11 @@ let
   '';
 in
 
-stdenv.mkDerivation {
-  name = "humix";
+# stdenv.mkDerivation {
+  #   name = "humix";
 
-  buildInputs = [
-    humix-setup
-  ];
-}
+  #   buildInputs = [
+    # TODO these should be outputs
+humix-setup
+# ];
+# }
