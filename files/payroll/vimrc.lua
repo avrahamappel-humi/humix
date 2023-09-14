@@ -1,0 +1,3 @@
+registerLsps {
+    lsps = { 'solargraph' }
+}
