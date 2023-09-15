@@ -1,8 +1,8 @@
 { pkgs, lib, stdenv, writeShellScript, pathToHumility ? "~/humility" }:
 
 let
-  inherit (builtins) attrNames attrValues isString mapAttrs;
   inherit (lib.strings) concatLines;
+  inherit (lib.attrsets) mapAttrsToList;
 
   prepare-commit-message = writeShellScript "prepare-commit-message" ''
     # Checks if current branch matches JIRA pattern (ABC-1234-anything),
@@ -33,14 +33,15 @@ let
   '' +
   concatLines (map (line: "echo ${line} >> ${dir}/.envrc") extraEnvrc);
 
-  # Link additional files to the root of the application
-  linkExtraFiles = files: dir:
-    concatLines
-      (attrValues
-        (mapAttrs
-          (path: file:
-            "ln -s -f ${file} ${dir}/${path}")
-          files));
+  # Make a script linking files into a directory
+  # This function takes two arguments:
+  # `files` An attribute set of target paths mapped to source files (paths or drvs)
+  # `dir`   A directory path to prepend to the target
+  linkFiles = files: dir:
+    concatLines (mapAttrsToList
+      (path: file:
+        "ln -s -f ${if dir == "" then "" else "${dir}/"}${path} ${file}")
+      files);
 
   # Add ignored files to .git/info/exclude
   setupIgnoreFiles = files: dir:
@@ -149,7 +150,7 @@ let
   # Writes any declared files and creates symlinks for them
   # Runs extra script and sets up git hook
   # Adds .envrc and declared files to .git/info/exclude
-  script = concatLines (attrValues (mapAttrs
+  script = concatLines (mapAttrsToList
     (name:
       { packages ? [ ]
       , path ? "${pathToHumility}/applications/${name}"
@@ -165,14 +166,14 @@ let
 
         ${setupGithooks path}
         ${setupNix devShell extraEnvrc path}
-        ${linkExtraFiles files path}
-        ${setupIgnoreFiles (attrNames files) path}
+        ${linkFiles files path}
+        ${setupIgnoreFiles (builtins.attrNames files) path}
 
         direnv allow ${path}
 
-        ${if (isString extraScript) then (runExtraScript name extraScript path) else ""}
+        ${if (builtins.isString extraScript) then (runExtraScript name extraScript path) else ""}
       '')
-    projects));
+    projects);
 
   humix-setup = writeShellScript "humix-setup" ''
     echo "Installing humix!"
@@ -183,11 +184,20 @@ let
   '';
 in
 
-# stdenv.mkDerivation {
-  #   name = "humix";
+stdenv.mkDerivation {
+  name = "humix";
 
-  #   buildInputs = [
-    # TODO these should be outputs
-humix-setup
-# ];
-# }
+  installPhase =
+    let
+      linkScripts = linkFiles
+        {
+          inherit humix-setup;
+        } "$out/bin";
+    in
+    ''
+      runHook preInstall
+      mkdir -p $out/bin
+      ${linkScripts}
+      runHook postInstall
+    '';
+}
