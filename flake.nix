@@ -10,6 +10,6 @@
         };
       in
       {
-        packages.default = pkgs.callPackage ./humix.nix { pathToHumility = builtins.toString ./test; };
+        packages.default = pkgs.callPackage ./humix.nix { pathToHumility = "./test"; };
       });
 }

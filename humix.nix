@@ -39,15 +39,16 @@ let
   # `dir`   A directory path to prepend to the target
   linkFiles = files: dir:
     concatLines (mapAttrsToList
-      (path: file:
-        "ln -s -f ${if dir == "" then "" else "${dir}/"}${path} ${file}")
+      (target: source:
+        "ln -s -f ${source} ${if dir == "" then "" else "${dir}/"}${target}")
       files);
 
   # Add ignored files to .git/info/exclude
-  setupIgnoreFiles = files: dir:
-    "echo 'Adding ignored files to .git/info/exclude'"
-    + concatLines
-      (map (file: "echo ${file} >> ${dir}/.git/info/exclude") files);
+  setupIgnoreFiles = files: dir: ''
+    echo 'Adding ignored files to .git/info/exclude'
+  '' +
+  concatLines
+    (map (file: "echo ${file} >> ${dir}/.git/info/exclude") files);
 
   # Run any additional setup
   runExtraScript = name: script: dir:
@@ -200,4 +201,6 @@ stdenv.mkDerivation {
       ${linkScripts}
       runHook postInstall
     '';
+
+  dontUnpack = true;
 }
