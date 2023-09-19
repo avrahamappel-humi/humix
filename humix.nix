@@ -115,7 +115,10 @@ let
         extraEnvrc = [ "layout ruby" ];
 
         files = {
-          "app/rails.rb" = https://gist.githubusercontent.com/castwide/28b349566a223dfb439a337aea29713e/raw/715473535f11cf3eeb9216d64d01feac2ea37ac0/rails.rb;
+          "app/rails.rb" = builtins.fetchurl {
+            url = "https://gist.githubusercontent.com/castwide/28b349566a223dfb439a337aea29713e/raw/715473535f11cf3eeb9216d64d01feac2ea37ac0/rails.rb";
+            sha256 = "0jv549plalb1d5jig79z6nxnlkg6mk0gy28bn4l8hwa6rlpl4j87";
+          };
           ".solargraph.yml" = ./files/payroll/solargraph.yml;
           ".vimrc.lua" = ./files/payroll/vimrc.lua;
         };
