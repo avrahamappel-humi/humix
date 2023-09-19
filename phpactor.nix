@@ -4,7 +4,7 @@ let
   inherit (pkgs) lib makeWrapper php phpactor;
   inherit (lib.strings) concatLines hasPrefix splitString;
 in
-# See https://github.com/NixOS/nixpkgs/pull/254817
+# TODO Once 2023.08.06-1 makes it to nixos-unstable, can get rid of this
 phpactor.overrideAttrs (final: prev: {
   nativeBuildInputs = [ makeWrapper ];
   installPhase = concatLines
