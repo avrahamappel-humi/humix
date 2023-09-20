@@ -27,9 +27,13 @@ let
   '';
 
   # Set up dev shells
-  setupNix = devShell: extraEnvrc: dir: ''
+  setupNix = name: extraEnvrc: dir:
+  let
+    devShell = "${pathToHumility}/user_files/humix#${name}";
+  in
+  ''
     echo 'Installing Nix shell in ${dir}'
-    echo 'use nix -p ${devShell}' > ${dir}/.envrc
+    echo 'use flake ${devShell}' > ${dir}/.envrc
   '' +
   concatLines (map (line: "echo ${line} >> ${dir}/.envrc") extraEnvrc);
 
@@ -56,7 +60,8 @@ let
       shellScript = writeShellScript "${name}-post-setup" script;
     in
     ''
-      cd ${dir} || echo "${dir} does not exist, aborting" && exit
+      echo 'Running extra setup for ${name}'
+      cd ${dir}
       direnv exec ${dir} ${shellScript}
     '';
 
@@ -164,15 +169,11 @@ let
       , extraEnvrc ? [ ]
       , files ? { }
       , extraScript ? null
-      }:
-      let
-        devShell = pkgs.mkShell { buildInputs = packages; };
-      in
-      ''
+      }: ''
         echo "Setting up project in ${path}"
 
         ${setupGithooks path}
-        ${setupNix devShell extraEnvrc path}
+        ${setupNix name extraEnvrc path}
         ${linkFiles files path}
         ${setupIgnoreFiles (builtins.attrNames files) path}
 
@@ -191,22 +192,32 @@ let
   '';
 in
 
-stdenv.mkDerivation {
-  name = "humix";
+{
+  humix-setup =
+    stdenv.mkDerivation {
+      name = "humix";
 
-  installPhase =
-    let
-      linkScripts = linkFiles
-        {
-          inherit humix-setup;
-        } "$out/bin";
-    in
-    ''
-      runHook preInstall
-      mkdir -p $out/bin
-      ${linkScripts}
-      runHook postInstall
-    '';
+      installPhase =
+        let
+          linkScripts = linkFiles
+            {
+              inherit humix-setup;
+            } "$out/bin";
+        in
+        ''
+          runHook preInstall
+          mkdir -p $out/bin
+          ${linkScripts}
+          runHook postInstall
+        '';
 
-  dontUnpack = true;
+      dontUnpack = true;
+    };
+
+  devShells = builtins.mapAttrs
+    (name: { packages, ... }: pkgs.mkShell {
+      name = "${name}-dev-shell";
+      buildInputs = packages;
+    })
+    projects;
 }
