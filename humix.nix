@@ -135,10 +135,6 @@ let
           # Bundle the project gems using Nix
           bundle config build.thin -fdeclspec
           bundle install
-
-          # Set up solargraph
-          solargraph download-core
-          solargraph bundle
         '';
       };
 
