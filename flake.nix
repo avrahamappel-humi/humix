@@ -1,7 +1,7 @@
 {
   description = "Local dev setup";
 
-  outputs = { nixpkgs, flake-utils, ... }:
+  outputs = { self, nixpkgs, flake-utils, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs {
@@ -10,6 +10,10 @@
         };
       in
       {
-        packages.default = pkgs.callPackage ./humix.nix { pathToHumility = "./test"; };
+        packages.default = pkgs.callPackage ./humix.nix { pathToHumility = builtins.toString ./../..; };
+
+        apps.default = {
+          program = "${self.packages.${system}.default}/bin/humix-setup";
+        };
       });
 }
