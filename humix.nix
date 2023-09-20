@@ -149,7 +149,7 @@ let
           echo "Installing ngserver"
 
           # Pinning this until we are on Angular 16
-          npm install --no-save @angular/language-server@16.1.4
+          npm install --no-save --force @angular/language-server@16.1.4
         '';
       };
     };
