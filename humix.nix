@@ -23,7 +23,7 @@ let
 
   # Set up git hooks (currently only one)
   setupGithooks = dir: ''
-    ln -s -f "${prepare-commit-message}" "${dir}/.git/hooks/prepare-commit-msg"
+    ln -s -f ${prepare-commit-message} ${dir}/.git/hooks/prepare-commit-msg
   '';
 
   # Set up dev shells
@@ -55,7 +55,10 @@ let
     let
       shellScript = writeShellScript "${name}-post-setup" script;
     in
-    "cd ${dir} || return; direnv exec ${dir} ${shellScript}";
+    ''
+      cd ${dir} || echo "${dir} does not exist, aborting" && exit
+      direnv exec ${dir} ${shellScript}
+    '';
 
   #########################################
   # Main project applications config list #
