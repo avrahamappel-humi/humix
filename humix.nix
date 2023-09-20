@@ -170,10 +170,12 @@ let
 
         ${setupGithooks path}
         ${setupNix name extraEnvrc path}
-        ${linkFiles files path}
-        ${setupIgnoreFiles (builtins.attrNames files) path}
 
         direnv allow ${path}
+        direnv exec ${path} echo 'Nix shell installed in ${name}'
+
+        ${linkFiles files path}
+        ${setupIgnoreFiles (builtins.attrNames files) path}
 
         ${if (builtins.isString extraScript) then (runExtraScript name extraScript path) else ""}
       '')
