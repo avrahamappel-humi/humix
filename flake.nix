@@ -9,7 +9,9 @@
           config.permittedInsecurePackages = [ "nodejs-16.20.2" ];
         };
 
-        humix = pkgs.callPackage ./humix.nix { };
+        humix = pkgs.callPackage ./humix.nix {
+          projects = import ./projects.nix { inherit pkgs; };
+        };
       in
       {
         packages.default = humix.humix-setup;
