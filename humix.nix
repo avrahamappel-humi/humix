@@ -140,6 +140,7 @@ let
 
           # Install solargraph rails file
           cp ${rails-rb} app/rails.rb
+          echo app/rails.rb >> .git/info/exclude
         '';
       };
 
