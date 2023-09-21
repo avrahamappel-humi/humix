@@ -28,14 +28,14 @@ let
 
   # Set up dev shells
   setupNix = name: extraEnvrc: dir:
-  let
-    devShell = "${pathToHumility}/user_files/humix#${name}";
-  in
-  ''
-    echo 'Installing Nix shell in ${dir}'
-    echo 'use flake ${devShell}' > ${dir}/.envrc
-  '' +
-  concatLines (map (line: "echo ${line} >> ${dir}/.envrc") extraEnvrc);
+    let
+      devShell = "${pathToHumility}/user_files/humix#${name}";
+    in
+    ''
+      echo 'Installing Nix shell in ${dir}'
+      echo 'use flake ${devShell}' > ${dir}/.envrc
+    '' +
+    concatLines (map (line: "echo ${line} >> ${dir}/.envrc") extraEnvrc);
 
   # Make a script linking files into a directory
   # This function takes two arguments:
