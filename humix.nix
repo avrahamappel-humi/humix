@@ -4,6 +4,10 @@ let
   inherit (lib.strings) concatLines;
   inherit (lib.attrsets) mapAttrsToList;
 
+  # COLORS
+  print = color: message: ''echo -e "\e[${color}m${message} \e[0m"'';
+  colors = { red = "1;31"; yellow = "1;33"; green = "1;32"; cyan = "1;36"; };
+
   prepare-commit-message = writeShellScript "prepare-commit-message" ''
     # Checks if current branch matches JIRA pattern (ABC-1234-anything),
     # then adds ABC-1234 to start of commit message.
@@ -32,7 +36,7 @@ let
       devShell = "${pathToHumility}/user_files/humix#${name}";
     in
     ''
-      echo 'Installing Nix shell in ${dir}'
+      ${print colors.cyan "Installing Nix shell in ${dir}"}
       echo 'use flake ${devShell}' > ${dir}/.envrc
     '' +
     concatLines (map (line: "echo ${line} >> ${dir}/.envrc") extraEnvrc);
@@ -49,7 +53,7 @@ let
 
   # Add ignored files to .git/info/exclude
   setupIgnoreFiles = files: dir: ''
-    echo 'Adding ignored files to .git/info/exclude'
+    ${print colors.cyan "Adding ignored files to .git/info/exclude"}
   '' +
   concatLines
     (map (file: "echo ${file} >> ${dir}/.git/info/exclude") files);
@@ -60,7 +64,7 @@ let
       shellScript = writeShellScript "${name}-post-setup" script;
     in
     ''
-      echo 'Running extra setup for ${name}'
+      ${print colors.cyan "Running extra setup for ${name}"}
       cd ${dir}
       direnv exec ${dir} ${shellScript}
     '';
@@ -71,14 +75,14 @@ let
       runChecks = concatLines (mapAttrsToList
         (pkgName: command: ''
           (
-            local="$(direnv exec ${dir} ${command} 2> /dev/null)"
-            container="$(docker compose exec -T ${projectName} ${command} 2> /dev/null)"
+            local="$(direnv exec ${dir} ${command})"
+            container="$(docker compose exec -T ${projectName} ${command})"
 
             if [[ "$local" != "$container" ]]; then
               {
-                echo "VERSION MISMATCH: ${pkgName} in ${projectName}"
-                echo "local:     $local"
-                echo "container: $container"
+                ${print colors.yellow "VERSION MISMATCH: ${pkgName} in ${projectName}"}
+                ${print colors.yellow  "local:     $local"}
+                ${print colors.yellow  "container: $container"}
               } >> "''$${messages-file}"
             fi
           ) &
@@ -86,8 +90,8 @@ let
         checks);
     in
     ''
-      echo "Checking installed packages for mismatched versions"
-      docker compose up ${projectName} -d
+      ${print colors.cyan "Checking installed packages for mismatched versions"}
+      docker compose up ${projectName} -d 2> /dev/null
       ${runChecks}
     '';
 
@@ -104,13 +108,13 @@ let
       , extraScript ? null
       , versionChecks ? { }
       }: ''
-        echo "Setting up project in ${path}"
+        ${print colors.green "Setting up project in ${path}"}
 
         ${setupGithooks path}
         ${setupNix name extraEnvrc path}
 
         direnv allow ${path}
-        direnv exec ${path} echo 'Nix shell installed in ${name}'
+        direnv exec ${path} ${print colors.green "Nix shell installed in ${name}"}
 
         ${runVersionChecks versionChecks messages-file name path}
 
@@ -126,7 +130,7 @@ let
       messages-file = "messages";
     in
     writeShellScript "humix-setup" ''
-      echo "Installing humix!"
+      ${print colors.green "Installing humix!"}
 
       # Version checks output
       ${messages-file}="$(mktemp)"
@@ -134,11 +138,12 @@ let
       ${script messages-file}
 
       # Print versions mismatches
+      ${print colors.cyan "Fetching messages"}
       wait
-      docker compose down --remove-orphans -t 1
+      docker compose down --remove-orphans -t 1 2> /dev/null
       cat "''$${messages-file}"
 
-      echo "Setup complete!"
+      ${print colors.green "Setup complete!"}
     '';
 in
 
