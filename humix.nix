@@ -66,7 +66,7 @@ let
     '';
 
   # Check versions of locally (direnv) installed packages with those installed in the container
-  runVersionChecks = checks: projectName: dir:
+  runVersionChecks = checks: messages-file: projectName: dir:
     let
       runChecks = concatLines (mapAttrsToList
         (pkgName: command: ''
@@ -79,7 +79,7 @@ let
                 echo "VERSION MISMATCH: ${pkgName} in ${projectName}"
                 echo "local:     $local"
                 echo "container: $container"
-              } >> "$vc_output"
+              } >> "''$${messages-file}"
             fi
           ) &
         '')
@@ -95,7 +95,7 @@ let
   # Writes any declared files and creates symlinks for them
   # Runs extra script and sets up git hook
   # Adds .envrc and declared files to .git/info/exclude
-  script = concatLines (mapAttrsToList
+  script = messages-file: concatLines (mapAttrsToList
     (name:
       { packages ? [ ]
       , path ? "${pathToHumility}/applications/${name}"
@@ -112,7 +112,7 @@ let
         direnv allow ${path}
         direnv exec ${path} echo 'Nix shell installed in ${name}'
 
-        ${runVersionChecks versionChecks name path}
+        ${runVersionChecks versionChecks messages-file name path}
 
         ${linkFiles files path}
         ${setupIgnoreFiles (builtins.attrNames files) path}
@@ -121,21 +121,25 @@ let
       '')
     projects);
 
-  humix-setup = writeShellScript "humix-setup" ''
-    echo "Installing humix!"
+  humix-setup =
+    let
+      messages-file = "messages";
+    in
+    writeShellScript "humix-setup" ''
+      echo "Installing humix!"
 
-    # Version checks output
-    vc_output="$(mktemp)"
+      # Version checks output
+      ${messages-file}="$(mktemp)"
 
-    ${script}
+      ${script messages-file}
 
-    # Print versions mismatches
-    wait
-    docker compose down --remove-orphans -t 1
-    cat "$vc_output"
+      # Print versions mismatches
+      wait
+      docker compose down --remove-orphans -t 1
+      cat "''$${messages-file}"
 
-    echo "Setup complete!"
-  '';
+      echo "Setup complete!"
+    '';
 in
 
 {
