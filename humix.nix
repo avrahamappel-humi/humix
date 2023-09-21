@@ -65,6 +65,32 @@ let
       direnv exec ${dir} ${shellScript}
     '';
 
+  # Check versions of locally (direnv) installed packages with those installed in the container
+  runVersionChecks = checks: projectName: dir:
+    let
+      runChecks = concatLines (mapAttrsToList
+        (pkgName: command: ''
+          (
+            local="$(direnv exec ${dir} ${command} 2> /dev/null)"
+            container="$(docker compose exec -T ${projectName} ${command} 2> /dev/null)"
+
+            if [[ "$local" != "$container" ]]; then
+              {
+                echo "VERSION MISMATCH: ${pkgName} in ${projectName}"
+                echo "local:     $local"
+                echo "container: $container"
+              } >> "$vc_output"
+            fi
+          ) &
+        '')
+        checks);
+    in
+    ''
+      echo "Checking installed packages for mismatched versions"
+      docker compose up ${projectName} -d
+      ${runChecks}
+    '';
+
   # Script that builds drv for each application and appends it to use nix in envrc
   # Writes any declared files and creates symlinks for them
   # Runs extra script and sets up git hook
@@ -76,6 +102,7 @@ let
       , extraEnvrc ? [ ]
       , files ? { }
       , extraScript ? null
+      , versionChecks ? { }
       }: ''
         echo "Setting up project in ${path}"
 
@@ -84,6 +111,8 @@ let
 
         direnv allow ${path}
         direnv exec ${path} echo 'Nix shell installed in ${name}'
+
+        ${runVersionChecks versionChecks name path}
 
         ${linkFiles files path}
         ${setupIgnoreFiles (builtins.attrNames files) path}
@@ -95,7 +124,15 @@ let
   humix-setup = writeShellScript "humix-setup" ''
     echo "Installing humix!"
 
+    # Version checks output
+    vc_output="$(mktemp)"
+
     ${script}
+
+    # Print versions mismatches
+    wait
+    docker compose down --remove-orphans -t 1
+    cat "$vc_output"
 
     echo "Setup complete!"
   '';

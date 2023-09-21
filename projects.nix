@@ -6,6 +6,16 @@
 #########################################
 let
   phpactor = import ./phpactor.nix { inherit pkgs; };
+
+  versionChecks = {
+    php = "php --version | head -n 1 | awk '{ print $2; }'";
+    composer = "composer --version";
+    node = "node --version";
+    npm = "npm --version";
+    yarn = "yarn --version";
+    ruby = "ruby --version | awk '{ print $2; }'";
+    bundler = "bundler --version";
+  };
 in
 {
   admin = {
@@ -25,6 +35,8 @@ in
       ".vimrc.lua" = ./files/admin/vimrc.lua;
       "psalm.xml" = ./files/admin/psalm.xml;
     };
+
+    versionChecks = { inherit (versionChecks) php composer node npm; };
   };
 
   hr = {
@@ -46,6 +58,8 @@ in
       ".vimrc.lua" = ./files/hr/vimrc.lua;
       "psalm.xml" = ./files/hr/psalm.xml;
     };
+
+    versionChecks = { inherit (versionChecks) php composer node yarn; };
   };
 
   payroll = {
@@ -61,6 +75,8 @@ in
       ".solargraph.yml" = ./files/payroll/solargraph.yml;
       ".vimrc.lua" = ./files/payroll/vimrc.lua;
     };
+
+    versionChecks = { inherit (versionChecks) ruby bundler; };
 
     extraScript =
       let
@@ -82,6 +98,8 @@ in
 
   ui = {
     packages = [ pkgs.nodejs pkgs.yarn ];
+
+    versionChecks = { inherit (versionChecks) node npm yarn; };
 
     files.".vimrc.lua" = ./files/ui/vimrc.lua;
 
