@@ -65,7 +65,7 @@ let
     in
     ''
       ${print colors.cyan "Running extra setup for ${name}"}
-      cd ${dir}
+      cd ${dir} || exit
       direnv exec ${dir} ${shellScript}
     '';
 
@@ -80,7 +80,7 @@ let
 
             if [[ "$local" != "$container" ]]; then
               {
-                ${print colors.yellow "VERSION MISMATCH: ${pkgName} in ${projectName}"}
+                ${print colors.red "VERSION MISMATCH: ${pkgName} in ${projectName}"}
                 ${print colors.yellow  "local:     $local"}
                 ${print colors.yellow  "container: $container"}
               } >> "''$${messages-file}"
