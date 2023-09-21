@@ -9,12 +9,9 @@ let
 
   versionChecks = {
     php = "php --version | head -n 1 | awk '{ print $2; }'";
-    composer = "composer --version";
+    composer = "composer --version | awk '{ print $3; }'";
     node = "node --version";
-    npm = "npm --version";
-    yarn = "yarn --version";
     ruby = "ruby --version | awk '{ print $2; }'";
-    bundler = "bundler --version";
   };
 in
 {
@@ -36,7 +33,7 @@ in
       "psalm.xml" = ./files/admin/psalm.xml;
     };
 
-    versionChecks = { inherit (versionChecks) php composer node npm; };
+    versionChecks = { inherit (versionChecks) php composer node; };
   };
 
   hr = {
@@ -59,7 +56,7 @@ in
       "psalm.xml" = ./files/hr/psalm.xml;
     };
 
-    versionChecks = { inherit (versionChecks) php composer node yarn; };
+    versionChecks = { inherit (versionChecks) php composer node; };
   };
 
   payroll = {
@@ -76,7 +73,7 @@ in
       ".vimrc.lua" = ./files/payroll/vimrc.lua;
     };
 
-    versionChecks = { inherit (versionChecks) ruby bundler; };
+    versionChecks = { inherit (versionChecks) ruby; };
 
     extraScript =
       let
@@ -99,7 +96,7 @@ in
   ui = {
     packages = [ pkgs.nodejs pkgs.yarn ];
 
-    versionChecks = { inherit (versionChecks) node npm yarn; };
+    versionChecks = { inherit (versionChecks) node; };
 
     files.".vimrc.lua" = ./files/ui/vimrc.lua;
 
