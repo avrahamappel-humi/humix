@@ -5,8 +5,6 @@
 # Main project applications config list #
 #########################################
 let
-  phpactor = import ./phpactor.nix { inherit pkgs; };
-
   versionChecks = {
     php = "php --version | head -n 1 | awk '{ print $2; }'";
     composer = "composer --version | awk '{ print $3; }'";
@@ -44,7 +42,7 @@ in
       [
         php
         php.packages.composer
-        phpactor
+        pkgs.phpactor
         pkgs.nodejs_20
         pkgs.yarn
       ];
