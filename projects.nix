@@ -1,10 +1,12 @@
-{ pkgs }:
+{ pkgs, php-8-1-9-pkgs }:
 
 
 #########################################
 # Main project applications config list #
 #########################################
 let
+  php-8-1-9 = php-8-1-9-pkgs.php81;
+
   versionChecks = {
     php = "php --version | head -n 1 | awk '{ print $2; }'";
     composer = "composer --version | awk '{ print $3; }'";
@@ -15,7 +17,7 @@ in
 {
   admin = {
     packages = with pkgs; [
-      php81
+      php-8-1-9
       php81Packages.composer
       php81Packages.psalm
       phpactor
