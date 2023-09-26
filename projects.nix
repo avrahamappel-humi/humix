@@ -1,11 +1,15 @@
-{ pkgs, php-8-1-9-pkgs }:
+{ pkgs
+, pkgs-php-8-1-9
+, pkgs-composer-2-6-3
+}:
 
 
 #########################################
 # Main project applications config list #
 #########################################
 let
-  php-8-1-9 = php-8-1-9-pkgs.php81;
+  php-8-1-9 = pkgs-php-8-1-9.php81;
+  composer-2-6-3 = pkgs-composer-2-6-3.php.packages.composer;
 
   versionChecks = {
     php = "php --version | head -n 1 | awk '{ print $2; }'";
@@ -18,15 +22,13 @@ in
   admin = {
     packages = with pkgs; [
       php-8-1-9
-      php81Packages.composer
+      composer-2-6-3
       php81Packages.psalm
       phpactor
       nodejs-16_x
       nodePackages.vls
       yarn
     ];
-
-    extraEnvrc = [ "layout php" ];
 
     files = {
       ".vimrc.lua" = ./files/admin/vimrc.lua;
@@ -43,7 +45,7 @@ in
       in
       [
         php
-        php.packages.composer
+        composer-2-6-3
         pkgs.phpactor
         pkgs.nodejs_20
         pkgs.yarn

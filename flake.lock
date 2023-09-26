@@ -32,7 +32,22 @@
         "type": "indirect"
       }
     },
-    "php-8-1-9-pkgs": {
+    "nixpkgs-composer-2-6-3": {
+      "locked": {
+        "lastModified": 1695221583,
+        "narHash": "sha256-nMh3kUMQQhvXgBHJFimkmDhPWE1wYIpS8mkkiIPDvqU=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "c8b9e229e1242c9bd55fd45819fdf59b7cce2a78",
+        "type": "github"
+      },
+      "original": {
+        "id": "nixpkgs",
+        "rev": "c8b9e229e1242c9bd55fd45819fdf59b7cce2a78",
+        "type": "indirect"
+      }
+    },
+    "nixpkgs-php-8-1-9": {
       "locked": {
         "lastModified": 1662927864,
         "narHash": "sha256-94BGLTX8Uu8GZ1CSE2uzFwuUEmm04yFsD6FOZ1txz1g=",
@@ -51,7 +66,8 @@
       "inputs": {
         "flake-utils": "flake-utils",
         "nixpkgs": "nixpkgs",
-        "php-8-1-9-pkgs": "php-8-1-9-pkgs"
+        "nixpkgs-composer-2-6-3": "nixpkgs-composer-2-6-3",
+        "nixpkgs-php-8-1-9": "nixpkgs-php-8-1-9"
       }
     },
     "systems": {
