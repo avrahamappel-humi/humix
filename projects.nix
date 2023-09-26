@@ -1,7 +1,7 @@
 { pkgs
-, pkgs-php-8-1-9
-, pkgs-composer-2-6-3
-, pkgs-node-20-5-1
+, php-8-1-9
+, composer-2-6-3
+, node-20-5-1
 , ngserver
 }:
 
@@ -10,10 +10,6 @@
 # Main project applications config list #
 #########################################
 let
-  php-8-1-9 = pkgs-php-8-1-9.php81;
-  composer-2-6-3 = pkgs-composer-2-6-3.php.packages.composer;
-  node-20-5-1 = pkgs-node-20-5-1.nodejs_20;
-
   versionChecks = {
     php = "php --version | head -n 1 | awk '{ print $2; }'";
     composer = "composer --version | awk '{ print $3; }'";
