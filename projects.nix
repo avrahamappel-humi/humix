@@ -2,6 +2,7 @@
 , pkgs-php-8-1-9
 , pkgs-composer-2-6-3
 , pkgs-node-20-5-1
+, ngserver
 }:
 
 
@@ -98,19 +99,12 @@ in
   };
 
   ui = {
-    packages = [ pkgs.nodejs pkgs.yarn ];
+    packages = [ pkgs.nodejs pkgs.yarn ngserver ];
 
     versionChecks = { inherit (versionChecks) node; };
 
     files.".vimrc.lua" = ./files/ui/vimrc.lua;
 
     extraEnvrc = [ "layout node" ];
-
-    extraScript = ''
-      echo "Installing ngserver"
-
-      # Pinning this until we are on Angular 16
-      npm install --no-save --force @angular/language-server@16.1.4
-    '';
   };
 }

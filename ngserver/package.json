@@ -1,0 +1,7 @@
+{
+    "name": "ngserver",
+    "private": true,
+    "dependencies": {
+        "@angular/language-server": "16.1.4"
+    }
+}

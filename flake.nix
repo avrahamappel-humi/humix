@@ -27,16 +27,20 @@
         config.permittedInsecurePackages = [ "nodejs-16.20.2" ];
       };
 
-      humix = pkgs.callPackage ./humix.nix
-        {
-          projects = import ./projects.nix
-            {
-              inherit pkgs;
-              pkgs-php-8-1-9 = import nixpkgs-php-8-1-9 { inherit system; };
-              pkgs-composer-2-6-3 = import nixpkgs-composer-2-6-3 { inherit system; };
-              pkgs-node-20-5-1 = import nixpkgs-node-20-5-1 { inherit system; };
-            };
+      # To update this, cd into ./ngserver and run
+      # nix-shell -p node2nix --run node2nix
+      # @angular/language-server is pinned at 16.1.4 until
+      # humility is on typescript 5
+      ngserver = (pkgs.callPackage ./ngserver { inherit pkgs system; }).nodeDependencies;
+
+      humix = pkgs.callPackage ./humix.nix {
+        projects = import ./projects.nix {
+          inherit pkgs ngserver;
+          pkgs-php-8-1-9 = import nixpkgs-php-8-1-9 { inherit system; };
+          pkgs-composer-2-6-3 = import nixpkgs-composer-2-6-3 { inherit system; };
+          pkgs-node-20-5-1 = import nixpkgs-node-20-5-1 { inherit system; };
         };
+      };
     in
     {
       packages.default = humix.humix-setup;
