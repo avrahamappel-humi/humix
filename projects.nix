@@ -89,7 +89,7 @@ in
         bundle install
 
         # Install solargraph rails file
-        cp ${rails-rb} app/rails.rb
+        cp -f ${rails-rb} app/rails.rb
         echo app/rails.rb >> .git/info/exclude
       '';
   };
