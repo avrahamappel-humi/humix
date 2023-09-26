@@ -1,6 +1,7 @@
 { pkgs
 , pkgs-php-8-1-9
 , pkgs-composer-2-6-3
+, pkgs-node-20-5-1
 }:
 
 
@@ -10,6 +11,7 @@
 let
   php-8-1-9 = pkgs-php-8-1-9.php81;
   composer-2-6-3 = pkgs-composer-2-6-3.php.packages.composer;
+  node-20-5-1 = pkgs-node-20-5-1.nodejs_20;
 
   versionChecks = {
     php = "php --version | head -n 1 | awk '{ print $2; }'";
@@ -47,7 +49,7 @@ in
         php
         composer-2-6-3
         pkgs.phpactor
-        pkgs.nodejs_20
+        node-20-5-1
         pkgs.yarn
       ];
 
