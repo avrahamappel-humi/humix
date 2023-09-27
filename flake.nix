@@ -26,10 +26,33 @@
 
       # for admin
       php-8-1-9 = (import nixpkgs-php-8-1-9 { inherit system; }).php81;
+
       # for admin and hr
-      composer-2-6-3 = (import nixpkgs-composer-2-6-3 { inherit system; }).phpPackages.composer;
+      composer-2-6-3 =
+        (import nixpkgs-composer-2-6-3 { inherit system; }).phpPackages.composer;
+
       # for hr
       node-20-5-1 = (import nixpkgs-node-20-5-1 { inherit system; }).nodejs_20;
+
+      # for ui
+      node-18-18-0 =
+        let
+          nodeTools = "${nixpkgs}/pkgs/development/web/nodejs";
+        in
+        (pkgs.callPackage "${nodeTools}/nodejs.nix" { python = pkgs.python3; }) {
+          enableNpm = false;
+          version = "18.18.0";
+          sha256 = "140gzrf9zm9dzfaqlbjq771r717rg3d4gnq05y4rzn9l6sndpm74";
+          patches = [
+            "${nodeTools}/disable-darwin-v8-system-instrumentation.patch"
+            "${nodeTools}/bypass-darwin-xcrun-node16.patch"
+            "${nodeTools}/revert-arm64-pointer-auth.patch"
+            "${nodeTools}/node-npm-build-npm-package-logic.patch"
+            "${nodeTools}/trap-handler-backport.patch"
+          ];
+        };
+
+      # for angular templates
       # To update this, cd into ./ngserver and run
       # nix-shell -p node2nix --run node2nix
       # @angular/language-server is pinned at 16.1.4 until
@@ -38,7 +61,7 @@
 
       humix = pkgs.callPackage ./humix.nix {
         projects = import ./projects.nix {
-          inherit pkgs php-8-1-9 composer-2-6-3 node-20-5-1 ngserver;
+          inherit pkgs php-8-1-9 composer-2-6-3 node-20-5-1 node-18-18-0 ngserver;
         };
       };
     in

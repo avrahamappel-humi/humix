@@ -2,6 +2,7 @@
 , php-8-1-9
 , composer-2-6-3
 , node-20-5-1
+, node-18-18-0
 , ngserver
 }:
 
@@ -95,7 +96,7 @@ in
   };
 
   ui = {
-    packages = [ pkgs.nodejs pkgs.yarn ngserver ];
+    packages = [ node-18-18-0 pkgs.yarn ngserver ];
 
     versionChecks = { inherit (versionChecks) node; };
 
