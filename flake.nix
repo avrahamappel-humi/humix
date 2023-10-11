@@ -35,6 +35,8 @@
       node-20-5-1 = (import nixpkgs-node-20-5-1 { inherit system; }).nodejs_20;
 
       # for ui
+      # This is mostly copied from <nixpkgs/pkgs/development/web/nodejs/v18.nix>
+      # It takes a while to build, so beware
       node-18-18-0 =
         let
           nodeTools = "${nixpkgs}/pkgs/development/web/nodejs";
