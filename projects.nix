@@ -1,6 +1,6 @@
 { pkgs
 , php-8-1-9
-, composer-2-6-3
+, composer-2-6-5
 , node-20-5-1
 , node-18-18-0
 , ngserver
@@ -22,7 +22,7 @@ in
   admin = {
     packages = with pkgs; [
       php-8-1-9
-      composer-2-6-3
+      composer-2-6-5
       php81Packages.psalm
       phpactor
       nodejs-16_x
@@ -45,7 +45,7 @@ in
       in
       [
         php
-        composer-2-6-3
+        composer-2-6-5
         pkgs.phpactor
         node-20-5-1
         pkgs.yarn
