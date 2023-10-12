@@ -47,6 +47,7 @@ in
         php
         composer-2-6-5
         pkgs.phpactor
+        php.packages.psalm
         node-20-5-1
         pkgs.yarn
       ];
