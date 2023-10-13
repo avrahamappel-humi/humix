@@ -172,7 +172,7 @@ in
   devShells = builtins.mapAttrs
     (name: { packages, ... }: pkgs.mkShell {
       name = "${name}-dev-shell";
-      buildInputs = packages;
+      inherit packages;
     })
     projects;
 }

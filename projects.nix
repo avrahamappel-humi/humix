@@ -22,7 +22,7 @@ in
   admin = {
     packages = with pkgs; [
       php-8-1-9
-      composer-2-6-5
+      (composer-2-6-5.override { php = php-8-1-9; })
       php81Packages.psalm
       phpactor
       nodejs-16_x
@@ -45,7 +45,7 @@ in
       in
       [
         php
-        composer-2-6-5
+        (composer-2-6-5.override { inherit php; })
         pkgs.phpactor
         php.packages.psalm
         node-20-5-1
