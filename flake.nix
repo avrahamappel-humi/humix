@@ -37,14 +37,14 @@
       # for ui
       # This is mostly copied from <nixpkgs/pkgs/development/web/nodejs/v18.nix>
       # It takes a while to build, so beware
-      node-18-18-0 =
+      node-18-18-1 =
         let
           nodeTools = "${nixpkgs}/pkgs/development/web/nodejs";
         in
         (pkgs.callPackage "${nodeTools}/nodejs.nix" { python = pkgs.python3; }) {
           enableNpm = false;
-          version = "18.18.0";
-          sha256 = "140gzrf9zm9dzfaqlbjq771r717rg3d4gnq05y4rzn9l6sndpm74";
+          version = "18.18.1";
+          sha256 = "1xl2wyd4pnkw43ry9snvs5sn0zw0xrqlyjzalmij0aqcxi3m1jf3";
           patches = [
             "${nodeTools}/disable-darwin-v8-system-instrumentation.patch"
             "${nodeTools}/bypass-darwin-xcrun-node16.patch"
@@ -63,7 +63,7 @@
 
       humix = pkgs.callPackage ./humix.nix {
         projects = import ./projects.nix {
-          inherit pkgs php-8-1-9 composer-2-6-5 node-20-5-1 node-18-18-0 ngserver;
+          inherit pkgs php-8-1-9 composer-2-6-5 node-20-5-1 node-18-18-1 ngserver;
         };
       };
     in
