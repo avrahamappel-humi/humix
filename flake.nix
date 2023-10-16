@@ -42,7 +42,6 @@
           nodeTools = "${nixpkgs}/pkgs/development/web/nodejs";
         in
         (pkgs.callPackage "${nodeTools}/nodejs.nix" { python = pkgs.python3; }) {
-          enableNpm = false;
           version = "18.18.1";
           sha256 = "1xl2wyd4pnkw43ry9snvs5sn0zw0xrqlyjzalmij0aqcxi3m1jf3";
           patches = [
