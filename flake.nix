@@ -6,6 +6,7 @@
     nixpkgs-php-8-1-9.url = "nixpkgs/646edf48542caaf4ee418d03efc0f754b7adc409";
     nixpkgs-composer-2-6-5.url = "nixpkgs/3360cb0bb03325383508727d403186518e18fd6b";
     nixpkgs-node-20-5-1.url = "nixpkgs/540a97984288db83d642812565fb43f276b02f21";
+    nixpkgs-node-18-18-1.url = "nixpkgs/b51626e173687365d695e1d2c6769a66753bc00e";
   };
 
   outputs =
@@ -15,6 +16,7 @@
     , nixpkgs-php-8-1-9
     , nixpkgs-composer-2-6-5
     , nixpkgs-node-20-5-1
+    , nixpkgs-node-18-18-1
     , ...
     }:
     flake-utils.lib.eachDefaultSystem (system:
@@ -35,23 +37,8 @@
       node-20-5-1 = (import nixpkgs-node-20-5-1 { inherit system; }).nodejs_20;
 
       # for ui
-      # This is mostly copied from <nixpkgs/pkgs/development/web/nodejs/v18.nix>
-      # It takes a while to build, so beware
       node-18-18-1 =
-        let
-          nodeTools = "${nixpkgs}/pkgs/development/web/nodejs";
-        in
-        (pkgs.callPackage "${nodeTools}/nodejs.nix" { python = pkgs.python3; }) {
-          version = "18.18.1";
-          sha256 = "1xl2wyd4pnkw43ry9snvs5sn0zw0xrqlyjzalmij0aqcxi3m1jf3";
-          patches = [
-            "${nodeTools}/disable-darwin-v8-system-instrumentation.patch"
-            "${nodeTools}/bypass-darwin-xcrun-node16.patch"
-            "${nodeTools}/revert-arm64-pointer-auth.patch"
-            "${nodeTools}/node-npm-build-npm-package-logic.patch"
-            "${nodeTools}/trap-handler-backport.patch"
-          ];
-        };
+        (import nixpkgs-node-18-18-1 { inherit system; }).nodejs_18;
 
       # for angular templates
       # To update this, cd into ./ngserver and run
