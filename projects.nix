@@ -47,9 +47,15 @@ in
         pkgs.phpPackages.psalm
         pkgs.nodejs_20
         pkgs.yarn
+        pkgs.mysql
       ];
 
-    extraEnvrc = [ "layout php" ];
+    extraEnvrc = [
+      "layout php"
+      "export DB_HOST=127.0.0.1"
+      "export DB_PORT=33060"
+      "export REDIS_HOST=127.0.0.1"
+    ];
 
     files = {
       ".vimrc.lua" = ./files/hr/vimrc.lua;
