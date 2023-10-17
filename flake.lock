@@ -32,74 +32,10 @@
         "type": "indirect"
       }
     },
-    "nixpkgs-composer-2-6-5": {
-      "locked": {
-        "lastModified": 1696581007,
-        "narHash": "sha256-7WjfsVhJHQ6yfR7hgdc4TM5GsZqs22JJegGLLnsEcXQ=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "3360cb0bb03325383508727d403186518e18fd6b",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "rev": "3360cb0bb03325383508727d403186518e18fd6b",
-        "type": "indirect"
-      }
-    },
-    "nixpkgs-node-18-18-1": {
-      "locked": {
-        "lastModified": 1697065631,
-        "narHash": "sha256-vWkXzXvX3DA2mv5xfK3TN+G+LjfIs4EDNj7VVE+yX94=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "b51626e173687365d695e1d2c6769a66753bc00e",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "rev": "b51626e173687365d695e1d2c6769a66753bc00e",
-        "type": "indirect"
-      }
-    },
-    "nixpkgs-node-20-5-1": {
-      "locked": {
-        "lastModified": 1694081935,
-        "narHash": "sha256-iAoWIiadpwZmw/7aF1nNbbbUftTBUboaBXUVZGmeBYY=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "540a97984288db83d642812565fb43f276b02f21",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "rev": "540a97984288db83d642812565fb43f276b02f21",
-        "type": "indirect"
-      }
-    },
-    "nixpkgs-php-8-1-9": {
-      "locked": {
-        "lastModified": 1662927864,
-        "narHash": "sha256-94BGLTX8Uu8GZ1CSE2uzFwuUEmm04yFsD6FOZ1txz1g=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "646edf48542caaf4ee418d03efc0f754b7adc409",
-        "type": "github"
-      },
-      "original": {
-        "id": "nixpkgs",
-        "rev": "646edf48542caaf4ee418d03efc0f754b7adc409",
-        "type": "indirect"
-      }
-    },
     "root": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs",
-        "nixpkgs-composer-2-6-5": "nixpkgs-composer-2-6-5",
-        "nixpkgs-node-18-18-1": "nixpkgs-node-18-18-1",
-        "nixpkgs-node-20-5-1": "nixpkgs-node-20-5-1",
-        "nixpkgs-php-8-1-9": "nixpkgs-php-8-1-9"
+        "nixpkgs": "nixpkgs"
       }
     },
     "systems": {

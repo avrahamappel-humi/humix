@@ -3,20 +3,12 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-unstable";
-    nixpkgs-php-8-1-9.url = "nixpkgs/646edf48542caaf4ee418d03efc0f754b7adc409";
-    nixpkgs-composer-2-6-5.url = "nixpkgs/3360cb0bb03325383508727d403186518e18fd6b";
-    nixpkgs-node-20-5-1.url = "nixpkgs/540a97984288db83d642812565fb43f276b02f21";
-    nixpkgs-node-18-18-1.url = "nixpkgs/b51626e173687365d695e1d2c6769a66753bc00e";
   };
 
   outputs =
     { self
     , nixpkgs
     , flake-utils
-    , nixpkgs-php-8-1-9
-    , nixpkgs-composer-2-6-5
-    , nixpkgs-node-20-5-1
-    , nixpkgs-node-18-18-1
     , ...
     }:
     flake-utils.lib.eachDefaultSystem (system:
@@ -27,29 +19,45 @@
       };
 
       # for admin
-      php-8-1-9 = (import nixpkgs-php-8-1-9 { inherit system; }).php81;
-
-      # for admin and hr
-      composer-2-6-5 =
-        (import nixpkgs-composer-2-6-5 { inherit system; }).phpPackages.composer;
-
-      # for hr
-      node-20-5-1 = (import nixpkgs-node-20-5-1 { inherit system; }).nodejs_20;
+      php-8-1-9 =
+        (import
+          (pkgs.applyPatches {
+            name = "nixpkgs-patched-php-8.1.9";
+            src = pkgs.path;
+            patches = [ ./php-8.1.9.patch ];
+          })
+          { inherit system; }).php81.withExtensions
+          ({ enabled, ... }:
+            # ext-dom has failing tests in this particular build. Excluding ext-xmlreader as well which requires ext-dom
+            builtins.filter (ext: ext.pname != "php-dom" && ext.pname != "php-xmlreader") enabled);
 
       # for ui
       node-18-18-1 =
-        (import nixpkgs-node-18-18-1 { inherit system; }).nodejs_18;
+        (import
+          (pkgs.applyPatches {
+            name = "nixpkgs-patched-nodejs.18.18.1";
+            src = pkgs.path;
+            patches = [
+              (builtins.fetchurl {
+                url = "https://github.com/NixOS/nixpkgs/commit/c8e2c3fb5841d09cf7f38374582b5eb20c22e440.patch";
+                sha256 = "0fcz25yzyhgvr0j05ifxqwr98fa7rpjpk4ikm1w4z9w3cb70vm2i";
+              })
+            ];
+          })
+          { inherit system; }).nodejs_18;
 
       # for angular templates
       # To update this, cd into ./ngserver and run
       # nix-shell -p node2nix --run node2nix
       # @angular/language-server is pinned at 16.1.4 until
       # humility is on typescript 5
-      ngserver = (pkgs.callPackage ./ngserver { inherit pkgs system; }).nodeDependencies;
+      ngserver = (pkgs.callPackage ./ngserver {
+        inherit pkgs system;
+      }).nodeDependencies;
 
       humix = pkgs.callPackage ./humix.nix {
         projects = import ./projects.nix {
-          inherit pkgs php-8-1-9 composer-2-6-5 node-20-5-1 node-18-18-1 ngserver;
+          inherit pkgs php-8-1-9 node-18-18-1 ngserver;
         };
       };
     in

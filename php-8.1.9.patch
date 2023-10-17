@@ -1,0 +1,38 @@
+diff --git a/pkgs/development/interpreters/php/8.1.nix b/pkgs/development/interpreters/php/8.1.nix
+index ed6f3d27157f..37e471601ddb 100644
+--- a/pkgs/development/interpreters/php/8.1.nix
++++ b/pkgs/development/interpreters/php/8.1.nix
+@@ -1,9 +1,9 @@
+-{ callPackage, ... }@_args:
++{ callPackage, lib, stdenv, ... }@_args:
+ 
+ let
+   base = callPackage ./generic.nix (_args // {
+-    version = "8.1.24";
+-    hash = "sha256-sK5YBKmtU6fijQoyYpSV+Bb5NbEIMMcfTsFYJxhac8k=";
++    version = "8.1.9";
++    hash = "sha256-nrsOLlcdtv1ZMEKNyy0Z7T4FAzjsHxNHwoLK6S/Ahv8=";
+   });
+ 
+ in
+@@ -21,7 +21,6 @@ base.withExtensions ({ all, ... }: with all; ([
+   gettext
+   gmp
+   iconv
+-  imap
+   intl
+   ldap
+   mbstring
+@@ -43,11 +42,10 @@ base.withExtensions ({ all, ... }: with all; ([
+   sockets
+   soap
+   sodium
+-  sysvsem
+   sqlite3
+   tokenizer
+   xmlreader
+   xmlwriter
+   zip
+   zlib
+-]))
++] ++ lib.optionals (!stdenv.isDarwin) [ imap ]))

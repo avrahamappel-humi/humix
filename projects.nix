@@ -1,7 +1,5 @@
 { pkgs
 , php-8-1-9
-, composer-2-6-5
-, node-20-5-1
 , node-18-18-1
 , ngserver
 }:
@@ -13,21 +11,20 @@
 let
   versionChecks = {
     php = "php --version | head -n 1 | awk '{ print $2; }'";
-    composer = "composer --version | awk '{ print $3; }'";
     node = "node --version";
     ruby = "ruby --version | awk '{ print $2; }'";
   };
 in
 {
   admin = {
-    packages = with pkgs; [
+    packages = [
       php-8-1-9
-      composer-2-6-5
-      php81Packages.psalm
-      phpactor
-      nodejs-16_x
-      nodePackages.vls
-      yarn
+      php-8-1-9.packages.composer
+      pkgs.phpPackages.psalm
+      pkgs.phpactor
+      pkgs.nodejs_16
+      pkgs.nodePackages.vls
+      pkgs.yarn
     ];
 
     files = {
@@ -35,7 +32,7 @@ in
       "psalm.xml" = ./files/admin/psalm.xml;
     };
 
-    versionChecks = { inherit (versionChecks) php composer node; };
+    versionChecks = { inherit (versionChecks) php; };
   };
 
   hr = {
@@ -45,10 +42,10 @@ in
       in
       [
         php
-        (composer-2-6-5.override { inherit php; })
+        php.packages.composer
         pkgs.phpactor
-        php.packages.psalm
-        node-20-5-1
+        pkgs.phpPackages.psalm
+        pkgs.nodejs_20
         pkgs.yarn
       ];
 
@@ -59,7 +56,7 @@ in
       "psalm.xml" = ./files/hr/psalm.xml;
     };
 
-    versionChecks = { inherit (versionChecks) php composer node; };
+    versionChecks = { inherit (versionChecks) php; };
   };
 
   payroll = {
@@ -97,7 +94,11 @@ in
   };
 
   ui = {
-    packages = [ node-18-18-1 pkgs.yarn ngserver ];
+    packages = [
+      node-18-18-1
+      pkgs.yarn
+      ngserver
+    ];
 
     versionChecks = { inherit (versionChecks) node; };
 
