@@ -365,10 +365,10 @@ let
     "league/mime-type-detection" = {
       targetDir = "";
       src = composerEnv.buildZipPackage {
-        name = "league-mime-type-detection-a6dfb1194a2946fcdc1f38219445234f65b35c96";
+        name = "league-mime-type-detection-b6a5854368533df0295c5761a0253656a2e52d9e";
         src = fetchurl {
-          url = "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/a6dfb1194a2946fcdc1f38219445234f65b35c96";
-          sha256 = "14yylg4lyyc522kpzlcby1zhfs01d8xrcc4rqvyink0ry8az12jj";
+          url = "https://api.github.com/repos/thephpleague/mime-type-detection/zipball/b6a5854368533df0295c5761a0253656a2e52d9e";
+          sha256 = "0bsqha9c0pyb5l78iiv1klrpqmhki6nh9x73pgnmh7sphh6ilygj";
         };
       };
     };
@@ -475,10 +475,10 @@ let
     "orchestra/canvas-core" = {
       targetDir = "";
       src = composerEnv.buildZipPackage {
-        name = "orchestra-canvas-core-27ac6b07880bda4ff10da06814eb97913eadb6db";
+        name = "orchestra-canvas-core-642a966b1f8a351a994c04ce1e03a5ddd1025ff5";
         src = fetchurl {
-          url = "https://api.github.com/repos/orchestral/canvas-core/zipball/27ac6b07880bda4ff10da06814eb97913eadb6db";
-          sha256 = "0x4a00jxvr9hl6i08vriym1irzzd7wzgmz4jxz6wba4nlswfx7pb";
+          url = "https://api.github.com/repos/orchestral/canvas-core/zipball/642a966b1f8a351a994c04ce1e03a5ddd1025ff5";
+          sha256 = "0mrxridwfal4hnwc125cxq3m9b9ly9vyidxsbacjk9g4vwx9gh62";
         };
       };
     };
@@ -745,10 +745,10 @@ let
     "psy/psysh" = {
       targetDir = "";
       src = composerEnv.buildZipPackage {
-        name = "psy-psysh-bcb22101107f3bf770523b65630c9d547f60c540";
+        name = "psy-psysh-128fa1b608be651999ed9789c95e6e2a31b5802b";
         src = fetchurl {
-          url = "https://api.github.com/repos/bobthecow/psysh/zipball/bcb22101107f3bf770523b65630c9d547f60c540";
-          sha256 = "10i65imyxj05bs805k30n1dsww6j3rg79j55v78g3ky5s169nklw";
+          url = "https://api.github.com/repos/bobthecow/psysh/zipball/128fa1b608be651999ed9789c95e6e2a31b5802b";
+          sha256 = "0lrmqw53kzgdldxiy2aj0dawdzz5cbsxqz9p47ca3c0ggnszlk1p";
         };
       };
     };
