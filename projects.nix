@@ -25,12 +25,22 @@ in
       pkgs.nodejs_16
       pkgs.nodePackages.vls
       pkgs.yarn
+      pkgs.mysql
     ];
 
     files = {
       ".vimrc.lua" = ./files/admin/vimrc.lua;
       "psalm.xml" = ./files/admin/psalm.xml;
     };
+
+    extraEnvrc = [
+      "layout php"
+      "export DB_HOST=127.0.0.1"
+      "export DB_PORT=33070"
+      "export DB_HUMI_HOST=127.0.0.1"
+      "export DB_HUMI_PORT=33060"
+      "export REDIS_HOST=127.0.0.1"
+    ];
 
     versionChecks = { inherit (versionChecks) php; };
   };
