@@ -2,6 +2,7 @@
 , php-8-1-9
 , node-18-18-1
 , ngserver
+, psalm-env
 }:
 
 
@@ -20,7 +21,7 @@ in
     packages = [
       php-8-1-9
       php-8-1-9.packages.composer
-      pkgs.phpPackages.psalm
+      psalm-env
       pkgs.phpactor
       pkgs.nodejs_16
       pkgs.nodePackages.vls
@@ -54,7 +55,7 @@ in
         php
         php.packages.composer
         pkgs.phpactor
-        pkgs.phpPackages.psalm
+        psalm-env
         pkgs.nodejs_20
         pkgs.yarn
         pkgs.mysql
