@@ -1,7 +1,0 @@
-{
-  "name": "humix/psalm-env",
-  "require": {
-    "psalm/plugin-laravel": "^2.0",
-    "vimeo/psalm": "^5.15"
-  }
-}

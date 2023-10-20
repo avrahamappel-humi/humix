@@ -60,17 +60,10 @@
         inherit pkgs system;
       }).nodeDependencies;
 
-      # This contains both Psalm and the Laravel plugin
-      # To update, cd into ./psalm-env and run
-      # composer2nix --executable (has to be forked locally)
-      psalm-env = pkgs.callPackage ./psalm-env {
-        inherit pkgs;
-        noDev = true;
-      };
-
       humix = pkgs.callPackage ./humix.nix {
         projects = import ./projects.nix {
-          inherit pkgs php-8-1-9 node-18-18-1 ngserver psalm-env;
+          inherit pkgs php-8-1-9 node-18-18-1 ngserver;
+          inherit (pkgs) writeText;
         };
       };
     in

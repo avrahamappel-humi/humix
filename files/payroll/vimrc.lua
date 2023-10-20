@@ -1,3 +1,0 @@
-registerLsps {
-    lsps = { 'solargraph' }
-}

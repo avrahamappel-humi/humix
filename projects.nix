@@ -2,7 +2,7 @@
 , php-8-1-9
 , node-18-18-1
 , ngserver
-, psalm-env
+, writeText
 }:
 
 
@@ -21,7 +21,6 @@ in
     packages = [
       php-8-1-9
       php-8-1-9.packages.composer
-      psalm-env
       pkgs.phpactor
       pkgs.nodejs_16
       pkgs.nodePackages.vls
@@ -30,8 +29,21 @@ in
     ];
 
     files = {
-      ".vimrc.lua" = ./files/admin/vimrc.lua;
-      "psalm.xml" = ./files/admin/psalm.xml;
+      ".vimrc.lua" = writeText "vimrc.lua" ''
+        registerLsps {
+            lsps = { 'phpactor', 'vuels' },
+            settings = {
+                phpactor = {
+                    phpunit = {
+                        enabled = true,
+                    },
+                },
+                vetur = {
+                    ignoreProjectWarning = true
+                },
+            }
+        }
+      '';
     };
 
     extraEnvrc = [
@@ -55,7 +67,6 @@ in
         php
         php.packages.composer
         pkgs.phpactor
-        psalm-env
         pkgs.nodejs_20
         pkgs.yarn
         pkgs.mysql
@@ -69,8 +80,18 @@ in
     ];
 
     files = {
-      ".vimrc.lua" = ./files/hr/vimrc.lua;
-      "psalm.xml" = ./files/hr/psalm.xml;
+      ".vimrc.lua" = writeText "vimrc.lua" ''
+        registerLsps {
+            lsps = { 'phpactor' },
+            settings = {
+                phpactor = {
+                    phpunit = {
+                        enabled = true,
+                    },
+                },
+            }
+        }
+      '';
     };
 
     versionChecks = { inherit (versionChecks) php; };
@@ -86,8 +107,35 @@ in
     extraEnvrc = [ "layout ruby" ];
 
     files = {
-      ".solargraph.yml" = ./files/payroll/solargraph.yml;
-      ".vimrc.lua" = ./files/payroll/vimrc.lua;
+      ".solargraph.yml" = writeText "solargraph.yml" ''
+        ---
+        include:
+        - "**/*.rb"
+        exclude:
+        - spec/**/*
+        - test/**/*
+        - vendor/**/*
+        - ".bundle/**/*"
+        require: []
+        domains: []
+        reporters:
+        - all!
+        formatter:
+          rubocop:
+            cops: safe
+            except: []
+            only: []
+            extra_args: []
+        require_paths: []
+        plugins: []
+        max_files: 5000
+      '';
+
+      ".vimrc.lua" = writeText "vimrc.lua" ''
+        registerLsps {
+            lsps = { 'solargraph' }
+        }
+      '';
     };
 
     versionChecks = { inherit (versionChecks) ruby; };
@@ -119,7 +167,17 @@ in
 
     versionChecks = { inherit (versionChecks) node; };
 
-    files.".vimrc.lua" = ./files/ui/vimrc.lua;
+    files.".vimrc.lua" = writeText "vimrc.lua" ''
+      registerLsps {
+          lsps = { 'angularls' },
+          commands = {
+              angularls = { 'ngserver', '--tsProbeLocations=.' },
+          },
+          root_dirs = {
+              angularls = require("lspconfig").util.root_pattern("apps/hr-angular/project.json")
+          }
+      }
+    '';
 
     extraEnvrc = [ "layout node" ];
   };
