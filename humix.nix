@@ -130,6 +130,9 @@ let
       messages-file = "messages";
     in
     writeShellScript "humix-setup" ''
+      # Sometimes docker messes up the display
+      reset
+
       ${print colors.green "Installing humix!"}
 
       # Version checks output
