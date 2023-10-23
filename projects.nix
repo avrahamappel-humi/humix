@@ -1,6 +1,6 @@
 { pkgs
 , php-8-1-9
-, node-18-18-1
+, node-18-18-2
 , ngserver
 , writeText
 }:
@@ -167,7 +167,7 @@ in
 
   ui = {
     packages = [
-      node-18-18-1
+      node-18-18-2
       pkgs.yarn
       ngserver
     ];

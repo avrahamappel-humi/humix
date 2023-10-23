@@ -37,17 +37,12 @@
             enabled);
 
       # for ui
-      node-18-18-1 =
+      node-18-18-2 =
         (import
           (pkgs.applyPatches {
-            name = "nixpkgs-patched-nodejs.18.18.1";
+            name = "nixpkgs-patched-nodejs.18.18.2";
             src = pkgs.path;
-            patches = [
-              (builtins.fetchurl {
-                url = "https://github.com/NixOS/nixpkgs/commit/c8e2c3fb5841d09cf7f38374582b5eb20c22e440.patch";
-                sha256 = "0fcz25yzyhgvr0j05ifxqwr98fa7rpjpk4ikm1w4z9w3cb70vm2i";
-              })
-            ];
+            patches = [ ./node-18.18.2.patch ];
           })
           { inherit system; }).nodejs_18;
 
@@ -62,7 +57,7 @@
 
       humix = pkgs.callPackage ./humix.nix {
         projects = import ./projects.nix {
-          inherit pkgs php-8-1-9 node-18-18-1 ngserver;
+          inherit pkgs php-8-1-9 node-18-18-2 ngserver;
           inherit (pkgs) writeText;
         };
       };
