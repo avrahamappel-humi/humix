@@ -108,7 +108,7 @@ in
       "layout ruby"
       # I don't get why this doesn't happen by default with `layout ruby`
       # See https://github.com/direnv/direnv/pull/883
-      "path_add GEM_PATH ""$GEM_HOME"""
+      "path_add GEM_PATH \"$GEM_HOME\""
       # TODO formatting with rubocop still doesn't work
       # Also sometimes GEM_PATH is not set when opening the project with `txe`
     ];
