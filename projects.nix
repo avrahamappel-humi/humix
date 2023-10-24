@@ -34,6 +34,10 @@ in
             lsps = { 'phpactor', 'vuels' },
             settings = {
                 phpactor = {
+                    language_server_phpstan = {
+                        enabled = true,
+                        level = 5,
+                    },
                     phpunit = {
                         enabled = true,
                     },
