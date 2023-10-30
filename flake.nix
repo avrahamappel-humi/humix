@@ -36,16 +36,6 @@
               ext)
             enabled);
 
-      # for ui
-      node-18-18-2 =
-        (import
-          (pkgs.applyPatches {
-            name = "nixpkgs-patched-nodejs.18.18.2";
-            src = pkgs.path;
-            patches = [ ./node-18.18.2.patch ];
-          })
-          { inherit system; }).nodejs_18;
-
       # for angular templates
       # To update this, cd into ./ngserver and run
       # nix-shell -p node2nix --run node2nix
@@ -57,7 +47,7 @@
 
       humix = pkgs.callPackage ./humix.nix {
         projects = import ./projects.nix {
-          inherit pkgs php-8-1-9 node-18-18-2 ngserver;
+          inherit pkgs php-8-1-9 ngserver;
           inherit (pkgs) writeText;
         };
       };
