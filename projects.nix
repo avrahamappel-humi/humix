@@ -1,8 +1,4 @@
-{ pkgs
-, php-8-1-9
-, ngserver
-, writeText
-}:
+{ pkgs, ngserver, writeText }:
 
 
 #########################################
@@ -18,8 +14,8 @@ in
 {
   admin = {
     packages = [
-      php-8-1-9
-      php-8-1-9.packages.composer
+      pkgs.php81
+      pkgs.php81Packages.composer
       pkgs.phpactor
       pkgs.nodejs_16
       pkgs.nodePackages.vls
