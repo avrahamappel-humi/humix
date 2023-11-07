@@ -13,15 +13,19 @@ let
 in
 {
   admin = {
-    packages = [
-      pkgs.php81
-      pkgs.php81Packages.composer
-      pkgs.phpactor
-      pkgs.nodejs_16
-      pkgs.nodePackages.vls
-      pkgs.yarn
-      pkgs.mysql
-    ];
+    packages =
+      let
+        php = pkgs.php82;
+      in
+      [
+        php
+        php.packages.composer
+        pkgs.phpactor
+        pkgs.nodejs_16
+        pkgs.nodePackages.vls
+        pkgs.yarn
+        pkgs.mysql
+      ];
 
     files = {
       ".vimrc.lua" = writeText "vimrc.lua" ''
@@ -60,7 +64,7 @@ in
   hr = {
     packages =
       let
-        php = pkgs.php81.withExtensions ({ enabled, all }: enabled ++ [ all.imagick ]);
+        php = pkgs.php82.withExtensions ({ enabled, all }: enabled ++ [ all.imagick ]);
       in
       [
         php
