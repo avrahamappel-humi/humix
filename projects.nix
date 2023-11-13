@@ -105,6 +105,7 @@ in
       pkgs.postgresql
       pkgs.ruby_3_1
       pkgs.rubyPackages_3_1.solargraph
+      pkgs.rubyPackages_3_1.ruby-lsp
     ];
 
     extraEnvrc = [
@@ -143,7 +144,7 @@ in
 
       ".vimrc.lua" = writeText "vimrc.lua" ''
         registerLsps {
-            lsps = { 'solargraph' }
+            lsps = { 'solargraph', 'ruby_ls' }
         }
       '';
     };
