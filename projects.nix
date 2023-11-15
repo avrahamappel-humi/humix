@@ -15,7 +15,11 @@ in
   admin = {
     packages =
       let
-        php = pkgs.php82;
+        php = pkgs.php82.buildEnv {
+          extraConfig = ''
+            memory_limit = -1
+          '';
+        };
       in
       [
         php
@@ -64,7 +68,12 @@ in
   hr = {
     packages =
       let
-        php = pkgs.php82.withExtensions ({ enabled, all }: enabled ++ [ all.imagick ]);
+        php = pkgs.php82.buildEnv {
+          extensions = ({ enabled, all }: enabled ++ [ all.imagick ]);
+          extraConfig = ''
+            memory_limit = -1
+          '';
+        };
       in
       [
         php
