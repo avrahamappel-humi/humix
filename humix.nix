@@ -1,4 +1,11 @@
-{ pkgs, lib, stdenv, writeShellScript, pathToHumility ? "~/humility", projects }:
+{ pkgs
+, lib
+, stdenv
+, writeShellApplication
+, writeShellScript
+, pathToHumility ? "~/humility"
+, projects
+}:
 
 let
   inherit (lib.strings) concatLines;
@@ -11,6 +18,7 @@ let
   prepare-commit-message = writeShellScript "prepare-commit-message" ''
     # Checks if current branch matches JIRA pattern (ABC-1234-anything),
     # then adds ABC-1234 to start of commit message.
+    # Originally written by @john-humi
 
     BRANCH_NAME=$(git branch 2>/dev/null | grep -e ^* | tr -d ' *')
 
@@ -31,15 +39,19 @@ let
   '';
 
   # Set up dev shells
-  setupNix = name: extraEnvrc: dir:
+  setupNix = { name, extraEnvrc, dir, useFlake }:
     let
       devShell = "${pathToHumility}/user_files/humix#${name}";
     in
     ''
       ${print colors.cyan "Installing Nix shell in ${dir}"}
       echo 'use flake ${devShell}' > ${dir}/.envrc
-    '' +
-    concatLines (map (line: "echo ${line} >> ${dir}/.envrc") extraEnvrc);
+      ${if extraEnvrc != [] then ''
+      cat >> ${dir}/.envrc << EOF
+      ${concatLines extraEnvrc}
+      EOF
+      '' else ""}
+    '';
 
   # Make a script linking files into a directory
   # This function takes two arguments:
@@ -61,7 +73,10 @@ let
   # Run any additional setup
   runExtraScript = name: script: dir:
     let
-      shellScript = writeShellScript "${name}-post-setup" script;
+      shellScript = writeShellApplication {
+        name = "${name}-post-setup";
+        text = script;
+      };
     in
     ''
       ${print colors.cyan "Running extra setup for ${name}"}
@@ -111,7 +126,7 @@ let
         ${print colors.green "Setting up project in ${path}"}
 
         ${setupGithooks path}
-        ${setupNix name extraEnvrc path}
+        ${setupNix { inherit name extraEnvrc useFlake; dir = path; }}
 
         direnv allow ${path}
         direnv exec ${path} ${print colors.green "Nix shell installed in ${name}"}
@@ -121,7 +136,7 @@ let
         ${linkFiles files path}
         ${setupIgnoreFiles (builtins.attrNames files) path}
 
-        ${if (builtins.isString extraScript) then (runExtraScript name extraScript path) else ""}
+        ${if builtins.isString extraScript then runExtraScript name extraScript path else ""}
       '')
     projects);
 
@@ -129,48 +144,32 @@ let
     let
       messages-file = "messages";
     in
-    writeShellScript "humix-setup" ''
-      # Sometimes docker messes up the display
-      reset
+    writeShellApplication {
+      name = "humix-setup";
+      text = ''
+        # Sometimes docker messes up the display
+        reset
 
-      ${print colors.green "Installing humix!"}
+        ${print colors.green "Installing humix!"}
 
-      # Version checks output
-      ${messages-file}="$(mktemp)"
+        # Version checks output
+        ${messages-file}="$(mktemp)"
 
-      ${script messages-file}
+        ${script messages-file}
 
-      # Print versions mismatches
-      ${print colors.cyan "Fetching messages"}
-      wait
-      docker compose down --remove-orphans -t 1 2> /dev/null
-      cat "''$${messages-file}"
+        # Print versions mismatches
+        ${print colors.cyan "Fetching messages"}
+        wait
+        docker compose down --remove-orphans -t 1 2> /dev/null
+        cat "''$${messages-file}"
 
-      ${print colors.green "Setup complete!"}
-    '';
+        ${print colors.green "Setup complete!"}
+      '';
+    };
 in
 
 {
-  humix-setup =
-    stdenv.mkDerivation {
-      name = "humix";
-
-      installPhase =
-        let
-          linkScripts = linkFiles
-            {
-              inherit humix-setup;
-            } "$out/bin";
-        in
-        ''
-          runHook preInstall
-          mkdir -p $out/bin
-          ${linkScripts}
-          runHook postInstall
-        '';
-
-      dontUnpack = true;
-    };
+  inherit humix-setup;
 
   devShells = builtins.mapAttrs
     (name: { packages, ... }: pkgs.mkShell {
