@@ -76,9 +76,6 @@ let
     '';
 
   # Make a script linking files into a directory
-  # This function takes two arguments:
-  # `files` An attribute set of target paths mapped to source files (strings or drvs)
-  # `dir`   A directory path to prepend to the target
   linkFiles = files: dir:
     concatLines (mapAttrsToList
       (target: file:
