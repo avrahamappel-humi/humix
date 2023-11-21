@@ -16,6 +16,26 @@ let
   print = color: message: ''echo -e "\e[${color}m${message} \e[0m"'';
   colors = { red = "1;31"; yellow = "1;33"; green = "1;32"; cyan = "1;36"; };
 
+  # Get the path to a binary within a derivation created by writeShellApplication
+  getBinPath = drv: "${drv}/bin/${drv.name}";
+
+  # Run a script at the beginning
+  runBeforeScript = name: script: dir:
+    let
+      shellScript =
+        if builtins.isString script then
+          writeShellApplication
+            {
+              name = "${name}-before-script";
+              text = script;
+            } else script;
+    in
+    ''
+      ${print colors.cyan "Running before setup for ${name}"}
+      cd ${dir} || exit
+      ${getBinPath shellScript}
+    '';
+
   prepare-commit-message = writeShellScript "prepare-commit-message" ''
     # Checks if current branch matches JIRA pattern (ABC-1234-anything),
     # then adds ABC-1234 to start of commit message.
@@ -77,15 +97,18 @@ let
   # Run any additional setup
   runExtraScript = name: script: dir:
     let
-      shellScript = writeShellApplication {
-        name = "${name}-post-setup";
-        text = script;
-      };
+      shellScript =
+        if builtins.isString script then
+          writeShellApplication
+            {
+              name = "${name}-post-setup";
+              text = script;
+            } else script;
     in
     ''
       ${print colors.cyan "Running extra setup for ${name}"}
       cd ${dir} || exit
-      direnv exec ${dir} ${shellScript}
+      direnv exec ${dir} ${getBinPath shellScript}
     '';
 
   # Check versions of locally (direnv) installed packages with those installed in the container
@@ -124,10 +147,13 @@ let
       , path ? "${pathToHumility}/applications/${name}"
       , extraEnvrc ? [ ]
       , files ? { }
+      , beforeScript ? null
       , extraScript ? null
       , versionChecks ? { }
       }: ''
         ${print colors.green "Setting up project in ${path}"}
+
+        ${if beforeScript != null then runBeforeScript name beforeScript path else ""}
 
         ${setupGithooks path}
         ${setupNix { inherit name extraEnvrc useFlake; dir = path; }}
@@ -140,7 +166,7 @@ let
         ${linkFiles files path}
         ${setupIgnoreFiles (builtins.attrNames files) path}
 
-        ${if builtins.isString extraScript then runExtraScript name extraScript path else ""}
+        ${if extraScript != null then runExtraScript name extraScript path else ""}
       '')
     projects);
 
