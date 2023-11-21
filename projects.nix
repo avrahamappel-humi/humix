@@ -211,5 +211,10 @@
     '';
 
     extraEnvrc = [ "layout node" ];
+
+    extraScript = ''
+      # Need to run Yarn separately outside of the container
+      yarn
+    '';
   };
 }
