@@ -173,6 +173,7 @@ let
 
         ${if beforeScript != null then runBeforeScript name beforeScript path else ""}
 
+        ${linkFiles files path}
         ${setupGithooks path}
         ${setupNix { inherit name extraEnvrc useFlake; dir = path; }}
 
@@ -181,7 +182,6 @@ let
 
         ${runVersionChecks versionChecks messages-file name path}
 
-        ${linkFiles files path}
         ${setupIgnoreFiles ((builtins.attrNames files) ++ extraIgnores) path}
 
         ${if extraScript != null then runExtraScript name extraScript path else ""}
