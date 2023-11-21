@@ -4,13 +4,6 @@
 #########################################
 # Main project applications config list #
 #########################################
-let
-  versionChecks = {
-    php = "php --version | head -n 1 | awk '{ print $2; }'";
-    node = "node --version";
-    ruby = "ruby --version | awk '{ print $2; }'";
-  };
-in
 {
   admin = {
     packages =
@@ -62,7 +55,7 @@ in
       "export REDIS_HOST=127.0.0.1"
     ];
 
-    versionChecks = { inherit (versionChecks) php; };
+    versionChecks = [ "php" ];
   };
 
   hr = {
@@ -106,7 +99,7 @@ in
       '';
     };
 
-    versionChecks = { inherit (versionChecks) php; };
+    versionChecks = [ "php" ];
   };
 
   payroll = {
@@ -193,7 +186,7 @@ in
       '';
     };
 
-    versionChecks = { inherit (versionChecks) ruby; };
+    versionChecks = [ "ruby" ];
   };
 
   ui = {
@@ -203,7 +196,7 @@ in
       ngserver
     ];
 
-    versionChecks = { inherit (versionChecks) node; };
+    versionChecks = [ "node" ];
 
     files.".vimrc.lua" = ''
       registerLsps {

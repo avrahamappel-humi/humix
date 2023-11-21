@@ -118,21 +118,30 @@ let
   # Check versions of locally (direnv) installed packages with those installed in the container
   runVersionChecks = checks: messages-file: projectName: dir:
     let
-      runChecks = concatLines (mapAttrsToList
-        (pkgName: command: ''
-          (
-            local="$(direnv exec ${dir} ${command})"
-            container="$(docker compose exec -T ${projectName} ${command})"
+      versionChecks = {
+        php = "php --version | head -n 1 | awk '{ print $2; }'";
+        node = "node --version";
+        ruby = "ruby --version | awk '{ print $2; }'";
+      };
+      runChecks = concatLines (map
+        (pkgName:
+          let
+            command = versionChecks.${pkgName};
+          in
+          ''
+            (
+              local="$(direnv exec ${dir} ${command})"
+              container="$(docker compose exec -T ${projectName} ${command})"
 
-            if [[ "$local" != "$container" ]]; then
-              {
-                ${print colors.red "VERSION MISMATCH: ${pkgName} in ${projectName}"}
-                ${print colors.yellow  "local:     $local"}
-                ${print colors.yellow  "container: $container"}
-              } >> "''$${messages-file}"
-            fi
-          ) &
-        '')
+              if [[ "$local" != "$container" ]]; then
+                {
+                  ${print colors.red "VERSION MISMATCH: ${pkgName} in ${projectName}"}
+                  ${print colors.yellow  "local:     $local"}
+                  ${print colors.yellow  "container: $container"}
+                } >> "''$${messages-file}"
+              fi
+            ) &
+          '')
         checks);
     in
     ''
