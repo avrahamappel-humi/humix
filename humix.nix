@@ -91,9 +91,12 @@ let
   # Add ignored files to .git/info/exclude
   setupIgnoreFiles = files: dir: ''
     ${print colors.cyan "Adding ignored files to .git/info/exclude"}
-  '' +
-  concatLines
-    (map (file: "echo ${file} >> ${dir}/.git/info/exclude") files);
+    ${if files != [ ] then ''
+    cat >> ${dir}/.git/info/exclude << EOF
+    ${concatLines files}
+    EOF
+    '' else ""}
+  '';
 
   # Run any additional setup
   runExtraScript = name: script: dir:
@@ -149,6 +152,7 @@ let
       , useFlake ? true
       , extraEnvrc ? [ ]
       , files ? { }
+      , extraIgnores ? [ ]
       , beforeScript ? null
       , extraScript ? null
       , versionChecks ? { }
@@ -178,7 +182,7 @@ let
         ${runVersionChecks versionChecks messages-file name path}
 
         ${linkFiles files path}
-        ${setupIgnoreFiles (builtins.attrNames files) path}
+        ${setupIgnoreFiles ((builtins.attrNames files) ++ extraIgnores) path}
 
         ${if extraScript != null then runExtraScript name extraScript path else ""}
       '')
