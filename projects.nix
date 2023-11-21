@@ -145,31 +145,43 @@ in
         }
       '';
 
-      "shell.nix" = ''
-        let
-          pkgs = import ${pkgs.path} { };
-          ruby = pkgs.ruby_3_1;
-          env = pkgs.bundlerEnv {
-            name = "payroll-env";
-            inherit ruby;
-            gemdir = ./.;
-            ignoreCollisions = true;
-            extraConfigPaths = [ "''${./.}/engines" ];
-          };
-        in
+      "shell.nix" = {
+        copy = true;
+        text = ''
+          let
+            pkgs = import ${pkgs.path} { };
+            ruby = pkgs.ruby_3_1;
+            env = pkgs.bundlerEnv {
+              name = "payroll-env";
+              inherit ruby;
+              gemdir = ./.;
+              ignoreCollisions = true;
+              extraConfigPaths = [ "''${./.}/engines" ];
+            };
+          in
 
-        pkgs.mkShell {
-          packages = [
-            ruby
-            env
-            pkgs.rubyPackages_3_1.solargraph
-            pkgs.rubyPackages_3_1.ruby-lsp
-          ];
-        }
-      '';
+          pkgs.mkShell {
+            packages = [
+              ruby
+              env
+              pkgs.rubyPackages_3_1.solargraph
+              pkgs.rubyPackages_3_1.ruby-lsp
+            ];
+          }
+        '';
+      };
+
+      # A shim for Solargraph to understand Rails code better
+      "app/rails.rb" = {
+        copy = true;
+        text = builtins.fetchurl {
+          url = "https://gist.githubusercontent.com/castwide/28b349566a223dfb439a337aea29713e/raw/715473535f11cf3eeb9216d64d01feac2ea37ac0/rails.rb";
+          sha256 = "0jv549plalb1d5jig79z6nxnlkg6mk0gy28bn4l8hwa6rlpl4j87";
+        };
+      };
     };
 
-    extraIgnores = [ "gemset.nix" "app/rails.rb" ];
+    extraIgnores = [ "gemset.nix" ];
 
     beforeScript = pkgs.writeShellApplication {
       name = "payroll-env-setup";
@@ -182,18 +194,6 @@ in
     };
 
     versionChecks = { inherit (versionChecks) ruby; };
-
-    extraScript =
-      let
-        rails-rb = builtins.fetchurl {
-          url = "https://gist.githubusercontent.com/castwide/28b349566a223dfb439a337aea29713e/raw/715473535f11cf3eeb9216d64d01feac2ea37ac0/rails.rb";
-          sha256 = "0jv549plalb1d5jig79z6nxnlkg6mk0gy28bn4l8hwa6rlpl4j87";
-        };
-      in
-      ''
-        # Install solargraph rails file
-        cp -f ${rails-rb} app/rails.rb
-      '';
   };
 
   ui = {

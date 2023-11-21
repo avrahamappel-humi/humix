@@ -83,9 +83,12 @@ let
     concatLines (mapAttrsToList
       (target: file:
         let
-          source = if builtins.isString file then writeText target file else file;
+          text = file.text or file;
+          copy = file.copy or false;
+          source = if builtins.isString text then writeText target text else text;
+          command = if copy then "cp -f" else "ln -s -f";
         in
-        "ln -s -f ${source} ${if dir == "" then "" else "${dir}/"}${target}")
+        "${command} ${source} ${if dir == "" then "" else "${dir}/"}${target}")
       files);
 
   # Add ignored files to .git/info/exclude
