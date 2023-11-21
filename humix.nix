@@ -9,7 +9,7 @@
 }:
 
 let
-  inherit (lib.strings) concatLines;
+  inherit (lib.strings) concatLines toUpper;
   inherit (lib.attrsets) filterAttrs mapAttrsToList;
 
   # COLORS
@@ -152,7 +152,19 @@ let
       , beforeScript ? null
       , extraScript ? null
       , versionChecks ? { }
-      }: ''
+      }:
+      let
+        asciiLine = "##${
+          builtins.concatStringsSep ""
+          (builtins.genList (i: "#") (builtins.stringLength name))
+        }##";
+        asciiName = "# ${toUpper name} #";
+      in
+      ''
+        ${asciiLine}
+        ${asciiName}
+        ${asciiLine}
+
         ${print colors.green "Setting up project in ${path}"}
 
         ${if beforeScript != null then runBeforeScript name beforeScript path else ""}
