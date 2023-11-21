@@ -3,6 +3,7 @@
 , stdenv
 , writeShellApplication
 , writeShellScript
+, writeText
 , pathToHumility ? "~/humility"
 , projects
 }:
@@ -55,11 +56,14 @@ let
 
   # Make a script linking files into a directory
   # This function takes two arguments:
-  # `files` An attribute set of target paths mapped to source files (paths or drvs)
+  # `files` An attribute set of target paths mapped to source files (strings or drvs)
   # `dir`   A directory path to prepend to the target
   linkFiles = files: dir:
     concatLines (mapAttrsToList
-      (target: source:
+      (target: file:
+        let
+          source = if builtins.isString file then writeText target file else file;
+        in
         "ln -s -f ${source} ${if dir == "" then "" else "${dir}/"}${target}")
       files);
 

@@ -1,4 +1,4 @@
-{ pkgs, ngserver, writeText }:
+{ pkgs, ngserver }:
 
 
 #########################################
@@ -32,7 +32,7 @@ in
       ];
 
     files = {
-      ".vimrc.lua" = writeText "vimrc.lua" ''
+      ".vimrc.lua" = ''
         registerLsps {
             lsps = { 'phpactor', 'vuels' },
             settings = {
@@ -92,7 +92,7 @@ in
     ];
 
     files = {
-      ".vimrc.lua" = writeText "vimrc.lua" ''
+      ".vimrc.lua" = ''
         registerLsps {
             lsps = { 'phpactor' },
             settings = {
@@ -127,7 +127,7 @@ in
     ];
 
     files = {
-      ".solargraph.yml" = writeText "solargraph.yml" ''
+      ".solargraph.yml" = ''
         ---
         include:
         - "**/*.rb"
@@ -151,7 +151,7 @@ in
         max_files: 5000
       '';
 
-      ".vimrc.lua" = writeText "vimrc.lua" ''
+      ".vimrc.lua" = ''
         registerLsps {
             lsps = { 'solargraph', 'ruby_ls' }
         }
@@ -187,7 +187,7 @@ in
 
     versionChecks = { inherit (versionChecks) node; };
 
-    files.".vimrc.lua" = writeText "vimrc.lua" ''
+    files.".vimrc.lua" = ''
       registerLsps {
           lsps = { 'angularls' },
           commands = {

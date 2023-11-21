@@ -30,7 +30,6 @@
       humix = pkgs.callPackage ./humix.nix {
         projects = import ./projects.nix {
           inherit pkgs ngserver;
-          inherit (pkgs) writeText;
         };
       };
     in
