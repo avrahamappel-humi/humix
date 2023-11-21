@@ -110,21 +110,9 @@ in
   };
 
   payroll = {
-    packages = [
-      pkgs.postgresql
-      pkgs.ruby_3_1
-      pkgs.rubyPackages_3_1.solargraph
-      pkgs.rubyPackages_3_1.ruby-lsp
-    ];
+    useFlake = false;
 
-    extraEnvrc = [
-      "layout ruby"
-      # I don't get why this doesn't happen by default with `layout ruby`
-      # See https://github.com/direnv/direnv/pull/883
-      "path_add GEM_PATH \"$GEM_HOME\""
-      # TODO formatting with rubocop still doesn't work
-      # Also sometimes GEM_PATH is not set when opening the project with `txe`
-    ];
+    extraEnvrc = [ "use nix" ];
 
     files = {
       ".solargraph.yml" = ''
@@ -156,6 +144,41 @@ in
             lsps = { 'solargraph', 'ruby_ls' }
         }
       '';
+
+      "shell.nix" = ''
+        let
+          pkgs = import ${pkgs.path} { };
+          ruby = pkgs.ruby_3_1;
+          env = pkgs.bundlerEnv {
+            name = "payroll-env";
+            inherit ruby;
+            gemdir = ./.;
+            ignoreCollisions = true;
+            extraConfigPaths = [ "''${./.}/engines" ];
+          };
+        in
+
+        pkgs.mkShell {
+          packages = [
+            ruby
+            env
+            pkgs.rubyPackages_3_1.solargraph
+            pkgs.rubyPackages_3_1.ruby-lsp
+          ];
+        }
+      '';
+    };
+
+    extraIgnores = [ "gemset.nix" "app/rails.rb" ];
+
+    beforeScript = pkgs.writeShellApplication {
+      name = "payroll-env-setup";
+
+      runtimeInputs = [ pkgs.bundix ];
+      text = ''
+        echo "Bundixing gems..."
+        bundix
+      '';
     };
 
     versionChecks = { inherit (versionChecks) ruby; };
@@ -168,13 +191,8 @@ in
         };
       in
       ''
-        # Bundle the project gems using Nix
-        bundle config build.thin -fdeclspec
-        bundle install
-
         # Install solargraph rails file
         cp -f ${rails-rb} app/rails.rb
-        echo app/rails.rb >> .git/info/exclude
       '';
   };
 
