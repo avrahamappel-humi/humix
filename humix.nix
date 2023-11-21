@@ -10,7 +10,7 @@
 
 let
   inherit (lib.strings) concatLines;
-  inherit (lib.attrsets) mapAttrsToList;
+  inherit (lib.attrsets) filterAttrs mapAttrsToList;
 
   # COLORS
   print = color: message: ''echo -e "\e[${color}m${message} \e[0m"'';
@@ -66,8 +66,9 @@ let
     in
     ''
       ${print colors.cyan "Installing Nix shell in ${dir}"}
-      echo 'use flake ${devShell}' > ${dir}/.envrc
-      ${if extraEnvrc != [] then ''
+      rm -f ${dir}/.envrc
+      ${if useFlake then "echo 'use flake ${devShell}' > ${dir}/.envrc" else ""}
+      ${if extraEnvrc != [ ] then ''
       cat >> ${dir}/.envrc << EOF
       ${concatLines extraEnvrc}
       EOF
@@ -145,6 +146,7 @@ let
     (name:
       { packages ? [ ]
       , path ? "${pathToHumility}/applications/${name}"
+      , useFlake ? true
       , extraEnvrc ? [ ]
       , files ? { }
       , beforeScript ? null
@@ -206,5 +208,5 @@ in
       name = "${name}-dev-shell";
       inherit packages;
     })
-    projects;
+    (filterAttrs (name: { useFlake ? true, ... }: useFlake) projects);
 }
