@@ -9,8 +9,8 @@
 }:
 
 let
-  inherit (lib.strings) concatLines toUpper;
-  inherit (lib.attrsets) filterAttrs mapAttrsToList;
+  inherit (lib.strings) concatLines isStorePath toUpper;
+  inherit (lib.attrsets) filterAttrs isDerivation mapAttrsToList;
 
   # COLORS
   print = color: message: ''echo -e "\e[${color}m${message} \e[0m"'';
@@ -80,9 +80,13 @@ let
     concatLines (mapAttrsToList
       (target: file:
         let
-          text = file.text or file;
+          extractSourcePath = val:
+            if isDerivation val then val else
+            if val ? "text" then extractSourcePath val.text else
+            if isStorePath val then val else
+            writeText target val;
+          source = extractSourcePath file;
           copy = file.copy or false;
-          source = if builtins.isString text then writeText target text else text;
           command = if copy then "cp -f" else "ln -s -f";
         in
         "${command} ${source} ${if dir == "" then "" else "${dir}/"}${target}")
