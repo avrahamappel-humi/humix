@@ -96,7 +96,7 @@ let
   setupIgnoreFiles = files: dir: ''
     ${print colors.cyan "Adding ignored files to .git/info/exclude"}
     ${if files != [ ] then ''
-    cat >> ${dir}/.git/info/exclude << EOF
+    cat > ${dir}/.git/info/exclude << EOF
     ${concatLines files}
     EOF
     '' else ""}
