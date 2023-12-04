@@ -35,11 +35,6 @@
     {
       packages.default = humix.humix-setup;
 
-      apps.default = {
-        type = "app";
-        program = "${self.packages.${system}.default}/bin/humix-setup";
-      };
-
       inherit (humix) devShells;
     });
 }
