@@ -18,7 +18,7 @@
         php
         php.packages.composer
         pkgs.phpactor
-        pkgs.nodejs_16
+        pkgs.nodejs_18
         pkgs.nodePackages.vls
         pkgs.yarn
         pkgs.mysql
@@ -55,7 +55,7 @@
       "export REDIS_HOST=127.0.0.1"
     ];
 
-    versionChecks = [ "php" ];
+    versionChecks = [ "php" "node" ];
   };
 
   hr = {
@@ -99,7 +99,7 @@
       '';
     };
 
-    versionChecks = [ "php" ];
+    versionChecks = [ "php" "node" ];
   };
 
   payroll = {

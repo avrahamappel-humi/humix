@@ -15,7 +15,6 @@
     let
       pkgs = import nixpkgs {
         inherit system;
-        config.permittedInsecurePackages = [ "nodejs-16.20.2" ];
       };
 
       # for angular templates
