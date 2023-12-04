@@ -25,7 +25,7 @@
       ];
 
     files = {
-      ".vimrc.lua" = ''
+      ".vimrc.lua" = /* lua */ ''
         registerLsps {
             lsps = { 'phpactor', 'vuels' },
             settings = {
@@ -85,7 +85,7 @@
     ];
 
     files = {
-      ".vimrc.lua" = ''
+      ".vimrc.lua" = /* lua */ ''
         registerLsps {
             lsps = { 'phpactor' },
             settings = {
@@ -132,7 +132,7 @@
         max_files: 5000
       '';
 
-      ".vimrc.lua" = ''
+      ".vimrc.lua" = /* lua */ ''
         registerLsps {
             lsps = { 'solargraph', 'ruby_ls' }
         }
@@ -140,7 +140,7 @@
 
       "shell.nix" = {
         copy = true;
-        text = ''
+        text = /* nix */ ''
           let
             pkgs = import ${pkgs.path} { };
             ruby = pkgs.ruby_3_1;
@@ -198,7 +198,7 @@
 
     versionChecks = [ "node" ];
 
-    files.".vimrc.lua" = ''
+    files.".vimrc.lua" = /* lua */ ''
       registerLsps {
           lsps = { 'angularls' },
           commands = {
