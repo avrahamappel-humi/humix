@@ -169,6 +169,7 @@
               env
               pkgs.rubyPackages_3_1.solargraph
               pkgs.rubyPackages_3_1.ruby-lsp
+              pkgs.bundix
             ];
           }
         '';
