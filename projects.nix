@@ -203,6 +203,7 @@
   ui = {
     packages = [
       pkgs.nodejs_20
+      pkgs.python311
       pkgs.yarn
       ngserver
     ];
