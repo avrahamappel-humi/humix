@@ -134,7 +134,7 @@
 
       ".vimrc.lua" = /* lua */ ''
         registerLsps {
-            lsps = { 'solargraph', 'ruby_ls' }
+            lsps = { 'solargraph' }
         }
       '';
 
@@ -168,7 +168,6 @@
               ruby
               env
               pkgs.rubyPackages_3_1.solargraph
-              pkgs.rubyPackages_3_1.ruby-lsp
               pkgs.bundix
             ];
           }
