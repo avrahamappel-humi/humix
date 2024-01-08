@@ -1,5 +1,8 @@
 { pkgs, ngserver }:
 
+let
+  inherit (pkgs.darwin.apple_sdk) frameworks;
+in
 
 #########################################
 # Main project applications config list #
@@ -205,6 +208,7 @@
       pkgs.python311
       pkgs.yarn
       ngserver
+      frameworks.CoreServices
     ];
 
     versionChecks = [ "node" ];
