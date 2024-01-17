@@ -4,6 +4,8 @@ let
   inherit (pkgs.darwin.apple_sdk) frameworks;
 in
 
+# TODO refactor everything to shell.nix, I think it's faster
+
 #########################################
 # Main project applications config list #
 #########################################
