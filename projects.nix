@@ -56,6 +56,8 @@ in
       "export DB_HUMI_HOST=127.0.0.1"
       "export DB_HUMI_PORT=33060"
       "export REDIS_HOST=127.0.0.1"
+      "export DB_UI_HUMI=mysql://root:root@127.0.0.1:33060/humi"
+      "export DB_UI_ADMIN=mysql://root:root@127.0.0.1:33070/admin"
     ];
 
     versionChecks = [ "php" "node" ];
@@ -85,6 +87,7 @@ in
       "export DB_HOST=127.0.0.1"
       "export DB_PORT=33060"
       "export REDIS_HOST=127.0.0.1"
+      "export DBUI_URL=mysql://root:root@127.0.0.1:33060/humi"
     ];
 
     files = {
@@ -108,7 +111,10 @@ in
   payroll = {
     useFlake = false;
 
-    extraEnvrc = [ "use nix" ];
+    extraEnvrc = [
+      "use nix"
+      "DBUI_URL=postgres://postgres@127.0.0.1/ableAPI_development"
+    ];
 
     files = {
       ".solargraph.yml" = ''
@@ -172,6 +178,7 @@ in
               env
               pkgs.rubyPackages_3_1.solargraph
               pkgs.bundix
+              pkgs.postgresql
             ];
           }
         '';
