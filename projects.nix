@@ -1,4 +1,4 @@
-{ pkgs, ngserver }:
+{ pkgs, ngserver, stylelint-lsp }:
 
 let
   inherit (pkgs.darwin.apple_sdk) frameworks;
@@ -217,6 +217,7 @@ in
       pkgs.python311
       pkgs.yarn
       ngserver
+      stylelint-lsp
       frameworks.CoreServices
     ];
 
@@ -224,9 +225,10 @@ in
 
     files.".vimrc.lua" = /* lua */ ''
       registerLsps {
-          lsps = { 'angularls' },
+          lsps = { 'angularls', 'stylelint_lsp' },
           commands = {
               angularls = { 'ngserver', '--tsProbeLocations=.' },
+              stylelint_lsp = { 'stylelint-lsp', '--stdio' },
           },
           root_dirs = {
               angularls = require("lspconfig").util.root_pattern("apps/hr-angular/project.json")

@@ -26,9 +26,13 @@
         inherit pkgs system;
       }).nodeDependencies;
 
+      stylelint-lsp = (pkgs.callPackage ./stylelint-lsp {
+        inherit pkgs system;
+      }).nodeDependencies;
+
       humix = pkgs.callPackage ./humix.nix {
         projects = import ./projects.nix {
-          inherit pkgs ngserver;
+          inherit pkgs ngserver stylelint-lsp;
         };
       };
     in
