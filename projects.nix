@@ -168,6 +168,9 @@ in
                   dontBuild = false;
                   patches = [ ${./patches/rbtree-fix-clang-16.patch} ];
                 };
+                # nokogiri is currently blocked from compiling on nixos unstable [d870193](https://github.com/NixOS/nixpkgs/pull/274550/commits/d870193b2d99dc2744cee8111468135e4c83bde2) and above
+                # due to changes in libxml2 which cause compiler errors. If our dependency is not updated soon, we'll have to disable the compiler error
+                # This is solved in Nokogiri v1.16.0.rc1 and above. See https://github.com/sparklemotion/nokogiri/issues/3071
               };
               ignoreCollisions = true;
               extraConfigPaths = [ "''${./.}/engines" ];
