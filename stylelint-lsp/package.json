@@ -1,0 +1,7 @@
+{
+    "name": "stylelint-lsp.nix",
+    "private": true,
+    "dependencies": {
+        "stylelint-lsp": "^2.0"
+    }
+}
