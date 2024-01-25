@@ -115,7 +115,7 @@ in
 
     extraEnvrc = [
       "use nix"
-      "DBUI_URL=postgres://postgres@127.0.0.1/ableAPI_development"
+      "export DBUI_URL=postgres://postgres@127.0.0.1/ableAPI_development"
     ];
 
     files = {
