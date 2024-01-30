@@ -2,6 +2,14 @@
 
 let
   inherit (pkgs.darwin.apple_sdk) frameworks;
+
+  artisan = php: pkgs.writeShellApplication {
+    runtimeInputs = [ php ];
+    name = "art";
+    text = ''
+      php artisan "$@"
+    '';
+  };
 in
 
 #########################################
@@ -20,6 +28,7 @@ in
       [
         php
         php.packages.composer
+        (artisan php)
         pkgs.phpactor
         pkgs.nodejs_18
         pkgs.nodePackages.vls
@@ -77,6 +86,7 @@ in
       [
         php
         php.packages.composer
+        (artisan php)
         pkgs.phpactor
         pkgs.nodejs_20
         pkgs.yarn
