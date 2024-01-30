@@ -67,7 +67,7 @@ let
     ''
       ${print colors.cyan "Installing Nix shell in ${dir}"}
       rm -f ${dir}/.envrc
-      ${if useFlake then "echo 'use flake ${devShell}' > ${dir}/.envrc" else ""}
+      echo '${if useFlake then "use flake ${devShell}" else "use nix"}' > ${dir}/.envrc
       ${if extraEnvrc != [ ] then ''
       cat >> ${dir}/.envrc << EOF
       ${concatLines extraEnvrc}
