@@ -160,8 +160,7 @@ let
   # Adds .envrc and declared files to .git/info/exclude
   script = messages-file: concatLines (mapAttrsToList
     (name:
-      { packages ? [ ]
-      , path ? "${pathToHumility}/applications/${name}"
+      { path ? "${pathToHumility}/applications/${name}"
       , useFlake ? true
       , extraEnvrc ? [ ]
       , files ? { }
@@ -169,6 +168,7 @@ let
       , beforeScript ? null
       , extraScript ? null
       , versionChecks ? { }
+      , ...
       }:
       let
         asciiLine = "##${
@@ -233,9 +233,10 @@ in
   inherit humix-setup;
 
   devShells = builtins.mapAttrs
-    (name: { packages, ... }: pkgs.mkShell {
+    (name: { packages, envVars ? { }, ... }: pkgs.mkShell {
       name = "${name}-dev-shell";
       inherit packages;
+      env = envVars;
     })
     (filterAttrs (name: { useFlake ? true, ... }: useFlake) projects);
 }

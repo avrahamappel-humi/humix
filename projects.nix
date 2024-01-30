@@ -4,8 +4,6 @@ let
   inherit (pkgs.darwin.apple_sdk) frameworks;
 in
 
-# TODO refactor everything to shell.nix, I think it's faster
-
 #########################################
 # Main project applications config list #
 #########################################
@@ -51,16 +49,17 @@ in
       '';
     };
 
-    extraEnvrc = [
-      "layout php"
-      "export DB_HOST=127.0.0.1"
-      "export DB_PORT=33070"
-      "export DB_HUMI_HOST=127.0.0.1"
-      "export DB_HUMI_PORT=33060"
-      "export REDIS_HOST=127.0.0.1"
-      "export DB_UI_HUMI=mysql://root:root@127.0.0.1:33060/humi"
-      "export DB_UI_ADMIN=mysql://root:root@127.0.0.1:33070/admin"
-    ];
+    extraEnvrc = [ "layout php" ];
+
+    envVars = {
+      DB_HOST = "127.0.0.1";
+      DB_PORT = "33070";
+      DB_HUMI_HOST = "127.0.0.1";
+      DB_HUMI_PORT = "33060";
+      REDIS_HOST = "127.0.0.1";
+      DB_UI_HUMI = "mysql://root:root@127.0.0.1:33060/humi";
+      DB_UI_ADMIN = "mysql://root:root@127.0.0.1:33070/admin";
+    };
 
     versionChecks = [ "php" "node" ];
   };
@@ -84,13 +83,14 @@ in
         pkgs.mysql
       ];
 
-    extraEnvrc = [
-      "layout php"
-      "export DB_HOST=127.0.0.1"
-      "export DB_PORT=33060"
-      "export REDIS_HOST=127.0.0.1"
-      "export DBUI_URL=mysql://root:root@127.0.0.1:33060/humi"
-    ];
+    extraEnvrc = [ "layout php" ];
+
+    envVars = {
+      DB_HOST = "127.0.0.1";
+      DB_PORT = "33060";
+      REDIS_HOST = "127.0.0.1";
+      DBUI_URL = "mysql://root:root@127.0.0.1:33060/humi";
+    };
 
     files = {
       ".vimrc.lua" = /* lua */ ''
@@ -112,10 +112,6 @@ in
 
   payroll = {
     useFlake = false;
-
-    extraEnvrc = [
-      "export DBUI_URL=postgres://postgres@127.0.0.1/ableAPI_development"
-    ];
 
     files = {
       ".solargraph.yml" = ''
@@ -184,6 +180,8 @@ in
               pkgs.bundix
               pkgs.postgresql
             ];
+
+            DBUI_URL = "postgres://postgres@127.0.0.1/ableAPI_development";
           }
         '';
       };
