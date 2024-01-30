@@ -167,7 +167,7 @@ let
       , extraIgnores ? [ ]
       , beforeScript ? null
       , extraScript ? null
-      , versionChecks ? { }
+      , versionChecks ? [ ]
       , ...
       }:
       let
@@ -184,6 +184,10 @@ let
 
         ${print colors.green "Setting up project in ${path}"}
 
+        if [[ ! -d ${path} ]]; then
+          git clone git@github.com:Humi-HR/${name}.git ${path}
+        fi
+
         ${if beforeScript != null then runBeforeScript name beforeScript path else ""}
 
         ${linkFiles files path}
@@ -193,7 +197,8 @@ let
         direnv allow ${path}
         direnv exec ${path} ${print colors.green "Nix shell installed in ${name}"}
 
-        ${runVersionChecks versionChecks messages-file name path}
+        ${lib.optionalString (versionChecks != [ ])
+        (runVersionChecks versionChecks messages-file name path)}
 
         ${setupIgnoreFiles ((builtins.attrNames files) ++ extraIgnores) path}
 

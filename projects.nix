@@ -211,6 +211,18 @@ in
     versionChecks = [ "ruby" ];
   };
 
+  ableScripts = {
+    packages = [
+      pkgs.solargraph
+    ];
+
+    files.".vimrc.lua" = /* lua */ ''
+      registerLsps {
+        lsps = { 'solargraph' }
+      }
+    '';
+  };
+
   ui = {
     packages = [
       pkgs.nodejs_20
