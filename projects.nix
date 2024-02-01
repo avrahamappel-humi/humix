@@ -124,8 +124,7 @@ in
     useFlake = false;
 
     files = {
-      ".solargraph.yml" = ''
-        ---
+      ".solargraph.yml" = /* yaml */ ''
         include:
         - "**/*.rb"
         exclude:
@@ -226,11 +225,37 @@ in
       pkgs.solargraph
     ];
 
-    files.".vimrc.lua" = /* lua */ ''
-      registerLsps {
-        lsps = { 'solargraph' }
-      }
-    '';
+    files = {
+      ".solargraph.yml" = /* yaml */ ''
+        include:
+        - "**/*.rb"
+        - "../payroll/app/**/*.rb"
+        exclude:
+        - spec/**/*
+        - test/**/*
+        - vendor/**/*
+        - ".bundle/**/*"
+        require: []
+        domains: []
+        reporters:
+        - all!
+        formatter:
+          rubocop:
+            cops: safe
+            except: []
+            only: []
+            extra_args: []
+        require_paths: []
+        plugins: []
+        max_files: 5000
+      '';
+
+      ".vimrc.lua" = /* lua */ ''
+        registerLsps {
+          lsps = { 'solargraph' }
+        }
+      '';
+    };
   };
 
   ui = {
