@@ -1,5 +1,9 @@
 { pkgs, ngserver, stylelint-lsp }:
 
+#########################################
+# Main project applications config list #
+#########################################
+
 let
   inherit (pkgs) writeShellScript;
   inherit (pkgs.darwin.apple_sdk) frameworks;
@@ -115,9 +119,6 @@ let
   '';
 in
 
-#########################################
-# Main project applications config list #
-#########################################
 {
   admin = {
     packages =
