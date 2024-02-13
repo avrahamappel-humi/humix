@@ -8,6 +8,22 @@ let
   inherit (pkgs) writeShellScript;
   inherit (pkgs.darwin.apple_sdk) frameworks;
 
+  xdebugClient = pkgs.stdenv.mkDerivation {
+    name = "xdebug-client-macos-arm64";
+    src = pkgs.fetchurl {
+      url = "https://xdebug.org/files/binaries/dbgpClient-macos-arm64";
+      hash = "sha256-Yk1BsJB7nASuNsQ0Klh+4+dBNnO2FawOgLkomzMNuUM=";
+      executable = true;
+    };
+    dontUnpack = true;
+    installPhase = ''
+      runHook preInstall
+      mkdir -p $out/bin
+      install $src $out/bin/xdebug
+      runHook postInstall
+    '';
+  };
+
   artisan = php: pkgs.writeShellApplication {
     runtimeInputs = [ php ];
     name = "art";
@@ -190,6 +206,7 @@ in
       [
         php
         php.packages.composer
+        xdebugClient
         (artisan php)
         bug
         pkgs.phpactor
