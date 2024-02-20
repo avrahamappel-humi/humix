@@ -164,12 +164,6 @@ in
         max_files: 5000
       '';
 
-      ".vimrc.lua" = /* lua */ ''
-        registerLsps {
-            lsps = { 'solargraph' }
-        }
-      '';
-
       "shell.nix" = {
         copy = true;
         text = /* nix */ ''
@@ -202,7 +196,6 @@ in
             packages = [
               ruby
               env
-              pkgs.rubyPackages_3_1.solargraph
               pkgs.bundix
               pkgs.postgresql
             ];
@@ -238,10 +231,7 @@ in
   };
 
   ableScripts = {
-    packages = [
-      pkgs.solargraph
-      bug
-    ];
+    packages = [ bug ];
 
     files = {
       ".solargraph.yml" = /* yaml */ ''
@@ -266,12 +256,6 @@ in
         require_paths: []
         plugins: []
         max_files: 5000
-      '';
-
-      ".vimrc.lua" = /* lua */ ''
-        registerLsps {
-          lsps = { 'solargraph' }
-        }
       '';
     };
   };
