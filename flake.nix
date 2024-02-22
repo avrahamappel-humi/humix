@@ -19,9 +19,7 @@
       # This is solved in Nokogiri v1.16.0.rc1 and above. See https://github.com/sparklemotion/nokogiri/issues/3071
       oldPkgs = import nixpkgs-libxml-2-11 { inherit system; };
 
-      # for angular templates
-      # To update this, cd into ./ngserver and run
-      # nix-shell -p node2nix --run node2nix
+      # To update, run ./update.sh (also updates the flake)
       ngserver = (pkgs.callPackage ./ngserver {
         inherit pkgs system;
       }).nodeDependencies;
