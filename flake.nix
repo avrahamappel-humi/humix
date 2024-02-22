@@ -22,8 +22,6 @@
       # for angular templates
       # To update this, cd into ./ngserver and run
       # nix-shell -p node2nix --run node2nix
-      # @angular/language-server is pinned at 16.1.4 until
-      # humility is on typescript 5
       ngserver = (pkgs.callPackage ./ngserver {
         inherit pkgs system;
       }).nodeDependencies;
