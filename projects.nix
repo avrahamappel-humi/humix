@@ -192,12 +192,7 @@ in
           in
 
           pkgs.mkShell {
-            packages = [
-              ruby
-              env
-              pkgs.bundix
-              pkgs.postgresql
-            ];
+            packages = with pkgs; [ ruby env bundix postgresql solargraph ];
 
             DBUI_URL = "postgres://postgres@127.0.0.1/ableAPI_development";
           }
@@ -230,7 +225,7 @@ in
   };
 
   ableScripts = {
-    packages = [ bug ];
+    packages = [ bug pkgs.solargraph ];
 
     files = {
       ".solargraph.yml" = /* yaml */ ''
