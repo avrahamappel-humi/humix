@@ -25,8 +25,8 @@ let
     '';
   };
 
-  artisan = php: pkgs.writeShellScriptBin "art" ''
-    ${php}/bin/php artisan "$@"
+  art = pkgs.writeShellScriptBin "art" ''
+    php artisan "$@"
   '';
 
   bug = pkgs.writeShellScriptBin "bug" (builtins.readFile ./bug.sh);
@@ -45,7 +45,7 @@ in
       [
         php
         php.packages.composer
-        (artisan php)
+        art
         pkgs.phpactor
         pkgs.nodejs_18
         pkgs.nodePackages.vls
@@ -113,7 +113,7 @@ in
         php
         php.packages.composer
         xdebugClient
-        (artisan php)
+        art
         bug
         pkgs.phpactor
         pkgs.nodejs_20
