@@ -35,36 +35,16 @@ in
 {
   admin = {
     packages =
-      let
-        php = pkgs.php82.buildEnv {
+      with pkgs; let
+        php = php82.buildEnv {
           extraConfig = ''
             memory_limit = -1
           '';
         };
       in
-      [
-        php
-        php.packages.composer
-        art
-        pkgs.phpactor
-        pkgs.nodejs_18
-        pkgs.nodePackages.vls
-        pkgs.yarn
-        pkgs.mysql
-      ];
+      [ art php php.packages.composer phpactor nodejs_18 yarn mysql ];
 
     files = {
-      ".vimrc.lua" = /* lua */ ''
-        registerLsps {
-            lsps = { 'vuels' },
-            settings = {
-                vetur = {
-                    ignoreProjectWarning = true
-                },
-            }
-        }
-      '';
-
       ".phpactor.json" = /* json */ ''
         {
           "language_server_phpstan.enabled": true,
