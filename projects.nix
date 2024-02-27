@@ -56,22 +56,31 @@ in
     files = {
       ".vimrc.lua" = /* lua */ ''
         registerLsps {
-            lsps = { 'phpactor', 'vuels' },
+            lsps = { 'vuels' },
             settings = {
-                phpactor = {
-                    language_server_phpstan = {
-                        enabled = true,
-                        level = 5,
-                    },
-                    phpunit = {
-                        enabled = true,
-                    },
-                },
                 vetur = {
                     ignoreProjectWarning = true
                 },
             }
         }
+      '';
+
+      ".phpactor.json" = /* json */ ''
+        {
+          "language_server_phpstan.enabled": true,
+          "php_code_sniffer.enabled": true,
+          "phpunit.enabled": true
+        }
+      '';
+
+      "phpstan.neon" = ''
+        includes:
+          - vendor/larastan/larastan/extension.neon
+        parameters:
+          paths:
+          - app/
+          # Level 9 is the highest level
+          level: 5
       '';
     };
 
@@ -122,16 +131,10 @@ in
     };
 
     files = {
-      ".vimrc.lua" = /* lua */ ''
-        registerLsps {
-            lsps = { 'phpactor' },
-            settings = {
-                phpactor = {
-                    phpunit = {
-                        enabled = true,
-                    },
-                },
-            }
+      ".phpactor.json" = /* json */ ''
+        {
+          "php_code_sniffer.enabled": true,
+          "phpunit.enabled": true
         }
       '';
     };
