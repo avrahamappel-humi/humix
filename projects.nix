@@ -185,6 +185,8 @@ in
           pkgs.mkShell {
             packages = with pkgs; [ ruby env bundix postgresql solargraph ];
 
+            DB_HOST = "127.0.0.1";
+            REDIS_URL = "127.0.0.1";
             DBUI_URL = "postgres://postgres@127.0.0.1/ableAPI_development";
           }
         '';
