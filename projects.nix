@@ -37,6 +37,7 @@ in
     packages =
       with pkgs; let
         php = php82.buildEnv {
+          extensions = ({ enabled, all }: enabled ++ [ all.opentelemetry ]);
           extraConfig = ''
             memory_limit = -1
           '';
