@@ -49,6 +49,7 @@ in
       ".phpactor.json" = /* json */ ''
         {
           "language_server_phpstan.enabled": true,
+          "php_code_sniffer.enabled": true,
           "phpunit.enabled": true
         }
       '';
@@ -113,6 +114,7 @@ in
     files = {
       ".phpactor.json" = /* json */ ''
         {
+          "php_code_sniffer.enabled": true,
           "phpunit.enabled": true
         }
       '';
