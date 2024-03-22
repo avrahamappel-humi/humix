@@ -78,6 +78,13 @@ in
     };
 
     versionChecks = [ "php" "node" ];
+
+    extraScript = ''
+      echo "Setting PHPCodeSniffer config"
+      phpcs --config-set default_standard PSR12,PHPCompatibility
+      phpcs --config-set severity 1
+      phpcs --config-set testVersion 8.2
+    '';
   };
 
   hr = {
@@ -121,6 +128,13 @@ in
     };
 
     versionChecks = [ "php" "node" ];
+
+    extraScript = ''
+      echo "Setting PHPCodeSniffer config"
+      phpcs --config-set default_standard PSR12,PHPCompatibility
+      phpcs --config-set severity 1
+      phpcs --config-set testVersion 8.2
+    '';
   };
 
   payroll = {
