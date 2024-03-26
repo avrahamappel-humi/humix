@@ -67,12 +67,13 @@ let
     ''
       ${print colors.cyan "Installing Nix shell in ${dir}"}
       rm -f ${dir}/.envrc
-      echo '${if useFlake then "use flake ${devShell}" else "use nix"}' > ${dir}/.envrc
-      ${if extraEnvrc != [ ] then ''
-      cat >> ${dir}/.envrc << EOF
+      cat > ${dir}/.envrc << EOF
+      nix_direnv_manual_reload
+      ${if useFlake then "use flake ${devShell}" else "use nix"}
       ${concatLines extraEnvrc}
+      ${if useFlake then "watch_file ${pathToHumility}/user_files/humix/*" else ""}
+      source_up_if_exists
       EOF
-      '' else ""}
     '';
 
   # Make a script linking files into a directory

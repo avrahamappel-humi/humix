@@ -219,6 +219,8 @@ in
 
     extraIgnores = [ "gemset.nix" ];
 
+    extraEnvrc = [ "watch_file gemset.nix" ];
+
     beforeScript = pkgs.writeShellApplication {
       name = "payroll-env-setup";
 
