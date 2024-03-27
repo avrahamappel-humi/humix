@@ -69,10 +69,10 @@ let
       rm -f ${dir}/.envrc
       cat > ${dir}/.envrc << EOF
       nix_direnv_manual_reload
+      source_up_if_exists
       ${if useFlake then "use flake ${devShell}" else "use nix"}
       ${concatLines extraEnvrc}
       ${if useFlake then "watch_file ${pathToHumility}/user_files/humix/*" else ""}
-      source_up_if_exists
       EOF
     '';
 
