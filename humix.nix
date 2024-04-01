@@ -68,7 +68,6 @@ let
       ${print colors.cyan "Installing Nix shell in ${dir}"}
       rm -f ${dir}/.envrc
       cat > ${dir}/.envrc << EOF
-      nix_direnv_manual_reload
       source_up_if_exists
       ${if useFlake then "use flake ${devShell}" else "use nix"}
       ${concatLines extraEnvrc}
