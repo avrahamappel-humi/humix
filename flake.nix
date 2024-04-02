@@ -2,7 +2,8 @@
   description = "Local dev setup";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-unstable";
+    # XZ exploit, pinning to unexploited version until official patch is available https://nixpk.gs/pr-tracker.html?pr=300028
+    nixpkgs.url = "nixpkgs/8db50d6f207f6e6bea072986fe5abfc955f04bfc";
     nixpkgs-libxml-2-11.url = "nixpkgs/b0d36bd0a420ecee3bc916c91886caca87c894e9";
   };
 
