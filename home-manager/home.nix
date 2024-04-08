@@ -1,3 +1,5 @@
+{ pkgs, ... }:
+
 let
   pathToHumility = "~/humility";
 
@@ -76,4 +78,14 @@ in
         fi
     }
   '';
+
+  home.file.".jira.d/config.yml".text = ''
+    endpoint: https://gethumi.atlassian.net
+    user: avraham.appel@humi.ca
+    password-source: keyring
+  '';
+
+  home.packages = with pkgs; [
+    gh go-jira
+  ];
 }

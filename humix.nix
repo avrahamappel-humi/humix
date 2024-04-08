@@ -68,7 +68,6 @@ let
       ${print colors.cyan "Installing Nix shell in ${dir}"}
       rm -f ${dir}/.envrc
       cat > ${dir}/.envrc << EOF
-      source_up_if_exists
       ${if useFlake then "use flake ${devShell}" else "use nix"}
       ${concatLines extraEnvrc}
       ${if useFlake then "watch_file ${pathToHumility}/user_files/humix/*" else ""}
