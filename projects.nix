@@ -13,7 +13,7 @@ let
     name = "xdebug-client-macos-arm64";
     src = pkgs.fetchurl {
       url = "https://xdebug.org/files/binaries/dbgpClient-macos-arm64";
-      hash = "sha256-Yk1BsJB7nASuNsQ0Klh+4+dBNnO2FawOgLkomzMNuUM=";
+      hash = "sha256-zmyaLBcLB1IohweBxf5/ykdzV2LqOC+aXdZOadzKm+8=";
       executable = true;
     };
     dontUnpack = true;
