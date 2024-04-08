@@ -7,6 +7,8 @@ let
     (builtins.map
       (project: { name = project; value = "humility_open ${project} $*"; })
       [ "hr" "payroll" "ui" "admin" "ableScripts" ]);
+
+  inherit (pkgs) vimUtils fetchFromGitHub;
 in
 
 {
@@ -86,6 +88,29 @@ in
   '';
 
   home.packages = with pkgs; [
-    gh go-jira
+    gh
+    go-jira
+  ];
+
+  programs.neovim.plugins = [
+    {
+      plugin = vimUtils.buildVimPlugin {
+        pname = "ng.nvim";
+        version = "2023-02-12";
+        src = fetchFromGitHub {
+          owner = "joeveiga";
+          repo = "ng.nvim";
+          rev = "d02deda535e1b05014ce4f36781d2f45c174065a";
+          hash = "sha256-9Koecth1grLq01OCFYkB/qMl2xlAst5No5ZPRBnuLU8=";
+        };
+      };
+      type = "lua";
+      config = /* lua */ ''
+        local opts = { noremap = true, silent = true }
+        local ng = require("ng");
+        vim.keymap.set("n", "<leader>t", ng.goto_template_for_component, opts)
+        vim.keymap.set("n", "<leader>r", ng.goto_component_with_template_file, opts)
+      '';
+    }
   ];
 }
