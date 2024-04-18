@@ -1480,13 +1480,13 @@ let
         sha512 = "yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==";
       };
     };
-    "typescript-5.4.4" = {
+    "typescript-5.4.5" = {
       name = "typescript";
       packageName = "typescript";
-      version = "5.4.4";
+      version = "5.4.5";
       src = fetchurl {
-        url = "https://registry.npmjs.org/typescript/-/typescript-5.4.4.tgz";
-        sha512 = "dGE2Vv8cpVvw28v8HCPqyb08EzbBURxDpuhJvTrusShUfGnhHBafDsLdS1EhhxyL6BJQE+2cT3dDPAv+MQ6oLw==";
+        url = "https://registry.npmjs.org/typescript/-/typescript-5.4.5.tgz";
+        sha512 = "vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==";
       };
     };
     "uri-js-4.4.1" = {
@@ -1809,7 +1809,7 @@ let
       sources."trim-newlines-4.1.1"
       sources."tslib-2.6.2"
       sources."type-fest-1.4.0"
-      sources."typescript-5.4.4"
+      sources."typescript-5.4.5"
       sources."uri-js-4.4.1"
       sources."util-deprecate-1.0.2"
       sources."validate-npm-package-license-3.0.4"
