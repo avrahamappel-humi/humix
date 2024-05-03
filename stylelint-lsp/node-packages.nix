@@ -13,22 +13,22 @@ let
         sha512 = "y5+tLQyV8pg3fsiln67BVLD1P13Eg4lh5RW9mF0zUuvLrv9uIQ4MCL+CRT+FTsBlBjcIan6PGsLcBN0m3ClUyQ==";
       };
     };
-    "@babel/helper-validator-identifier-7.22.20" = {
+    "@babel/helper-validator-identifier-7.24.5" = {
       name = "_at_babel_slash_helper-validator-identifier";
       packageName = "@babel/helper-validator-identifier";
-      version = "7.22.20";
+      version = "7.24.5";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@babel/helper-validator-identifier/-/helper-validator-identifier-7.22.20.tgz";
-        sha512 = "Y4OZ+ytlatR8AI+8KZfKuL5urKp7qey08ha31L8b3BwewJAoJamTzyvxPR/5D+KkdJCGPq/+8TukHBlY10FX9A==";
+        url = "https://registry.npmjs.org/@babel/helper-validator-identifier/-/helper-validator-identifier-7.24.5.tgz";
+        sha512 = "3q93SSKX2TWCG30M2G2kwaKeTYgEUp5Snjuj8qm729SObL6nbtUldAi37qbxkD5gg3xnBio+f9nqpSepGZMvxA==";
       };
     };
-    "@babel/highlight-7.24.2" = {
+    "@babel/highlight-7.24.5" = {
       name = "_at_babel_slash_highlight";
       packageName = "@babel/highlight";
-      version = "7.24.2";
+      version = "7.24.5";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@babel/highlight/-/highlight-7.24.2.tgz";
-        sha512 = "Yac1ao4flkTxTteCDZLEvdxg2fZfz1v8M4QpaGypq/WPDqg3ijHYbDfs+LG5hvzSoqaSZ9/Z9lKSP3CjZjv+pA==";
+        url = "https://registry.npmjs.org/@babel/highlight/-/highlight-7.24.5.tgz";
+        sha512 = "8lLmua6AVh/8SLJRRVD6V8p73Hir9w5mJrhE+IPpILG31KKlI9iz5zmBYKcWPS59qSfgP9RaSBQSHHE81WKuEw==";
       };
     };
     "@csstools/css-parser-algorithms-2.6.1" = {
@@ -112,13 +112,13 @@ let
         sha512 = "37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==";
       };
     };
-    "ajv-8.12.0" = {
+    "ajv-8.13.0" = {
       name = "ajv";
       packageName = "ajv";
-      version = "8.12.0";
+      version = "8.13.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/ajv/-/ajv-8.12.0.tgz";
-        sha512 = "sRu1kpcO9yLtYxBKvqfTeh9KzZEwO3STyX1HT+4CaDzC6HpTGYhIhPIzj9XuKU7KYDwnaeh5hcOwjy1QuJzBPA==";
+        url = "https://registry.npmjs.org/ajv/-/ajv-8.13.0.tgz";
+        sha512 = "PRA911Blj99jR5RMeTunVbNXMF6Lp4vZXnk5GQjcnUWUTsrXtekg/pnmFFI2u/I36Y/2bITGS30GZCXei6uNkA==";
       };
     };
     "ansi-regex-5.0.1" = {
@@ -319,13 +319,13 @@ let
         sha512 = "kcZ6+W5QzcJ3P1Mt+83OUv/oHFqZHIx8DuxG6eZ5RGMERoLqp4BuGjhHLYGK+Kf5XVkQvqBSmAy/nGWN3qDgEA==";
       };
     };
-    "css-functions-list-3.2.1" = {
+    "css-functions-list-3.2.2" = {
       name = "css-functions-list";
       packageName = "css-functions-list";
-      version = "3.2.1";
+      version = "3.2.2";
       src = fetchurl {
-        url = "https://registry.npmjs.org/css-functions-list/-/css-functions-list-3.2.1.tgz";
-        sha512 = "Nj5YcaGgBtuUmn1D7oHqPW0c9iui7xsTsj5lIX8ZgevdfhmjFfKB3r8moHJtNJnctnYXJyYX5I1pp90HM4TPgQ==";
+        url = "https://registry.npmjs.org/css-functions-list/-/css-functions-list-3.2.2.tgz";
+        sha512 = "c+N0v6wbKVxTu5gOBBFkr9BEdBWaqqjQeiJ8QvSRIJOf+UxlJh930m8e6/WNeODIK0mYLFkoONrnj16i2EcvfQ==";
       };
     };
     "css-tree-2.3.1" = {
@@ -1631,8 +1631,8 @@ let
     src = ./.;
     dependencies = [
       sources."@babel/code-frame-7.24.2"
-      sources."@babel/helper-validator-identifier-7.22.20"
-      sources."@babel/highlight-7.24.2"
+      sources."@babel/helper-validator-identifier-7.24.5"
+      sources."@babel/highlight-7.24.5"
       sources."@csstools/css-parser-algorithms-2.6.1"
       sources."@csstools/css-tokenizer-2.2.4"
       sources."@csstools/media-query-list-parser-2.1.9"
@@ -1642,7 +1642,7 @@ let
       sources."@nodelib/fs.walk-1.2.8"
       sources."@types/minimist-1.2.5"
       sources."@types/normalize-package-data-2.4.4"
-      sources."ajv-8.12.0"
+      sources."ajv-8.13.0"
       sources."ansi-regex-5.0.1"
       sources."ansi-styles-3.2.1"
       sources."argparse-2.0.1"
@@ -1665,7 +1665,7 @@ let
       sources."colord-2.9.3"
       sources."concat-map-0.0.1"
       sources."cosmiconfig-8.3.6"
-      sources."css-functions-list-3.2.1"
+      sources."css-functions-list-3.2.2"
       sources."css-tree-2.3.1"
       sources."cssesc-3.0.0"
       sources."debug-4.3.4"

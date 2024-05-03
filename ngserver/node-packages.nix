@@ -4,22 +4,22 @@
 
 let
   sources = {
-    "@angular/language-server-17.3.1" = {
+    "@angular/language-server-17.3.2" = {
       name = "_at_angular_slash_language-server";
       packageName = "@angular/language-server";
-      version = "17.3.1";
+      version = "17.3.2";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@angular/language-server/-/language-server-17.3.1.tgz";
-        sha512 = "9VeMKGEFnF179KcLBzKf84xsNo+/vnorROYFM36UWnhTVo10CbuZuNLpNFzcD0ECq8DvccEj9l4RsjdyrYjlwA==";
+        url = "https://registry.npmjs.org/@angular/language-server/-/language-server-17.3.2.tgz";
+        sha512 = "5KLiiGZ2+8HX+RYQsGXcHPSrJHulIYtBYBiOhBzapUlCH50fOy3Ekx00dR34b7iwQ5z6ioolw6SpzLzW7LuQqg==";
       };
     };
-    "@angular/language-service-17.3.1" = {
+    "@angular/language-service-17.3.6" = {
       name = "_at_angular_slash_language-service";
       packageName = "@angular/language-service";
-      version = "17.3.1";
+      version = "17.3.6";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@angular/language-service/-/language-service-17.3.1.tgz";
-        sha512 = "awC+KHwIRXZ7biQz0Q7q+UZuuyeWHcxjxyQtvv0n1jwwyRpUo8WAXcduKRxl/wMOrxfZkB/tpGcd1/Eeql9CCw==";
+        url = "https://registry.npmjs.org/@angular/language-service/-/language-service-17.3.6.tgz";
+        sha512 = "mWWLGcW4SikbaTvo5+LiYS859nlQddutukZYhGymdvqsXUseitXVydJygqoLNIIbRGW6R1Q0WBdjUaJvyQQb9Q==";
       };
     };
     "vscode-html-languageservice-4.2.5" = {
@@ -109,8 +109,8 @@ let
     packageName = "ngserver";
     src = ./.;
     dependencies = [
-      sources."@angular/language-server-17.3.1"
-      sources."@angular/language-service-17.3.1"
+      sources."@angular/language-server-17.3.2"
+      sources."@angular/language-service-17.3.6"
       sources."vscode-html-languageservice-4.2.5"
       sources."vscode-jsonrpc-6.0.0"
       sources."vscode-languageserver-7.0.0"

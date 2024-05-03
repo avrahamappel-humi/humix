@@ -37,13 +37,7 @@ in
     packages =
       with pkgs; let
         php = php82.buildEnv {
-          extensions = ({ enabled, all }: enabled ++ [ 
-            (all.opentelemetry.overrideAttrs (attrs: {
-              # There's an error currently which needs to be silenced
-              # See https://github.com/NixOS/nixpkgs/issues/304809
-              NIX_CFLAGS_COMPILE = (attrs.NIX_CFLAGS_COMPILE or "") + " -Wno-parentheses-equality";
-            }))
-          ]);
+          extensions = ({ enabled, all }: enabled ++ [ all.opentelemetry ]);
           extraConfig = ''
             memory_limit = -1
           '';
