@@ -31,40 +31,40 @@ let
         sha512 = "8lLmua6AVh/8SLJRRVD6V8p73Hir9w5mJrhE+IPpILG31KKlI9iz5zmBYKcWPS59qSfgP9RaSBQSHHE81WKuEw==";
       };
     };
-    "@csstools/css-parser-algorithms-2.6.1" = {
+    "@csstools/css-parser-algorithms-2.6.3" = {
       name = "_at_csstools_slash_css-parser-algorithms";
       packageName = "@csstools/css-parser-algorithms";
-      version = "2.6.1";
+      version = "2.6.3";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@csstools/css-parser-algorithms/-/css-parser-algorithms-2.6.1.tgz";
-        sha512 = "ubEkAaTfVZa+WwGhs5jbo5Xfqpeaybr/RvWzvFxRs4jfq16wH8l8Ty/QEEpINxll4xhuGfdMbipRyz5QZh9+FA==";
+        url = "https://registry.npmjs.org/@csstools/css-parser-algorithms/-/css-parser-algorithms-2.6.3.tgz";
+        sha512 = "xI/tL2zxzEbESvnSxwFgwvy5HS00oCXxL4MLs6HUiDcYfwowsoQaABKxUElp1ARITrINzBnsECOc1q0eg2GOrA==";
       };
     };
-    "@csstools/css-tokenizer-2.2.4" = {
+    "@csstools/css-tokenizer-2.3.1" = {
       name = "_at_csstools_slash_css-tokenizer";
       packageName = "@csstools/css-tokenizer";
-      version = "2.2.4";
+      version = "2.3.1";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@csstools/css-tokenizer/-/css-tokenizer-2.2.4.tgz";
-        sha512 = "PuWRAewQLbDhGeTvFuq2oClaSCKPIBmHyIobCV39JHRYN0byDcUWJl5baPeNUcqrjtdMNqFooE0FGl31I3JOqw==";
+        url = "https://registry.npmjs.org/@csstools/css-tokenizer/-/css-tokenizer-2.3.1.tgz";
+        sha512 = "iMNHTyxLbBlWIfGtabT157LH9DUx9X8+Y3oymFEuMj8HNc+rpE3dPFGFgHjpKfjeFDjLjYIAIhXPGvS2lKxL9g==";
       };
     };
-    "@csstools/media-query-list-parser-2.1.9" = {
+    "@csstools/media-query-list-parser-2.1.11" = {
       name = "_at_csstools_slash_media-query-list-parser";
       packageName = "@csstools/media-query-list-parser";
-      version = "2.1.9";
+      version = "2.1.11";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@csstools/media-query-list-parser/-/media-query-list-parser-2.1.9.tgz";
-        sha512 = "qqGuFfbn4rUmyOB0u8CVISIp5FfJ5GAR3mBrZ9/TKndHakdnm6pY0L/fbLcpPnrzwCyyTEZl1nUcXAYHEWneTA==";
+        url = "https://registry.npmjs.org/@csstools/media-query-list-parser/-/media-query-list-parser-2.1.11.tgz";
+        sha512 = "uox5MVhvNHqitPP+SynrB1o8oPxPMt2JLgp5ghJOWf54WGQ5OKu47efne49r1SWqs3wRP8xSWjnO9MBKxhB1dA==";
       };
     };
-    "@csstools/selector-specificity-3.0.3" = {
+    "@csstools/selector-specificity-3.1.0" = {
       name = "_at_csstools_slash_selector-specificity";
       packageName = "@csstools/selector-specificity";
-      version = "3.0.3";
+      version = "3.1.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@csstools/selector-specificity/-/selector-specificity-3.0.3.tgz";
-        sha512 = "KEPNw4+WW5AVEIyzC80rTbWEUatTW2lXpN8+8ILC8PiPeWPjwUzrPZDIOZ2wwqDmeqOYTdSGyL3+vE5GC3FB3Q==";
+        url = "https://registry.npmjs.org/@csstools/selector-specificity/-/selector-specificity-3.1.0.tgz";
+        sha512 = "tGDFEHZ4XJeIt5NF7/nAfLGqPckmDZSnYne5gl67p4agQolE5s4rofdQ3e+VkeukfR91lVtSQ/Jt9DqM1ICiIQ==";
       };
     };
     "@nodelib/fs.scandir-2.1.5" = {
@@ -1264,13 +1264,13 @@ let
         sha512 = "5l4VyZR86LZ/lDxZTR6jqL8AFE2S0IFLMP26AbjsLVADxHdhB/c0GUsH+y39UfCi3dzz8OlQuPmnaJOMoDHQBA==";
       };
     };
-    "semver-7.6.0" = {
+    "semver-7.6.2" = {
       name = "semver";
       packageName = "semver";
-      version = "7.6.0";
+      version = "7.6.2";
       src = fetchurl {
-        url = "https://registry.npmjs.org/semver/-/semver-7.6.0.tgz";
-        sha512 = "EnwXhrlwXMk9gKu5/flx5sv/an57AkRplG3hTK68W7FRDN+k+OWBj65M7719OkA82XLBxrcX0KSHj+X5COhOVg==";
+        url = "https://registry.npmjs.org/semver/-/semver-7.6.2.tgz";
+        sha512 = "FNAIBWCx9qcRhoHcgcJ0gvU7SN1lYU2ZXuSfl04bSC5OpvDHFyJCjdNHomPXxjQlCBU67YW64PzY7/VIEH7F2w==";
       };
     };
     "signal-exit-4.1.0" = {
@@ -1633,10 +1633,10 @@ let
       sources."@babel/code-frame-7.24.2"
       sources."@babel/helper-validator-identifier-7.24.5"
       sources."@babel/highlight-7.24.5"
-      sources."@csstools/css-parser-algorithms-2.6.1"
-      sources."@csstools/css-tokenizer-2.2.4"
-      sources."@csstools/media-query-list-parser-2.1.9"
-      sources."@csstools/selector-specificity-3.0.3"
+      sources."@csstools/css-parser-algorithms-2.6.3"
+      sources."@csstools/css-tokenizer-2.3.1"
+      sources."@csstools/media-query-list-parser-2.1.11"
+      sources."@csstools/selector-specificity-3.1.0"
       sources."@nodelib/fs.scandir-2.1.5"
       sources."@nodelib/fs.stat-2.0.5"
       sources."@nodelib/fs.walk-1.2.8"
@@ -1775,7 +1775,7 @@ let
       sources."reusify-1.0.4"
       sources."rimraf-3.0.2"
       sources."run-parallel-1.2.0"
-      sources."semver-7.6.0"
+      sources."semver-7.6.2"
       sources."signal-exit-4.1.0"
       sources."slash-3.0.0"
       (sources."slice-ansi-4.0.0" // {
