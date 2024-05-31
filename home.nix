@@ -7,8 +7,6 @@ let
     (builtins.map
       (project: { name = project; value = "humility_open ${project} $*"; })
       [ "hr" "payroll" "ui" "admin" "ableScripts" ]);
-
-  inherit (pkgs) vimUtils fetchFromGitHub;
 in
 
 {
@@ -92,8 +90,9 @@ in
     go-jira
   ];
 
-  programs.neovim.plugins = [
+  programs.neovim.plugins = with pkgs; [
     {
+      # Some angular stuff
       plugin = vimUtils.buildVimPlugin {
         pname = "ng.nvim";
         version = "2023-02-12";
@@ -110,6 +109,16 @@ in
         local ng = require("ng");
         vim.keymap.set("n", "<leader>t", ng.goto_template_for_component, opts)
         vim.keymap.set("n", "<leader>r", ng.goto_component_with_template_file, opts)
+      '';
+    }
+    {
+      # chat-gpt
+      plugin = vimPlugins.ChatGPT-nvim;
+      type = "lua";
+      config = /* lua */ ''
+        require('chatgpt').setup {
+          api_key_cmd = 'security find-generic-password -s humi-chatgpt-key -w',
+        }
       '';
     }
   ];
