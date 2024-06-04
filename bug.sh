@@ -65,7 +65,7 @@ fi
 
 # Create the script
 if [[ $dir == 'hr' ]]; then
-  file=$(find_bug_script "$description") || echo "Creating script"
+  file=$(find_bug_script "$description") || echo "Creating script $file"
 
   if [[ ! -f $file ]]; then
     php artisan make:task "$(echo "$description" | tr '[:upper:]' '[:lower:]')"
@@ -85,6 +85,8 @@ return new class extends Migration {
     }
 };
 EOD
+  else
+    echo "Script $file already exists"
   fi
 fi
 
@@ -92,10 +94,12 @@ if [[ $dir == 'ableScripts' ]]; then
   file="lib/$description.rb"
 
   if [[ ! -f "$file" ]]; then
-    echo "Creating script"
+    echo "Creating script $file"
 
     cat << EOD > "$file"
 Apartment::Tenant.switch! ""
 EOD
+  else
+    echo "Script $file already exists"
   fi
 fi
