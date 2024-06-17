@@ -79,6 +79,13 @@ in
     }
   '';
 
+  programs.git.includes = [
+    {
+      condition = "gitdir:~/humility/";
+      path = "~/.gitconfig-humi";
+    }
+  ];
+
   home.file.".jira.d/config.yml".text = ''
     endpoint: https://gethumi.atlassian.net
     user: avraham.appel@humi.ca
