@@ -29,6 +29,10 @@ let
     php artisan "$@"
   '';
 
+  tnk = pkgs.writeShellScriptBin "tnk" ''
+    php artisan tinker "$@"
+  '';
+
   bug = pkgs.writeShellScriptBin "bug" (builtins.readFile ./bug.sh);
 in
 
@@ -43,7 +47,16 @@ in
           '';
         };
       in
-      [ art php php.packages.composer phpactor nodejs_18 yarn mysql ];
+      [
+        art
+        php
+        php.packages.composer
+        phpactor
+        nodejs_18
+        yarn
+        mysql
+        tnk
+      ];
 
     files = {
       ".phpactor.json" = /* json */ ''
@@ -107,6 +120,7 @@ in
         pkgs.nodejs_20
         pkgs.yarn
         pkgs.mysql
+        tnk
       ];
 
     extraEnvrc = [ "layout php" ];
