@@ -715,13 +715,13 @@ let
         sha512 = "zz06S8t0ozoDXMG+ube26zeCTNXcKIPJZJi8hBrF4idCLms4CG9QtK7qBl1boi5ODzFpjswb5JPmHCbMpjaYzg==";
       };
     };
-    "is-core-module-2.13.1" = {
+    "is-core-module-2.14.0" = {
       name = "is-core-module";
       packageName = "is-core-module";
-      version = "2.13.1";
+      version = "2.14.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/is-core-module/-/is-core-module-2.13.1.tgz";
-        sha512 = "hHrIjvZsftOsvKSn2TRYl63zvxsgE0K+0mYMoH6gD4omR5IWB2KynivBQczo3+wF1cCkjzvptnI9Q0sPU66ilw==";
+        url = "https://registry.npmjs.org/is-core-module/-/is-core-module-2.14.0.tgz";
+        sha512 = "a5dFJih5ZLYlRtDc0dZWP7RiKr6xIKzmn/oAYCDvdLThadVgyJwlaoQPmRtMSpz+rk0OGAgIu+TcM9HUF0fk1A==";
       };
     };
     "is-extglob-2.1.1" = {
@@ -1480,13 +1480,13 @@ let
         sha512 = "yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==";
       };
     };
-    "typescript-5.4.5" = {
+    "typescript-5.5.2" = {
       name = "typescript";
       packageName = "typescript";
-      version = "5.4.5";
+      version = "5.5.2";
       src = fetchurl {
-        url = "https://registry.npmjs.org/typescript/-/typescript-5.4.5.tgz";
-        sha512 = "vcI4UpRgg81oIRUFwR0WSIHKt11nJ7SAVlYNIu+QpqeyXP+gpQJy/Z4+F0aGxSE4MqwjyXvW/TzgkLAx2AGHwQ==";
+        url = "https://registry.npmjs.org/typescript/-/typescript-5.5.2.tgz";
+        sha512 = "NcRtPEOsPFFWjobJEtfihkLCZCXZt/os3zf8nTxjVH3RvTSxjrCamJpbExGvYOF+tFHc3pA65qpdwPbzjohhew==";
       };
     };
     "uri-js-4.4.1" = {
@@ -1716,7 +1716,7 @@ let
       sources."inherits-2.0.4"
       sources."ini-1.3.8"
       sources."is-arrayish-0.2.1"
-      sources."is-core-module-2.13.1"
+      sources."is-core-module-2.14.0"
       sources."is-extglob-2.1.1"
       sources."is-fullwidth-code-point-3.0.0"
       sources."is-glob-4.0.3"
@@ -1809,7 +1809,7 @@ let
       sources."trim-newlines-4.1.1"
       sources."tslib-2.6.3"
       sources."type-fest-1.4.0"
-      sources."typescript-5.4.5"
+      sources."typescript-5.5.2"
       sources."uri-js-4.4.1"
       sources."util-deprecate-1.0.2"
       sources."validate-npm-package-license-3.0.4"
