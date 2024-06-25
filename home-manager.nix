@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 let
   pathToHumility = "~/humility";
@@ -128,5 +128,31 @@ in
         }
       '';
     }
+    {
+      # Xdebug in vim
+      plugin = vimUtils.buildVimPlugin {
+        pname = "vdebug";
+        version = "latest";
+        src = fetchFromGitHub {
+          owner = "vim-vdebug";
+          repo = "vdebug";
+          rev = "master";
+          hash = "sha256-hIzhHvTOXA+mw38R3JKYp94QCJWZhEcTTnqhHhW9OW8=";
+        };
+      };
+      type = "viml";
+      config = /* vim */ ''
+        if !exists('g:vdebug_options')
+          let g:vdebug_options = {}
+        endif
+
+        let g:break_on_open = 0
+        let g:vdebug_options.port = 9003
+        let g:vdebug_options.debug_file = '~/.local/share/vdebug/vdebug.log'
+        let g:vdebug_options.debug_file_level = 1
+      '';
+    }
   ];
+  # Vdebug uses python3
+  programs.neovim.withPython3 = lib.mkForce true;
 }

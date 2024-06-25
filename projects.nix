@@ -9,22 +9,6 @@
 let
   inherit (pkgs.darwin.apple_sdk) frameworks;
 
-  xdebugClient = pkgs.stdenv.mkDerivation {
-    name = "xdebug-client-macos-arm64";
-    src = pkgs.fetchurl {
-      url = "https://xdebug.org/files/binaries/dbgpClient-macos-arm64";
-      hash = "sha256-zmyaLBcLB1IohweBxf5/ykdzV2LqOC+aXdZOadzKm+8=";
-      executable = true;
-    };
-    dontUnpack = true;
-    installPhase = ''
-      runHook preInstall
-      mkdir -p $out/bin
-      install $src $out/bin/xdebug
-      runHook postInstall
-    '';
-  };
-
   art = pkgs.writeShellScriptBin "art" ''
     php artisan "$@"
   '';
@@ -113,7 +97,6 @@ in
       [
         php
         php.packages.composer
-        xdebugClient
         art
         bug
         pkgs.phpactor
