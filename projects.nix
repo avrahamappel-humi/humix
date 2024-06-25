@@ -88,9 +88,10 @@ in
     packages =
       let
         php = pkgs.php82.buildEnv {
-          extensions = ({ enabled, all }: enabled ++ [ all.imagick ]);
+          extensions = ({ enabled, all }: enabled ++ (with all; [ imagick xdebug ]));
           extraConfig = ''
             memory_limit = -1
+            xdebug.mode=off
           '';
         };
       in
