@@ -99,6 +99,17 @@ in
 
   programs.neovim.plugins = with pkgs; [
     {
+      # Prettier
+      plugin = vimPlugins.vim-prettier;
+      type = "viml";
+      config = /* vim */ ''
+        let g:prettier#autoformat = 1
+        let g:prettier#autoformat_require_pragma = 0
+        let g:prettier#exec_cmd_async = 1
+        let g:prettier#quickfix_enabled = 0
+      '';
+    }
+    {
       # Some angular stuff
       plugin = vimUtils.buildVimPlugin {
         pname = "ng.nvim";
