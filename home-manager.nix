@@ -157,7 +157,7 @@ in
           let g:vdebug_options = {}
         endif
 
-        let g:break_on_open = 0
+        let g:vdebug_options.break_on_open = 0
         let g:vdebug_options.port = 9003
         let g:vdebug_options.debug_file = '~/.local/share/vdebug/vdebug.log'
         let g:vdebug_options.debug_file_level = 1
