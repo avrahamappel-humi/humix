@@ -31,31 +31,31 @@ let
         sha512 = "EStJpq4OuY8xYfhGVXngigBJRWxftKX9ksiGDnmlY3o7B/V7KIAc9X4oiK87uPJSc/vs5L869bem5fhZa8caZw==";
       };
     };
-    "@csstools/css-parser-algorithms-2.6.3" = {
+    "@csstools/css-parser-algorithms-2.7.0" = {
       name = "_at_csstools_slash_css-parser-algorithms";
       packageName = "@csstools/css-parser-algorithms";
-      version = "2.6.3";
+      version = "2.7.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@csstools/css-parser-algorithms/-/css-parser-algorithms-2.6.3.tgz";
-        sha512 = "xI/tL2zxzEbESvnSxwFgwvy5HS00oCXxL4MLs6HUiDcYfwowsoQaABKxUElp1ARITrINzBnsECOc1q0eg2GOrA==";
+        url = "https://registry.npmjs.org/@csstools/css-parser-algorithms/-/css-parser-algorithms-2.7.0.tgz";
+        sha512 = "qvBMcOU/uWFCH/VO0MYe0AMs0BGMWAt6FTryMbFIKYtZtVnqTZtT8ktv5o718llkaGZWomJezJZjq3vJDHeJNQ==";
       };
     };
-    "@csstools/css-tokenizer-2.3.1" = {
+    "@csstools/css-tokenizer-2.3.2" = {
       name = "_at_csstools_slash_css-tokenizer";
       packageName = "@csstools/css-tokenizer";
-      version = "2.3.1";
+      version = "2.3.2";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@csstools/css-tokenizer/-/css-tokenizer-2.3.1.tgz";
-        sha512 = "iMNHTyxLbBlWIfGtabT157LH9DUx9X8+Y3oymFEuMj8HNc+rpE3dPFGFgHjpKfjeFDjLjYIAIhXPGvS2lKxL9g==";
+        url = "https://registry.npmjs.org/@csstools/css-tokenizer/-/css-tokenizer-2.3.2.tgz";
+        sha512 = "0xYOf4pQpAaE6Sm2Q0x3p25oRukzWQ/O8hWVvhIt9Iv98/uu053u2CGm/g3kJ+P0vOYTAYzoU8Evq2pg9ZPXtw==";
       };
     };
-    "@csstools/media-query-list-parser-2.1.11" = {
+    "@csstools/media-query-list-parser-2.1.12" = {
       name = "_at_csstools_slash_media-query-list-parser";
       packageName = "@csstools/media-query-list-parser";
-      version = "2.1.11";
+      version = "2.1.12";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@csstools/media-query-list-parser/-/media-query-list-parser-2.1.11.tgz";
-        sha512 = "uox5MVhvNHqitPP+SynrB1o8oPxPMt2JLgp5ghJOWf54WGQ5OKu47efne49r1SWqs3wRP8xSWjnO9MBKxhB1dA==";
+        url = "https://registry.npmjs.org/@csstools/media-query-list-parser/-/media-query-list-parser-2.1.12.tgz";
+        sha512 = "t1/CdyVJzOQUiGUcIBXRzTAkWTFPxiPnoKwowKW2z9Uj78c2bBWI/X94BeVfUwVq1xtCjD7dnO8kS6WONgp8Jw==";
       };
     };
     "@csstools/selector-specificity-3.1.1" = {
@@ -1111,13 +1111,13 @@ let
         sha512 = "JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==";
       };
     };
-    "postcss-8.4.38" = {
+    "postcss-8.4.39" = {
       name = "postcss";
       packageName = "postcss";
-      version = "8.4.38";
+      version = "8.4.39";
       src = fetchurl {
-        url = "https://registry.npmjs.org/postcss/-/postcss-8.4.38.tgz";
-        sha512 = "Wglpdk03BSfXkHoQa3b/oulrotAkwrlLDRSOb9D0bN86FdRyE9lppSp33aHNPgBa0JKCoB+drFLZkQoRRYae5A==";
+        url = "https://registry.npmjs.org/postcss/-/postcss-8.4.39.tgz";
+        sha512 = "0vzE+lAiG7hZl1/9I8yzKLx3aR9Xbof3fBHKunvMfOCYAtMhrsnccJY2iTURb9EZd5+pLuiNV9/c/GZJOHsgIw==";
       };
     };
     "postcss-resolve-nested-selector-0.1.1" = {
@@ -1480,13 +1480,13 @@ let
         sha512 = "yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==";
       };
     };
-    "typescript-5.5.2" = {
+    "typescript-5.5.3" = {
       name = "typescript";
       packageName = "typescript";
-      version = "5.5.2";
+      version = "5.5.3";
       src = fetchurl {
-        url = "https://registry.npmjs.org/typescript/-/typescript-5.5.2.tgz";
-        sha512 = "NcRtPEOsPFFWjobJEtfihkLCZCXZt/os3zf8nTxjVH3RvTSxjrCamJpbExGvYOF+tFHc3pA65qpdwPbzjohhew==";
+        url = "https://registry.npmjs.org/typescript/-/typescript-5.5.3.tgz";
+        sha512 = "/hreyEujaB0w76zKo6717l3L0o/qEUtRgdvUBvlkhoWeOVMjMuHNHk0BRBzikzuGDqNmPQbg5ifMEqsHLiIUcQ==";
       };
     };
     "uri-js-4.4.1" = {
@@ -1633,9 +1633,9 @@ let
       sources."@babel/code-frame-7.24.7"
       sources."@babel/helper-validator-identifier-7.24.7"
       sources."@babel/highlight-7.24.7"
-      sources."@csstools/css-parser-algorithms-2.6.3"
-      sources."@csstools/css-tokenizer-2.3.1"
-      sources."@csstools/media-query-list-parser-2.1.11"
+      sources."@csstools/css-parser-algorithms-2.7.0"
+      sources."@csstools/css-tokenizer-2.3.2"
+      sources."@csstools/media-query-list-parser-2.1.12"
       sources."@csstools/selector-specificity-3.1.1"
       sources."@nodelib/fs.scandir-2.1.5"
       sources."@nodelib/fs.stat-2.0.5"
@@ -1759,7 +1759,7 @@ let
       sources."path-type-4.0.0"
       sources."picocolors-1.0.1"
       sources."picomatch-2.3.1"
-      sources."postcss-8.4.38"
+      sources."postcss-8.4.39"
       sources."postcss-resolve-nested-selector-0.1.1"
       sources."postcss-safe-parser-6.0.0"
       sources."postcss-selector-parser-6.1.0"
@@ -1809,7 +1809,7 @@ let
       sources."trim-newlines-4.1.1"
       sources."tslib-2.6.3"
       sources."type-fest-1.4.0"
-      sources."typescript-5.5.2"
+      sources."typescript-5.5.3"
       sources."uri-js-4.4.1"
       sources."util-deprecate-1.0.2"
       sources."validate-npm-package-license-3.0.4"
