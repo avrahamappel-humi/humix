@@ -136,6 +136,9 @@ in
       config = /* lua */ ''
         require('chatgpt').setup {
           api_key_cmd = 'security find-generic-password -s humi-chatgpt-key -w',
+          openai_params = {
+            model = 'gpt-4o',
+          },
         }
       '';
     }
