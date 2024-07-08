@@ -31,31 +31,31 @@ let
         sha512 = "EStJpq4OuY8xYfhGVXngigBJRWxftKX9ksiGDnmlY3o7B/V7KIAc9X4oiK87uPJSc/vs5L869bem5fhZa8caZw==";
       };
     };
-    "@csstools/css-parser-algorithms-2.7.0" = {
+    "@csstools/css-parser-algorithms-2.7.1" = {
       name = "_at_csstools_slash_css-parser-algorithms";
       packageName = "@csstools/css-parser-algorithms";
-      version = "2.7.0";
+      version = "2.7.1";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@csstools/css-parser-algorithms/-/css-parser-algorithms-2.7.0.tgz";
-        sha512 = "qvBMcOU/uWFCH/VO0MYe0AMs0BGMWAt6FTryMbFIKYtZtVnqTZtT8ktv5o718llkaGZWomJezJZjq3vJDHeJNQ==";
+        url = "https://registry.npmjs.org/@csstools/css-parser-algorithms/-/css-parser-algorithms-2.7.1.tgz";
+        sha512 = "2SJS42gxmACHgikc1WGesXLIT8d/q2l0UFM7TaEeIzdFCE/FPMtTiizcPGGJtlPo2xuQzY09OhrLTzRxqJqwGw==";
       };
     };
-    "@csstools/css-tokenizer-2.3.2" = {
+    "@csstools/css-tokenizer-2.4.1" = {
       name = "_at_csstools_slash_css-tokenizer";
       packageName = "@csstools/css-tokenizer";
-      version = "2.3.2";
+      version = "2.4.1";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@csstools/css-tokenizer/-/css-tokenizer-2.3.2.tgz";
-        sha512 = "0xYOf4pQpAaE6Sm2Q0x3p25oRukzWQ/O8hWVvhIt9Iv98/uu053u2CGm/g3kJ+P0vOYTAYzoU8Evq2pg9ZPXtw==";
+        url = "https://registry.npmjs.org/@csstools/css-tokenizer/-/css-tokenizer-2.4.1.tgz";
+        sha512 = "eQ9DIktFJBhGjioABJRtUucoWR2mwllurfnM8LuNGAqX3ViZXaUchqk+1s7jjtkFiT9ySdACsFEA3etErkALUg==";
       };
     };
-    "@csstools/media-query-list-parser-2.1.12" = {
+    "@csstools/media-query-list-parser-2.1.13" = {
       name = "_at_csstools_slash_media-query-list-parser";
       packageName = "@csstools/media-query-list-parser";
-      version = "2.1.12";
+      version = "2.1.13";
       src = fetchurl {
-        url = "https://registry.npmjs.org/@csstools/media-query-list-parser/-/media-query-list-parser-2.1.12.tgz";
-        sha512 = "t1/CdyVJzOQUiGUcIBXRzTAkWTFPxiPnoKwowKW2z9Uj78c2bBWI/X94BeVfUwVq1xtCjD7dnO8kS6WONgp8Jw==";
+        url = "https://registry.npmjs.org/@csstools/media-query-list-parser/-/media-query-list-parser-2.1.13.tgz";
+        sha512 = "XaHr+16KRU9Gf8XLi3q8kDlI18d5vzKSKCY510Vrtc9iNR0NJzbY9hhTmwhzYZj/ZwGL4VmB3TA9hJW0Um2qFA==";
       };
     };
     "@csstools/selector-specificity-3.1.1" = {
@@ -1633,9 +1633,9 @@ let
       sources."@babel/code-frame-7.24.7"
       sources."@babel/helper-validator-identifier-7.24.7"
       sources."@babel/highlight-7.24.7"
-      sources."@csstools/css-parser-algorithms-2.7.0"
-      sources."@csstools/css-tokenizer-2.3.2"
-      sources."@csstools/media-query-list-parser-2.1.12"
+      sources."@csstools/css-parser-algorithms-2.7.1"
+      sources."@csstools/css-tokenizer-2.4.1"
+      sources."@csstools/media-query-list-parser-2.1.13"
       sources."@csstools/selector-specificity-3.1.1"
       sources."@nodelib/fs.scandir-2.1.5"
       sources."@nodelib/fs.stat-2.0.5"
