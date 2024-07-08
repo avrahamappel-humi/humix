@@ -93,6 +93,7 @@ in
   '';
 
   home.packages = with pkgs; [
+    coreutils
     gh
     go-jira
   ];
