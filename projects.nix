@@ -173,10 +173,6 @@ in
               inherit ruby;
               gemdir = ./.;
               gemConfig = pkgs.defaultGemConfig // {
-                nio4r = attrs: {
-                  dontBuild = false; # It doesn't apply the patch without this
-                  patches = [ ${./patches/nio4r-fix-clang-16.patch} ];
-                };
                 rbnacl = with pkgs; attrs: {
                   dontBuild = false;
                   postPatch = '''
@@ -184,10 +180,6 @@ in
                       --replace 'ffi_lib ["sodium"' \
                                 'ffi_lib ["''${libsodium}/lib/libsodium''${stdenv.hostPlatform.extensions.sharedLibrary}"'
                   ''';
-                };
-                rbtree = attrs: {
-                  dontBuild = false;
-                  patches = [ ${./patches/rbtree-fix-clang-16.patch} ];
                 };
               };
               ignoreCollisions = true;
