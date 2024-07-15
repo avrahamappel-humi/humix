@@ -112,13 +112,13 @@ let
         sha512 = "37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==";
       };
     };
-    "ajv-8.16.0" = {
+    "ajv-8.17.1" = {
       name = "ajv";
       packageName = "ajv";
-      version = "8.16.0";
+      version = "8.17.1";
       src = fetchurl {
-        url = "https://registry.npmjs.org/ajv/-/ajv-8.16.0.tgz";
-        sha512 = "F0twR8U1ZU67JIEtekUcLkXkoO5mMMmgGD8sK/xUFzJ805jxHQl92hImFAqqXMyMYjSPOyUPAwHYhB72g5sTXw==";
+        url = "https://registry.npmjs.org/ajv/-/ajv-8.17.1.tgz";
+        sha512 = "B/gBuNg5SiMTrPkC+A2+cW0RszwxYmn6VYxB/inlBStS5nx6xHIt/ehKRhIMhqusl7a8LjQoZnjCs5vhwxOQ1g==";
       };
     };
     "ansi-regex-5.0.1" = {
@@ -443,6 +443,15 @@ let
       src = fetchurl {
         url = "https://registry.npmjs.org/fast-glob/-/fast-glob-3.3.2.tgz";
         sha512 = "oX2ruAFQwf/Orj8m737Y5adxDQO0LAB7/S5MnxCdTNDd4p6BsyIVsv9JQsATbTSq8KHRpLwIHbVlUNatxd+1Ow==";
+      };
+    };
+    "fast-uri-3.0.1" = {
+      name = "fast-uri";
+      packageName = "fast-uri";
+      version = "3.0.1";
+      src = fetchurl {
+        url = "https://registry.npmjs.org/fast-uri/-/fast-uri-3.0.1.tgz";
+        sha512 = "MWipKbbYiYI0UC7cl8m/i/IWTqfC8YXsqjzybjddLsFjStroQzsHXkc73JutMvBiXmOvapk+axIl79ig5t55Bw==";
       };
     };
     "fastest-levenshtein-1.0.16" = {
@@ -1138,13 +1147,13 @@ let
         sha512 = "FARHN8pwH+WiS2OPCxJI8FuRJpTVnn6ZNFiqAM2aeW2LwTHWWmWgIyKC6cUo0L8aeKiF/14MNvnpls6R2PBeMQ==";
       };
     };
-    "postcss-selector-parser-6.1.0" = {
+    "postcss-selector-parser-6.1.1" = {
       name = "postcss-selector-parser";
       packageName = "postcss-selector-parser";
-      version = "6.1.0";
+      version = "6.1.1";
       src = fetchurl {
-        url = "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-6.1.0.tgz";
-        sha512 = "UMz42UD0UY0EApS0ZL9o1XnLhSTtvvvLe5Dc2H2O56fvRZi+KulDyf5ctDhhtYJBGKStV2FL1fy6253cmLgqVQ==";
+        url = "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-6.1.1.tgz";
+        sha512 = "b4dlw/9V8A71rLIDsSwVmak9z2DuBUB7CA1/wSdelNEzqsjoSPeADTWNO09lpH49Diy3/JIZ2bSPB1dI3LJCHg==";
       };
     };
     "postcss-value-parser-4.2.0" = {
@@ -1154,15 +1163,6 @@ let
       src = fetchurl {
         url = "https://registry.npmjs.org/postcss-value-parser/-/postcss-value-parser-4.2.0.tgz";
         sha512 = "1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==";
-      };
-    };
-    "punycode-2.3.1" = {
-      name = "punycode";
-      packageName = "punycode";
-      version = "2.3.1";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/punycode/-/punycode-2.3.1.tgz";
-        sha512 = "vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==";
       };
     };
     "queue-microtask-1.2.3" = {
@@ -1489,15 +1489,6 @@ let
         sha512 = "/hreyEujaB0w76zKo6717l3L0o/qEUtRgdvUBvlkhoWeOVMjMuHNHk0BRBzikzuGDqNmPQbg5ifMEqsHLiIUcQ==";
       };
     };
-    "uri-js-4.4.1" = {
-      name = "uri-js";
-      packageName = "uri-js";
-      version = "4.4.1";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/uri-js/-/uri-js-4.4.1.tgz";
-        sha512 = "7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==";
-      };
-    };
     "util-deprecate-1.0.2" = {
       name = "util-deprecate";
       packageName = "util-deprecate";
@@ -1642,7 +1633,7 @@ let
       sources."@nodelib/fs.walk-1.2.8"
       sources."@types/minimist-1.2.5"
       sources."@types/normalize-package-data-2.4.4"
-      sources."ajv-8.16.0"
+      sources."ajv-8.17.1"
       sources."ansi-regex-5.0.1"
       sources."ansi-styles-3.2.1"
       sources."argparse-2.0.1"
@@ -1683,6 +1674,7 @@ let
       sources."fast-deep-equal-3.1.3"
       sources."fast-diff-1.3.0"
       sources."fast-glob-3.3.2"
+      sources."fast-uri-3.0.1"
       sources."fastest-levenshtein-1.0.16"
       sources."fastq-1.17.1"
       sources."file-entry-cache-7.0.2"
@@ -1762,9 +1754,8 @@ let
       sources."postcss-8.4.39"
       sources."postcss-resolve-nested-selector-0.1.1"
       sources."postcss-safe-parser-6.0.0"
-      sources."postcss-selector-parser-6.1.0"
+      sources."postcss-selector-parser-6.1.1"
       sources."postcss-value-parser-4.2.0"
-      sources."punycode-2.3.1"
       sources."queue-microtask-1.2.3"
       sources."quick-lru-5.1.1"
       sources."read-pkg-6.0.0"
@@ -1810,7 +1801,6 @@ let
       sources."tslib-2.6.3"
       sources."type-fest-1.4.0"
       sources."typescript-5.5.3"
-      sources."uri-js-4.4.1"
       sources."util-deprecate-1.0.2"
       sources."validate-npm-package-license-3.0.4"
       sources."vscode-jsonrpc-8.2.0"

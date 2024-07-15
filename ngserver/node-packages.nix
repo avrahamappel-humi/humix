@@ -76,15 +76,6 @@ let
         sha512 = "k8luDIWJWyenLc5ToFQQMaSrqCHiLwyKPHKPQZ5zz21vM+vIVUSvsRpcbiECH4WR88K2XZqc4ScRcZ7nk/jbeA==";
       };
     };
-    "vscode-languageserver-types-3.17.5" = {
-      name = "vscode-languageserver-types";
-      packageName = "vscode-languageserver-types";
-      version = "3.17.5";
-      src = fetchurl {
-        url = "https://registry.npmjs.org/vscode-languageserver-types/-/vscode-languageserver-types-3.17.5.tgz";
-        sha512 = "Ld1VelNuX9pdF39h2Hgaeb5hEZM2Z3jUrrMgWQAu82jMtZp7p3vJT3BzToKtZI7NgQssZje5o0zryOrhQvzQAg==";
-      };
-    };
     "vscode-nls-5.2.0" = {
       name = "vscode-nls";
       packageName = "vscode-nls";
@@ -114,13 +105,9 @@ let
       sources."vscode-html-languageservice-4.2.5"
       sources."vscode-jsonrpc-6.0.0"
       sources."vscode-languageserver-7.0.0"
-      (sources."vscode-languageserver-protocol-3.16.0" // {
-        dependencies = [
-          sources."vscode-languageserver-types-3.16.0"
-        ];
-      })
+      sources."vscode-languageserver-protocol-3.16.0"
       sources."vscode-languageserver-textdocument-1.0.11"
-      sources."vscode-languageserver-types-3.17.5"
+      sources."vscode-languageserver-types-3.16.0"
       sources."vscode-nls-5.2.0"
       sources."vscode-uri-3.0.7"
     ];
