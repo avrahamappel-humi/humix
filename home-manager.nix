@@ -79,10 +79,19 @@ in
     }
   '';
 
+  # Git
   programs.git.includes = [
     {
       condition = "gitdir:~/humility/";
-      path = "~/.gitconfig-humi";
+      contents = {
+        credential.helper = "${pkgs.gh}/bin/gh auth git-credential";
+        user = {
+          name = "Avraham Appel";
+          email = "avraham.appel@humi.ca";
+          signingKey = "8C7B110A817B77CC";
+        };
+        commit.gpgSign = true;
+      };
     }
   ];
 
