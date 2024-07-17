@@ -166,9 +166,13 @@ in
       };
       type = "lua";
       config = /* lua */ ''
-        require("linear-nvim").setup {
+        local linear_nvim = require("linear-nvim")
+        linear_nvim.setup {
           issue_regex = "PAY%-%d+",
         }
+        vim.keymap.set("n", "<leader>j", function()
+          linear_nvim.show_assigned_issues()
+        end)
       '';
     }
     vimPlugins.telescope-nvim
