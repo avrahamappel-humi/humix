@@ -153,6 +153,26 @@ in
       '';
     }
     {
+      # Linear
+      plugin = vimUtils.buildVimPlugin rec {
+        pname = "linear-nvim";
+        version = "latest";
+        src = fetchFromGitHub {
+          owner = "rmanocha";
+          repo = pname;
+          rev = "master";
+          hash = "sha256-K+tsRDi8tE2A7/slECzLnqUSp4s6NM5bIhpy5J3MvNk=";
+        };
+      };
+      type = "lua";
+      config = /* lua */ ''
+        require("linear-nvim").setup {
+          issue_regex = "PAY%-%d+",
+        }
+      '';
+    }
+    vimPlugins.telescope-nvim
+    {
       # Xdebug in vim
       plugin = vimUtils.buildVimPlugin {
         pname = "vdebug";
