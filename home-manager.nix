@@ -133,7 +133,7 @@ in
         local opts = { noremap = true, silent = true }
         local ng = require("ng");
         vim.keymap.set("n", "<leader>t", ng.goto_template_for_component, opts)
-        vim.keymap.set("n", "<leader>r", ng.goto_component_with_template_file, opts)
+        vim.keymap.set("n", "<leader>u", ng.goto_component_with_template_file, opts)
       '';
     }
     {
