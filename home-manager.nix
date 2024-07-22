@@ -194,4 +194,21 @@ in
   ];
   # Vdebug uses python3
   programs.neovim.withPython3 = lib.mkForce true;
+
+  # Extra skhd shortcuts
+  programs.skhd.extraConfig = ''
+    # Application shortcuts
+  '' + lib.strings.concatLines (lib.lists.imap1
+    (idx: app: ''
+      ctrl + cmd - ${builtins.toString idx} : open -a ${builtins.replaceStrings [" "] ["\\ "] app}
+    '') [
+    "Finder"
+    "Slack"
+    "Mail"
+    "Notion Calendar"
+    "Google Chrome"
+    "Firefox"
+    "Messages"
+    "Beeper"
+  ]);
 }
