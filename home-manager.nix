@@ -7,6 +7,8 @@ let
     (builtins.map
       (project: { name = project; value = "humility_open ${project} $*"; })
       [ "hr" "payroll" "ui" "admin" "ableScripts" ]);
+
+  srcs = import ./nix/sources.nix ;
 in
 
 {
@@ -123,13 +125,8 @@ in
       # Some angular stuff
       plugin = vimUtils.buildVimPlugin {
         pname = "ng.nvim";
-        version = "2023-02-12";
-        src = fetchFromGitHub {
-          owner = "joeveiga";
-          repo = "ng.nvim";
-          rev = "d02deda535e1b05014ce4f36781d2f45c174065a";
-          hash = "sha256-9Koecth1grLq01OCFYkB/qMl2xlAst5No5ZPRBnuLU8=";
-        };
+        version = "latest";
+        src = srcs."ng.nvim".outPath;
       };
       type = "lua";
       config = /* lua */ ''
@@ -154,15 +151,10 @@ in
     }
     {
       # Linear
-      plugin = vimUtils.buildVimPlugin rec {
+      plugin = vimUtils.buildVimPlugin {
         pname = "linear-nvim";
         version = "latest";
-        src = fetchFromGitHub {
-          owner = "rmanocha";
-          repo = pname;
-          rev = "master";
-          hash = "sha256-K+tsRDi8tE2A7/slECzLnqUSp4s6NM5bIhpy5J3MvNk=";
-        };
+        src = srcs.linear-nvim.outPath;
       };
       type = "lua";
       config = /* lua */ ''
@@ -181,12 +173,7 @@ in
       plugin = vimUtils.buildVimPlugin {
         pname = "vdebug";
         version = "latest";
-        src = fetchFromGitHub {
-          owner = "vim-vdebug";
-          repo = "vdebug";
-          rev = "master";
-          hash = "sha256-hIzhHvTOXA+mw38R3JKYp94QCJWZhEcTTnqhHhW9OW8=";
-        };
+        src = srcs.vdebug.outPath;
       };
       type = "viml";
       config = /* vim */ ''
