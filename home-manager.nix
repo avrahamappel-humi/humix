@@ -9,6 +9,8 @@ let
       [ "hr" "payroll" "ui" "admin" "ableScripts" ]);
 
   srcs = import ./nix/sources.nix ;
+
+  inherit (pkgs) vimUtils vimPlugins;
 in
 
 {
@@ -109,7 +111,7 @@ in
     go-jira
   ];
 
-  programs.neovim.plugins = with pkgs; [
+  programs.neovim.plugins = [
     {
       # Prettier
       plugin = vimPlugins.vim-prettier;
