@@ -1,6 +1,5 @@
 { pkgs
 , lib
-, stdenv
 , writeShellApplication
 , writeShellScript
 , writeText
