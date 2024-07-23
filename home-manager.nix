@@ -200,15 +200,15 @@ in
     # Application shortcuts
   '' + lib.strings.concatLines (lib.lists.imap1
     (idx: app: ''
-      ctrl + cmd - ${builtins.toString idx} : open -a ${builtins.replaceStrings [" "] ["\\ "] app}
+      cmd - ${builtins.toString idx} : open -a ${builtins.replaceStrings [" "] ["\\ "] app}
     '') [
-    "Finder"
-    "Slack"
-    "Mail"
-    "Notion Calendar"
     "Google Chrome"
-    "Firefox"
+    "Alacritty"
+    "Finder"
+    "Mail"
+    "Slack"
+    "Notion Calendar"
     "Messages"
-    "Beeper"
+    "Firefox"
   ]);
 }
