@@ -23,8 +23,8 @@ in
 {
   admin = {
     packages =
-      with pkgs; let
-        php = php82.buildEnv {
+      let
+        php = pkgs.php82.buildEnv {
           extensions = ({ enabled, all }: enabled ++ [ all.opentelemetry ]);
           extraConfig = ''
             memory_limit = -1
@@ -35,10 +35,10 @@ in
         art
         php
         php.packages.composer
-        phpactor
-        nodejs_18
-        yarn
-        mysql
+        pkgs.phpactor
+        pkgs.nodejs_18
+        pkgs.yarn
+        pkgs.mysql
         tnk
       ];
 
