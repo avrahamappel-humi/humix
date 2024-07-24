@@ -72,6 +72,7 @@ in
       REDIS_HOST = "127.0.0.1";
       DB_UI_HUMI = "mysql://root:root@127.0.0.1:33060/humi";
       DB_UI_ADMIN = "mysql://root:root@127.0.0.1:33070/admin";
+      PAYROLL_API_URL="http://127.0.0.1:3030/admin";
     };
 
     versionChecks = [ "php" "node" ];
@@ -114,6 +115,7 @@ in
       DB_PORT = "33060";
       REDIS_HOST = "127.0.0.1";
       DBUI_URL = "mysql://root:root@127.0.0.1:33060/humi";
+      PAYROLL_API_URL="http://127.0.0.1:3030/v2";
     };
 
     files = {
