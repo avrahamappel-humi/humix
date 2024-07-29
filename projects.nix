@@ -141,94 +141,110 @@ in
     '';
   };
 
-  payroll = {
-    useFlake = false;
+  payroll =
+    let
+      gh = "${pkgs.gh}/bin/gh";
+      # Currently there's no way to get bndix to use git auth helpers
+      # See https://github.com/nix-community/bundix/issues/69
+      bundixWrapperContent = ''
+        echo "Fetching Github credentials..."
+        gh_user="$(${gh} auth status | head -n 2 | tail -n 1 | cut -d ' ' -f 9)"
+        gh_token="$(${gh} auth token)"
+        gh_auth="$gh_user:$gh_token@github.com"
+        
+        echo "Rewriting github.com urls to use $gh_auth..."
+        sed "s/github.com/$gh_auth/g" Gemfile.lock > Gemfile.bundix.lock
 
-    files = {
-      ".solargraph.yml" = /* yaml */ ''
-        include:
-        - "**/*.rb"
-        exclude:
-        - spec/**/*
-        - test/**/*
-        - vendor/**/*
-        - ".bundle/**/*"
-        require: []
-        domains: []
-        reporters:
-        - all!
-        formatter:
-          rubocop:
-            cops: safe
-            except: []
-            only: []
-            extra_args: []
-        require_paths: []
-        plugins: []
-        max_files: 5000
+        echo "Bundixing gems..."
+        ${pkgs.bundix}/bin/bundix --lockfile Gemfile.bundix.lock
+        rm Gemfile.bundix*
       '';
+    in
+    {
+      useFlake = false;
 
-      "shell.nix" = {
-        copy = true;
-        text = ''
-          let
-            pkgs = import ${oldPkgs.path} { };
-            ruby = pkgs.ruby_3_1;
-            env = pkgs.bundlerEnv {
-              name = "payroll-env";
-              inherit ruby;
-              gemdir = ./.;
-              gemConfig = pkgs.defaultGemConfig // {
-                rbnacl = with pkgs; attrs: {
-                  dontBuild = false;
-                  postPatch = '''
-                    substituteInPlace lib/rbnacl/init.rb lib/rbnacl/sodium.rb \
-                      --replace 'ffi_lib ["sodium"' \
-                                'ffi_lib ["''${libsodium}/lib/libsodium''${stdenv.hostPlatform.extensions.sharedLibrary}"'
-                  ''';
-                };
-              };
-              ignoreCollisions = true;
-              extraConfigPaths = [ "''${./.}/engines" ];
-            };
-          in
-
-          pkgs.mkShell {
-            packages = with pkgs; [ env bundix postgresql solargraph ];
-
-            DB_HOST = "127.0.0.1";
-            REDIS_URL = "127.0.0.1";
-            DBUI_URL = "postgres://postgres@127.0.0.1/ableAPI_development";
-          }
+      files = {
+        ".solargraph.yml" = /* yaml */ ''
+          include:
+          - "**/*.rb"
+          exclude:
+          - spec/**/*
+          - test/**/*
+          - vendor/**/*
+          - ".bundle/**/*"
+          require: []
+          domains: []
+          reporters:
+          - all!
+          formatter:
+            rubocop:
+              cops: safe
+              except: []
+              only: []
+              extra_args: []
+          require_paths: []
+          plugins: []
+          max_files: 5000
         '';
-      };
 
-      # A shim for Solargraph to understand Rails code better
-      "app/rails.rb" = {
-        copy = true;
-        text = builtins.fetchurl {
-          url = "https://gist.githubusercontent.com/castwide/28b349566a223dfb439a337aea29713e/raw/715473535f11cf3eeb9216d64d01feac2ea37ac0/rails.rb";
-          sha256 = "0jv549plalb1d5jig79z6nxnlkg6mk0gy28bn4l8hwa6rlpl4j87";
+        "shell.nix" = {
+          copy = true;
+          text = ''
+            let
+              pkgs = import ${oldPkgs.path} { };
+              ruby = pkgs.ruby_3_1;
+              env = pkgs.bundlerEnv {
+                name = "payroll-env";
+                inherit ruby;
+                gemdir = ./.;
+                gemConfig = pkgs.defaultGemConfig // {
+                  rbnacl = with pkgs; attrs: {
+                    dontBuild = false;
+                    postPatch = '''
+                      substituteInPlace lib/rbnacl/init.rb lib/rbnacl/sodium.rb \
+                        --replace 'ffi_lib ["sodium"' \
+                                  'ffi_lib ["''${libsodium}/lib/libsodium''${stdenv.hostPlatform.extensions.sharedLibrary}"'
+                    ''';
+                  };
+                };
+                ignoreCollisions = true;
+                extraConfigPaths = [ "''${./.}/engines" ];
+              };
+              bundixWrapper = pkgs.writeShellScriptBin "bundix" '''${bundixWrapperContent}''';
+            in
+
+            pkgs.mkShell {
+              # Ruby needs to be at the end so that `bundle` commands will use the `env` version
+              packages = with pkgs; [ env bundixWrapper postgresql solargraph ruby ];
+
+              DB_HOST = "127.0.0.1";
+              REDIS_URL = "127.0.0.1";
+              DBUI_URL = "postgres://postgres@127.0.0.1/ableAPI_development";
+            }
+          '';
+        };
+
+        # A shim for Solargraph to understand Rails code better
+        "app/rails.rb" = {
+          copy = true;
+          text = builtins.fetchurl {
+            url = "https://gist.githubusercontent.com/castwide/28b349566a223dfb439a337aea29713e/raw/715473535f11cf3eeb9216d64d01feac2ea37ac0/rails.rb";
+            sha256 = "0jv549plalb1d5jig79z6nxnlkg6mk0gy28bn4l8hwa6rlpl4j87";
+          };
         };
       };
+
+      extraIgnores = [ "gemset.nix" ];
+
+      extraEnvrc = [ "watch_file gemset.nix" ];
+
+      beforeScript = pkgs.writeShellApplication {
+        name = "payroll-env-setup";
+        text = bundixWrapperContent;
+      };
+
+      versionChecks = [ "ruby" ];
     };
-
-    extraIgnores = [ "gemset.nix" ];
-
-    extraEnvrc = [ "watch_file gemset.nix" ];
-
-    beforeScript = pkgs.writeShellApplication {
-      name = "payroll-env-setup";
-
-      runtimeInputs = [ pkgs.bundix ];
-      text = ''
-        echo "Bundixing gems..."
-        bundix
-      '';
-    };
-
-    versionChecks = [ "ruby" ];
-  };
 
   ableScripts = {
     packages = [ bug pkgs.solargraph ];
