@@ -346,13 +346,13 @@ let
         sha512 = "/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==";
       };
     };
-    "debug-4.3.5" = {
+    "debug-4.3.6" = {
       name = "debug";
       packageName = "debug";
-      version = "4.3.5";
+      version = "4.3.6";
       src = fetchurl {
-        url = "https://registry.npmjs.org/debug/-/debug-4.3.5.tgz";
-        sha512 = "pt0bNEmneDIvdL1Xsd9oDQ/wrQRkXDT4AUWlNZNPKvW5x/jyO9VFXkJUP07vQ2upmw5PlaITaPKc31jK13V+jg==";
+        url = "https://registry.npmjs.org/debug/-/debug-4.3.6.tgz";
+        sha512 = "O/09Bd4Z1fBrU4VzkhFqVgpPzaGbw6Sm9FEkBT1A/YBXQFGuuSxa1dN2nxgxS34JmKXqYx8CZAwEVoJFImUXIg==";
       };
     };
     "decamelize-1.2.0" = {
@@ -1120,22 +1120,22 @@ let
         sha512 = "JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==";
       };
     };
-    "postcss-8.4.39" = {
+    "postcss-8.4.40" = {
       name = "postcss";
       packageName = "postcss";
-      version = "8.4.39";
+      version = "8.4.40";
       src = fetchurl {
-        url = "https://registry.npmjs.org/postcss/-/postcss-8.4.39.tgz";
-        sha512 = "0vzE+lAiG7hZl1/9I8yzKLx3aR9Xbof3fBHKunvMfOCYAtMhrsnccJY2iTURb9EZd5+pLuiNV9/c/GZJOHsgIw==";
+        url = "https://registry.npmjs.org/postcss/-/postcss-8.4.40.tgz";
+        sha512 = "YF2kKIUzAofPMpfH6hOi2cGnv/HrUlfucspc7pDyvv7kGdqXrfj8SCl/t8owkEgKEuu8ZcRjSOxFxVLqwChZ2Q==";
       };
     };
-    "postcss-resolve-nested-selector-0.1.1" = {
+    "postcss-resolve-nested-selector-0.1.4" = {
       name = "postcss-resolve-nested-selector";
       packageName = "postcss-resolve-nested-selector";
-      version = "0.1.1";
+      version = "0.1.4";
       src = fetchurl {
-        url = "https://registry.npmjs.org/postcss-resolve-nested-selector/-/postcss-resolve-nested-selector-0.1.1.tgz";
-        sha512 = "HvExULSwLqHLgUy1rl3ANIqCsvMS0WHss2UOsXhXnQaZ9VCc2oBvIpXrl00IUFT5ZDITME0o6oiXeiHr2SAIfw==";
+        url = "https://registry.npmjs.org/postcss-resolve-nested-selector/-/postcss-resolve-nested-selector-0.1.4.tgz";
+        sha512 = "R6vHqZWgVnTAPq0C+xjyHfEZqfIYboCBVSy24MjxEDm+tIh1BU4O6o7DP7AA7kHzf136d+Qc5duI4tlpHjixDw==";
       };
     };
     "postcss-safe-parser-6.0.0" = {
@@ -1480,13 +1480,13 @@ let
         sha512 = "yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==";
       };
     };
-    "typescript-5.5.3" = {
+    "typescript-5.5.4" = {
       name = "typescript";
       packageName = "typescript";
-      version = "5.5.3";
+      version = "5.5.4";
       src = fetchurl {
-        url = "https://registry.npmjs.org/typescript/-/typescript-5.5.3.tgz";
-        sha512 = "/hreyEujaB0w76zKo6717l3L0o/qEUtRgdvUBvlkhoWeOVMjMuHNHk0BRBzikzuGDqNmPQbg5ifMEqsHLiIUcQ==";
+        url = "https://registry.npmjs.org/typescript/-/typescript-5.5.4.tgz";
+        sha512 = "Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==";
       };
     };
     "util-deprecate-1.0.2" = {
@@ -1659,7 +1659,7 @@ let
       sources."css-functions-list-3.2.2"
       sources."css-tree-2.3.1"
       sources."cssesc-3.0.0"
-      sources."debug-4.3.5"
+      sources."debug-4.3.6"
       sources."decamelize-5.0.1"
       (sources."decamelize-keys-1.1.1" // {
         dependencies = [
@@ -1751,8 +1751,8 @@ let
       sources."path-type-4.0.0"
       sources."picocolors-1.0.1"
       sources."picomatch-2.3.1"
-      sources."postcss-8.4.39"
-      sources."postcss-resolve-nested-selector-0.1.1"
+      sources."postcss-8.4.40"
+      sources."postcss-resolve-nested-selector-0.1.4"
       sources."postcss-safe-parser-6.0.0"
       sources."postcss-selector-parser-6.1.1"
       sources."postcss-value-parser-4.2.0"
@@ -1800,7 +1800,7 @@ let
       sources."trim-newlines-4.1.1"
       sources."tslib-2.6.3"
       sources."type-fest-1.4.0"
-      sources."typescript-5.5.3"
+      sources."typescript-5.5.4"
       sources."util-deprecate-1.0.2"
       sources."validate-npm-package-license-3.0.4"
       sources."vscode-jsonrpc-8.2.0"
