@@ -1120,13 +1120,13 @@ let
         sha512 = "JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==";
       };
     };
-    "postcss-8.4.40" = {
+    "postcss-8.4.41" = {
       name = "postcss";
       packageName = "postcss";
-      version = "8.4.40";
+      version = "8.4.41";
       src = fetchurl {
-        url = "https://registry.npmjs.org/postcss/-/postcss-8.4.40.tgz";
-        sha512 = "YF2kKIUzAofPMpfH6hOi2cGnv/HrUlfucspc7pDyvv7kGdqXrfj8SCl/t8owkEgKEuu8ZcRjSOxFxVLqwChZ2Q==";
+        url = "https://registry.npmjs.org/postcss/-/postcss-8.4.41.tgz";
+        sha512 = "TesUflQ0WKZqAvg52PWL6kHgLKP6xB6heTOdoYM0Wt2UHyxNa4K25EZZMgKns3BH1RLVbZCREPpLY0rhnNoHVQ==";
       };
     };
     "postcss-resolve-nested-selector-0.1.4" = {
@@ -1534,13 +1534,13 @@ let
         sha512 = "mb1bvRJN8SVznADSGWM9u/b07H7Ecg0I3OgXDuLdn307rl/J3A9YD6/eYOssqhecL27hK1IPZAsaqh00i/Jljg==";
       };
     };
-    "vscode-languageserver-textdocument-1.0.11" = {
+    "vscode-languageserver-textdocument-1.0.12" = {
       name = "vscode-languageserver-textdocument";
       packageName = "vscode-languageserver-textdocument";
-      version = "1.0.11";
+      version = "1.0.12";
       src = fetchurl {
-        url = "https://registry.npmjs.org/vscode-languageserver-textdocument/-/vscode-languageserver-textdocument-1.0.11.tgz";
-        sha512 = "X+8T3GoiwTVlJbicx/sIAF+yuJAqz8VvwJyoMVhwEMoEKE/fkDmrqUgDMyBECcM2A2frVZIUj5HI/ErRXCfOeA==";
+        url = "https://registry.npmjs.org/vscode-languageserver-textdocument/-/vscode-languageserver-textdocument-1.0.12.tgz";
+        sha512 = "cxWNPesCnQCcMPeenjKKsOCKQZ/L6Tv19DTRIGuLWe32lyzWhihGVJ/rcckZXJxfdKCFvRLS3fpBIsV/ZGX4zA==";
       };
     };
     "vscode-languageserver-types-3.17.5" = {
@@ -1751,7 +1751,7 @@ let
       sources."path-type-4.0.0"
       sources."picocolors-1.0.1"
       sources."picomatch-2.3.1"
-      sources."postcss-8.4.40"
+      sources."postcss-8.4.41"
       sources."postcss-resolve-nested-selector-0.1.4"
       sources."postcss-safe-parser-6.0.0"
       sources."postcss-selector-parser-6.1.1"
@@ -1806,7 +1806,7 @@ let
       sources."vscode-jsonrpc-8.2.0"
       sources."vscode-languageserver-9.0.1"
       sources."vscode-languageserver-protocol-3.17.5"
-      sources."vscode-languageserver-textdocument-1.0.11"
+      sources."vscode-languageserver-textdocument-1.0.12"
       sources."vscode-languageserver-types-3.17.5"
       sources."vscode-uri-3.0.8"
       sources."which-1.3.1"
