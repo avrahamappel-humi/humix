@@ -1,0 +1,41 @@
+{
+  "pins": {
+    "linear-nvim": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "rmanocha",
+        "repo": "linear-nvim"
+      },
+      "branch": "master",
+      "revision": "90ad71ebc051ae5d28eefc9ddef800f6860865f5",
+      "url": "https://github.com/rmanocha/linear-nvim/archive/90ad71ebc051ae5d28eefc9ddef800f6860865f5.tar.gz",
+      "hash": "066v00jjk4flhbk2hhmpg9hjpyy70hmcp7yd46vzqa8gswh0wn7a"
+    },
+    "ng.nvim": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "joeveiga",
+        "repo": "ng.nvim"
+      },
+      "branch": "main",
+      "revision": "38af07e77f066e2d6e3f74d966816662075ff4cd",
+      "url": "https://github.com/joeveiga/ng.nvim/archive/38af07e77f066e2d6e3f74d966816662075ff4cd.tar.gz",
+      "hash": "02dihbc3f8a8ifzfj4hsqbgxri5k1mh50x6r2v8flzn93r8d27hf"
+    },
+    "vdebug": {
+      "type": "Git",
+      "repository": {
+        "type": "GitHub",
+        "owner": "vim-vdebug",
+        "repo": "vdebug"
+      },
+      "branch": "master",
+      "revision": "66517871178779ac54e19ed0f34d66805b820664",
+      "url": "https://github.com/vim-vdebug/vdebug/archive/66517871178779ac54e19ed0f34d66805b820664.tar.gz",
+      "hash": "0vrrplaix8bs9q9lg14rjl411pm7k29dq4bzqfk0yp6fyhgf3344"
+    }
+  },
+  "version": 3
+}
