@@ -643,13 +643,13 @@ let
         sha512 = "ztqyC3kLto0e9WbNp0aeP+M3kTt+nbaIveGmUxAtZa+8iFgKLUOD4YKM5j+f3QD89bra7UeumolZHKuOXnTmeQ==";
       };
     };
-    "ignore-5.3.1" = {
+    "ignore-5.3.2" = {
       name = "ignore";
       packageName = "ignore";
-      version = "5.3.1";
+      version = "5.3.2";
       src = fetchurl {
-        url = "https://registry.npmjs.org/ignore/-/ignore-5.3.1.tgz";
-        sha512 = "5Fytz/IraMjqpwfd34ke28PTVMjZjJG2MPn5t7OE4eUCUNf8BAa7b5WUS9/Qvr6mwOQS7Mk6vdsMno5he+T8Xw==";
+        url = "https://registry.npmjs.org/ignore/-/ignore-5.3.2.tgz";
+        sha512 = "hsBTNUqQTDwkWtcdYI2i06Y/nUBEsNEDJKjWdigLvegy8kDuJAS8uRlpkkcQpyEXL0Z/pjDy5HBmMjRCJ2gq+g==";
       };
     };
     "import-fresh-3.3.0" = {
@@ -1129,13 +1129,13 @@ let
         sha512 = "TesUflQ0WKZqAvg52PWL6kHgLKP6xB6heTOdoYM0Wt2UHyxNa4K25EZZMgKns3BH1RLVbZCREPpLY0rhnNoHVQ==";
       };
     };
-    "postcss-resolve-nested-selector-0.1.4" = {
+    "postcss-resolve-nested-selector-0.1.6" = {
       name = "postcss-resolve-nested-selector";
       packageName = "postcss-resolve-nested-selector";
-      version = "0.1.4";
+      version = "0.1.6";
       src = fetchurl {
-        url = "https://registry.npmjs.org/postcss-resolve-nested-selector/-/postcss-resolve-nested-selector-0.1.4.tgz";
-        sha512 = "R6vHqZWgVnTAPq0C+xjyHfEZqfIYboCBVSy24MjxEDm+tIh1BU4O6o7DP7AA7kHzf136d+Qc5duI4tlpHjixDw==";
+        url = "https://registry.npmjs.org/postcss-resolve-nested-selector/-/postcss-resolve-nested-selector-0.1.6.tgz";
+        sha512 = "0sglIs9Wmkzbr8lQwEyIzlDOOC9bGmfVKcJTaxv3vMmd3uo4o4DerC3En0bnmgceeql9BfC8hRkp7cg0fjdVqw==";
       };
     };
     "postcss-safe-parser-6.0.0" = {
@@ -1147,13 +1147,13 @@ let
         sha512 = "FARHN8pwH+WiS2OPCxJI8FuRJpTVnn6ZNFiqAM2aeW2LwTHWWmWgIyKC6cUo0L8aeKiF/14MNvnpls6R2PBeMQ==";
       };
     };
-    "postcss-selector-parser-6.1.1" = {
+    "postcss-selector-parser-6.1.2" = {
       name = "postcss-selector-parser";
       packageName = "postcss-selector-parser";
-      version = "6.1.1";
+      version = "6.1.2";
       src = fetchurl {
-        url = "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-6.1.1.tgz";
-        sha512 = "b4dlw/9V8A71rLIDsSwVmak9z2DuBUB7CA1/wSdelNEzqsjoSPeADTWNO09lpH49Diy3/JIZ2bSPB1dI3LJCHg==";
+        url = "https://registry.npmjs.org/postcss-selector-parser/-/postcss-selector-parser-6.1.2.tgz";
+        sha512 = "Q8qQfPiZ+THO/3ZrOrO0cJJKfpYCagtMUkXbnEfmgUjwXg6z/WBeOyS9APBBPCTSiDV+s4SwQGu8yFsiMRIudg==";
       };
     };
     "postcss-value-parser-4.2.0" = {
@@ -1695,7 +1695,7 @@ let
       sources."hasown-2.0.2"
       sources."hosted-git-info-4.1.0"
       sources."html-tags-3.3.1"
-      sources."ignore-5.3.1"
+      sources."ignore-5.3.2"
       (sources."import-fresh-3.3.0" // {
         dependencies = [
           sources."resolve-from-4.0.0"
@@ -1752,9 +1752,9 @@ let
       sources."picocolors-1.0.1"
       sources."picomatch-2.3.1"
       sources."postcss-8.4.41"
-      sources."postcss-resolve-nested-selector-0.1.4"
+      sources."postcss-resolve-nested-selector-0.1.6"
       sources."postcss-safe-parser-6.0.0"
-      sources."postcss-selector-parser-6.1.1"
+      sources."postcss-selector-parser-6.1.2"
       sources."postcss-value-parser-4.2.0"
       sources."queue-microtask-1.2.3"
       sources."quick-lru-5.1.1"
