@@ -206,23 +206,26 @@ in
 
   programs.skhd.hotApps = [
     "Alacritty"
-    "Google Chrome"
+    "Firefox"
     "Mail"
     "Slack"
   ];
 
   # Extra Firefox addons
-  programs.firefox.profiles.default.extensions =
-    let
-      local-addons = pkgs.callPackage ./generated-firefox-addons.nix {
-        inherit (firefox-addons) buildFirefoxXpiAddon;
-      };
-    in
-    [
-      firefox-addons.angular-devtools
-      firefox-addons.okta-browser-plugin
-      local-addons.fellow
-      local-addons.keeper-password-manager
-      # humi-feature-flag-portal
-    ];
+  programs.firefox.profiles.work = config.firefoxProfileDefaults // {
+    id = 1;
+    extensions =
+      let
+        local-addons = pkgs.callPackage ./generated-firefox-addons.nix {
+          inherit (firefox-addons) buildFirefoxXpiAddon;
+        };
+      in
+      [
+        firefox-addons.angular-devtools
+        firefox-addons.okta-browser-plugin
+        local-addons.fellow
+        local-addons.keeper-password-manager
+        # humi-feature-flag-portal
+      ];
+  };
 }
