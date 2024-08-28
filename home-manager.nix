@@ -89,7 +89,7 @@ in
   # Git
   programs.git.includes = [
     {
-      condition = "gitdir:~/humility/";
+      condition = "gitdir:${pathToHumility}";
       contents = {
         credential.helper = "${pkgs.gh}/bin/gh auth git-credential";
         user = {
