@@ -212,20 +212,21 @@ in
   ];
 
   # Extra Firefox addons
-  programs.firefox.profiles.work = config.firefoxProfileDefaults // {
-    id = 1;
-    extensions =
-      let
-        local-addons = pkgs.callPackage ./generated-firefox-addons.nix {
-          inherit (firefox-addons) buildFirefoxXpiAddon;
-        };
-      in
-      [
+  programs.firefox.profiles.work =
+    let
+      defaults = config.firefoxProfileDefaults;
+      local-addons = pkgs.callPackage ./generated-firefox-addons.nix {
+        inherit (firefox-addons) buildFirefoxXpiAddon;
+      };
+    in
+    defaults // {
+      id = 1;
+      extensions = defaults.extensions ++ [
         firefox-addons.angular-devtools
         firefox-addons.okta-browser-plugin
         local-addons.fellow
         local-addons.keeper-password-manager
         # humi-feature-flag-portal
       ];
-  };
+    };
 }
