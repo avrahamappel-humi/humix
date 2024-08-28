@@ -23,6 +23,9 @@ in
     hfe = "ui && tmux new -A -s ng yarn nx-high-memory run hr-angular:serve";
     # Start backend in docker
     hbe = "humi && tmux new -A -s dc docker compose up --scale ui=0";
+
+    # Navigate to this project
+    hx = "cd ${pathToHumility}/user_files/humix";
   } // projectAliases;
 
   programs.zsh.initExtra = ''
