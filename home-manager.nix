@@ -2,6 +2,7 @@
 
 let
   pathToHumility = "~/humility";
+  pathToHumix = "${pathToHumility}/user_files/humix";
 
   projectAliases = builtins.listToAttrs
     (builtins.map
@@ -11,7 +12,7 @@ let
   srcs = import ./npins;
 
   inherit (pkgs) vimUtils vimPlugins;
-  inherit (config.nur.repos.rycee) firefox-addons;
+  inherit (config.nur.repos.rycee) firefox-addons mozilla-addons-to-nix;
 in
 
 {
@@ -28,7 +29,8 @@ in
     hbe = "humi && tmux new -A -s dc docker compose up --scale ui=0";
 
     # Navigate to this project
-    hx = "cd ${pathToHumility}/user_files/humix";
+    hx = "cd ${pathToHumix}";
+    humix-firefox-extension-update = "${mozilla-addons-to-nix}/bin/mozilla-addons-to-nix ${pathToHumix}/addons.json ${pathToHumix}/generated-firefox-addons.nix";
   } // projectAliases;
 
   programs.zsh.initExtra = ''
@@ -210,11 +212,17 @@ in
   ];
 
   # Extra Firefox addons
-  programs.firefox.profiles.default.extensions = with firefox-addons; [
-    angular-devtools
-    # fellow
-    # humi-feature-flag-portal
-    # keeper
-    okta-browser-plugin
-  ];
+  programs.firefox.profiles.default.extensions =
+    let
+      local-addons = pkgs.callPackage ./generated-firefox-addons.nix {
+        inherit (firefox-addons) buildFirefoxXpiAddon;
+      };
+    in
+    [
+      firefox-addons.angular-devtools
+      firefox-addons.okta-browser-plugin
+      local-addons.fellow
+      local-addons.keeper-password-manager
+      # humi-feature-flag-portal
+    ];
 }
