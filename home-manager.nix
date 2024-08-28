@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, config, ... }:
 
 let
   pathToHumility = "~/humility";
@@ -11,9 +11,12 @@ let
   srcs = import ./npins;
 
   inherit (pkgs) vimUtils vimPlugins;
+  inherit (config.nur.repos.rycee) firefox-addons;
 in
 
 {
+  nixpkgs.config.allowUnfree = true;
+
   home.shellAliases = {
     d = "docker $*";
     dc = "docker compose $*";
@@ -204,5 +207,14 @@ in
     "Google Chrome"
     "Mail"
     "Slack"
+  ];
+
+  # Extra Firefox addons
+  programs.firefox.profiles.default.extensions = with firefox-addons; [
+    angular-devtools
+    # fellow
+    # humi-feature-flag-portal
+    # keeper
+    okta-browser-plugin
   ];
 }
