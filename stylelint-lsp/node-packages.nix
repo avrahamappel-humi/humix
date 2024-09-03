@@ -1102,13 +1102,13 @@ let
         sha512 = "gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==";
       };
     };
-    "picocolors-1.0.1" = {
+    "picocolors-1.1.0" = {
       name = "picocolors";
       packageName = "picocolors";
-      version = "1.0.1";
+      version = "1.1.0";
       src = fetchurl {
-        url = "https://registry.npmjs.org/picocolors/-/picocolors-1.0.1.tgz";
-        sha512 = "anP1Z8qwhkbmu7MFP5iTt+wQKXgwzf7zTyGlcdzabySa9vd0Xt392U0rVmz9poOaBj0uHJKyyo9/upk0HrEQew==";
+        url = "https://registry.npmjs.org/picocolors/-/picocolors-1.1.0.tgz";
+        sha512 = "TQ92mBOW0l3LeMeyLV6mzy/kWr8lkd/hp3mTg7wYK7zJhuBStmGMBG0BdeDZS/dZx1IukaX6Bk11zcln25o1Aw==";
       };
     };
     "picomatch-2.3.1" = {
@@ -1120,13 +1120,13 @@ let
         sha512 = "JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==";
       };
     };
-    "postcss-8.4.41" = {
+    "postcss-8.4.44" = {
       name = "postcss";
       packageName = "postcss";
-      version = "8.4.41";
+      version = "8.4.44";
       src = fetchurl {
-        url = "https://registry.npmjs.org/postcss/-/postcss-8.4.41.tgz";
-        sha512 = "TesUflQ0WKZqAvg52PWL6kHgLKP6xB6heTOdoYM0Wt2UHyxNa4K25EZZMgKns3BH1RLVbZCREPpLY0rhnNoHVQ==";
+        url = "https://registry.npmjs.org/postcss/-/postcss-8.4.44.tgz";
+        sha512 = "Aweb9unOEpQ3ezu4Q00DPvvM2ZTUitJdNKeP/+uQgr1IBIqu574IaZoURId7BKtWMREwzKa9OgzPzezWGPWFQw==";
       };
     };
     "postcss-resolve-nested-selector-0.1.6" = {
@@ -1749,9 +1749,9 @@ let
       sources."path-exists-4.0.0"
       sources."path-is-absolute-1.0.1"
       sources."path-type-4.0.0"
-      sources."picocolors-1.0.1"
+      sources."picocolors-1.1.0"
       sources."picomatch-2.3.1"
-      sources."postcss-8.4.41"
+      sources."postcss-8.4.44"
       sources."postcss-resolve-nested-selector-0.1.6"
       sources."postcss-safe-parser-6.0.0"
       sources."postcss-selector-parser-6.1.2"
