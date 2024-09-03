@@ -13,6 +13,13 @@ let
 
   inherit (pkgs) vimUtils vimPlugins;
   inherit (config.nur.repos.rycee) firefox-addons mozilla-addons-to-nix;
+
+  # Currently used for:
+  # neovim >= 0.10.1
+  # vimPlugins.render-markdown *
+  pkgs-unstable = import srcs.nixos-unstable { inherit (pkgs) system; };
+
+  open-ai-key-cmd = "security find-generic-password -s humi-chatgpt-key -w";
 in
 
 {
@@ -119,6 +126,8 @@ in
     go-jira
   ];
 
+  # Avante requires neovim >= 0.10.1
+  programs.neovim.package = lib.mkForce pkgs-unstable.neovim-unwrapped;
   programs.neovim.plugins = [
     {
       # Prettier
@@ -152,7 +161,7 @@ in
       type = "lua";
       config = /* lua */ ''
         require('chatgpt').setup {
-          api_key_cmd = 'security find-generic-password -s humi-chatgpt-key -w',
+          api_key_cmd = '${open-ai-key-cmd}',
           openai_params = {
             model = 'gpt-4o',
             max_tokens = 4096,
@@ -160,6 +169,45 @@ in
         }
       '';
     }
+    
+    {
+      plugin = vimUtils.buildVimPlugin {
+        pname = "avante.nvim";
+        version = srcs."avante.nvim".version;
+        src = srcs."avante.nvim";
+      };
+      type ="lua";
+      config = /* lua */ ''
+        require('avante_lib').load()
+        require('avante').setup {
+          provider = "openai",
+          openai = {
+            api_key_name = 'cmd:${open-ai-key-cmd}'
+          },
+          mappings = {
+            ask = "<leader>oa",
+            edit = "<leader>oe",
+            refresh = "<leader>or",
+            toggle = {
+              default = "<leader>ot",
+              debug = "<leader>od",
+              hint = "<leader>oh",
+            },
+          },
+        }
+      '';
+    }
+    {
+      # Used by avante.nvim
+      plugin = pkgs-unstable.vimPlugins.render-markdown;
+      type = "lua";
+      config = /* lua */ ''
+        require('render-markdown').setup {
+          file_types = { 'Avante' },
+        }
+      '';
+    }
+
     {
       # Linear
       plugin = vimUtils.buildVimPlugin {
