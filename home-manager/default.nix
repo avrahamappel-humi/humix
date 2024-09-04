@@ -12,12 +12,13 @@ let
   srcs = import ../npins;
 
   inherit (pkgs) vimUtils vimPlugins;
-
-  open-ai-key-cmd = "security find-generic-password -s humi-chatgpt-key -w";
 in
 
 {
-  imports = [ ./firefox.nix ];
+  imports = [
+    ./firefox.nix
+    ./ai.nix
+  ];
 
   nixpkgs.config.allowUnfree = true;
 
@@ -139,77 +140,6 @@ in
         local ng = require("ng");
         vim.keymap.set("n", "<leader>t", ng.goto_template_for_component, opts)
         vim.keymap.set("n", "<leader>u", ng.goto_component_with_template_file, opts)
-      '';
-    }
-    {
-      # chat-gpt
-      plugin = vimPlugins.ChatGPT-nvim;
-      type = "lua";
-      config = /* lua */ ''
-        require('chatgpt').setup {
-          api_key_cmd = '${open-ai-key-cmd}',
-          openai_params = {
-            model = 'gpt-4o',
-            max_tokens = 4096,
-          },
-        }
-      '';
-    }
-
-    # avante.nvim dependencies
-    vimPlugins.nui-nvim
-    vimPlugins.dressing-nvim
-    {
-      plugin = pkgs-unstable.vimPlugins.render-markdown;
-      type = "lua";
-      config = /* lua */ ''
-        require('render-markdown').setup {
-          file_types = { 'Avante' },
-        }
-      '';
-    }
-
-    # Avante
-    {
-      plugin = vimUtils.buildVimPlugin {
-        pname = "avante.nvim";
-        version = srcs."avante.nvim".version;
-        src = srcs."avante.nvim";
-        # Fails with SSL error from netskope
-        buildPhase = ''
-          export CARGO_HOME=./cargo
-          mkdir $CARGO_HOME
-          BUILD_FROM_SOURCE=true make
-        '';
-        buildInputs = with pkgs; [
-          cargo
-          oniguruma
-          openssl
-          darwin.apple_sdk.frameworks.Security
-        ];
-        nativeBuildInputs = with pkgs; [
-          pkg-config
-        ];
-      };
-      type = "lua";
-      config = /* lua */ ''
-        require('avante_lib').load()
-        require('avante').setup {
-          provider = "openai",
-          openai = {
-            api_key_name = 'cmd:${open-ai-key-cmd}'
-          },
-          mappings = {
-            ask = "<leader>oa",
-            edit = "<leader>oe",
-            refresh = "<leader>or",
-            toggle = {
-              default = "<leader>ot",
-              debug = "<leader>od",
-              hint = "<leader>oh",
-            },
-          },
-        }
       '';
     }
 
