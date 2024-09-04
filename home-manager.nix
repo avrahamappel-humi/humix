@@ -114,16 +114,9 @@ in
     }
   ];
 
-  home.file.".jira.d/config.yml".text = ''
-    endpoint: https://gethumi.atlassian.net
-    user: avraham.appel@humi.ca
-    password-source: keyring
-  '';
-
   home.packages = with pkgs; [
     coreutils
     gh
-    go-jira
   ];
 
   # Avante requires neovim >= 0.10.1
