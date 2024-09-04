@@ -207,7 +207,10 @@ in
         let g:vdebug_options.debug_file = '~/.local/share/vdebug/vdebug.log'
         let g:vdebug_options.debug_file_level = 1
         " File mappings. Add more as needed
-        let g:vdebug_options.path_maps = { "/var/www/hr": getcwd() }
+        let g:vdebug_options.path_maps = {
+        \  "/var/www/hr": getcwd(),
+        \  "/var/www/admin": getcwd(),
+        \}
       '';
     }
   ];
