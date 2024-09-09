@@ -10,10 +10,10 @@
       "pre_releases": false,
       "version_upper_bound": null,
       "release_prefix": null,
-      "version": "v0.0.1",
-      "revision": "90c5f724e6291c59b4e7498adc4fbbd6d640147d",
-      "url": "https://api.github.com/repos/yetone/avante.nvim/tarball/v0.0.1",
-      "hash": "0msjnilarpg28c385mpj3k0iq44ixz5kcy5fca7kbvwxv340ank9"
+      "version": "v0.0.2",
+      "revision": "3e65e7a40debd5df6a456f3dcd11044dfe2e03e6",
+      "url": "https://api.github.com/repos/yetone/avante.nvim/tarball/v0.0.2",
+      "hash": "1cf78bj82k74lyvgx7ayw6ph9sm2i82mchk18c2k6037mma0nhm7"
     },
     "linear-nvim": {
       "type": "Git",
@@ -42,8 +42,8 @@
     "nixos-unstable": {
       "type": "Channel",
       "name": "nixos-unstable",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-24.11pre674318.12228ff1752d/nixexprs.tar.xz",
-      "hash": "0x767wdp839vg9yqisnpbif6sixyqjbvkdkjmdbz4crgpxg8b4df"
+      "url": "https://releases.nixos.org/nixos/unstable/nixos-24.11pre677397.574d1eac1c20/nixexprs.tar.xz",
+      "hash": "0j66kv4xq4csa5hwizlab5a7j47hd44182xvz541ll3cdfd5a7gx"
     },
     "vdebug": {
       "type": "Git",

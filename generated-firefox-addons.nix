@@ -23,10 +23,10 @@
     };
     "keeper-password-manager" = buildFirefoxXpiAddon {
       pname = "keeper-password-manager";
-      version = "16.10.0";
+      version = "16.10.1";
       addonId = "KeeperFFStoreExtension@KeeperSecurityInc";
-      url = "https://addons.mozilla.org/firefox/downloads/file/4327837/keeper_password_manager-16.10.0_ImrxslG.xpi";
-      sha256 = "7245b76152bbfdb48a256297c14b21511298f5e0c7470f3bddb298697911e997";
+      url = "https://addons.mozilla.org/firefox/downloads/file/4343408/keeper_password_manager-16.10.1.xpi";
+      sha256 = "41ff318af036bd4c4630a630060e380e549b392a15b53f081208597b005ab8f7";
       meta = with lib;
       {
         homepage = "http://keepersecurity.com/";

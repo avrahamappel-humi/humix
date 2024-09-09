@@ -346,13 +346,13 @@ let
         sha512 = "/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==";
       };
     };
-    "debug-4.3.6" = {
+    "debug-4.3.7" = {
       name = "debug";
       packageName = "debug";
-      version = "4.3.6";
+      version = "4.3.7";
       src = fetchurl {
-        url = "https://registry.npmjs.org/debug/-/debug-4.3.6.tgz";
-        sha512 = "O/09Bd4Z1fBrU4VzkhFqVgpPzaGbw6Sm9FEkBT1A/YBXQFGuuSxa1dN2nxgxS34JmKXqYx8CZAwEVoJFImUXIg==";
+        url = "https://registry.npmjs.org/debug/-/debug-4.3.7.tgz";
+        sha512 = "Er2nc/H7RrMXZBFCEim6TCmMk02Z8vLC2Rbi1KEBggpo0fS6l0S1nnapwmIi3yW/+GOJap1Krg4w0Hg80oCqgQ==";
       };
     };
     "decamelize-1.2.0" = {
@@ -994,13 +994,13 @@ let
         sha512 = "Q4r8ghd80yhO/0j1O3B2BjweX3fiHg9cdOwjJd2J76Q135c+NDxGCqdYKQ1SKBuFfgWbAUzBfvYjPUEeNgqN1A==";
       };
     };
-    "ms-2.1.2" = {
+    "ms-2.1.3" = {
       name = "ms";
       packageName = "ms";
-      version = "2.1.2";
+      version = "2.1.3";
       src = fetchurl {
-        url = "https://registry.npmjs.org/ms/-/ms-2.1.2.tgz";
-        sha512 = "sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==";
+        url = "https://registry.npmjs.org/ms/-/ms-2.1.3.tgz";
+        sha512 = "6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==";
       };
     };
     "nanoid-3.3.7" = {
@@ -1120,13 +1120,13 @@ let
         sha512 = "JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==";
       };
     };
-    "postcss-8.4.44" = {
+    "postcss-8.4.45" = {
       name = "postcss";
       packageName = "postcss";
-      version = "8.4.44";
+      version = "8.4.45";
       src = fetchurl {
-        url = "https://registry.npmjs.org/postcss/-/postcss-8.4.44.tgz";
-        sha512 = "Aweb9unOEpQ3ezu4Q00DPvvM2ZTUitJdNKeP/+uQgr1IBIqu574IaZoURId7BKtWMREwzKa9OgzPzezWGPWFQw==";
+        url = "https://registry.npmjs.org/postcss/-/postcss-8.4.45.tgz";
+        sha512 = "7KTLTdzdZZYscUc65XmjFiB73vBhBfbPztCYdUNvlaso9PrzjzcmjqBPR0lNGkcVlcO4BjiO5rK/qNz+XAen1Q==";
       };
     };
     "postcss-resolve-nested-selector-0.1.6" = {
@@ -1300,13 +1300,13 @@ let
         sha512 = "qMCMfhY040cVHT43K9BFygqYbUPFZKHOg7K73mtTWJRb8pyP3fzf4Ixd5SzdEJQ6MRUg/WBnOLxghZtKKurENQ==";
       };
     };
-    "source-map-js-1.2.0" = {
+    "source-map-js-1.2.1" = {
       name = "source-map-js";
       packageName = "source-map-js";
-      version = "1.2.0";
+      version = "1.2.1";
       src = fetchurl {
-        url = "https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.0.tgz";
-        sha512 = "itJW8lvSA0TXEphiRoawsCksnlf8SyvmFzIhltqAHluXd88pkCd+cXJVHTDwdCr0IzwptSm035IHQktUu1QUMg==";
+        url = "https://registry.npmjs.org/source-map-js/-/source-map-js-1.2.1.tgz";
+        sha512 = "UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==";
       };
     };
     "spdx-correct-3.2.0" = {
@@ -1659,7 +1659,7 @@ let
       sources."css-functions-list-3.2.2"
       sources."css-tree-2.3.1"
       sources."cssesc-3.0.0"
-      sources."debug-4.3.6"
+      sources."debug-4.3.7"
       sources."decamelize-5.0.1"
       (sources."decamelize-keys-1.1.1" // {
         dependencies = [
@@ -1737,7 +1737,7 @@ let
       sources."min-indent-1.0.1"
       sources."minimatch-3.1.2"
       sources."minimist-options-4.1.0"
-      sources."ms-2.1.2"
+      sources."ms-2.1.3"
       sources."nanoid-3.3.7"
       sources."normalize-package-data-3.0.3"
       sources."normalize-path-3.0.0"
@@ -1751,7 +1751,7 @@ let
       sources."path-type-4.0.0"
       sources."picocolors-1.1.0"
       sources."picomatch-2.3.1"
-      sources."postcss-8.4.44"
+      sources."postcss-8.4.45"
       sources."postcss-resolve-nested-selector-0.1.6"
       sources."postcss-safe-parser-6.0.0"
       sources."postcss-selector-parser-6.1.2"
@@ -1776,7 +1776,7 @@ let
           sources."color-name-1.1.4"
         ];
       })
-      sources."source-map-js-1.2.0"
+      sources."source-map-js-1.2.1"
       sources."spdx-correct-3.2.0"
       sources."spdx-exceptions-2.5.0"
       sources."spdx-expression-parse-3.0.1"
