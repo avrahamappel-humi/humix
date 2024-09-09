@@ -84,6 +84,9 @@ in
       phpcs --config-set default_standard PSR12,PHPCompatibility
       phpcs --config-set severity 1
       phpcs --config-set testVersion 8.2
+
+      echo "Checking platform and installed extensions"
+      composer check-platform-reqs
     '';
   };
 
@@ -138,6 +141,9 @@ in
       phpcs --config-set default_standard PSR12,PHPCompatibility
       phpcs --config-set severity 1
       phpcs --config-set testVersion 8.2
+
+      echo "Checking platform and installed extensions"
+      composer check-platform-reqs
     '';
   };
 
