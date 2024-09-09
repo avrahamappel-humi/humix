@@ -20,6 +20,12 @@ let
   pkgs-unstable = import srcs.nixos-unstable { inherit (pkgs) system; };
 
   open-ai-key-cmd = "security find-generic-password -s humi-chatgpt-key -w";
+
+  humix-firefox-extension-update = pkgs.writeShellScriptBin "humix-firefox-extension-update" ''
+    ${mozilla-addons-to-nix}/bin/mozilla-addons-to-nix \
+      ${pathToHumix}/addons.json \
+      ${pathToHumix}/generated-firefox-addons.nix
+  '';
 in
 
 {
@@ -37,7 +43,6 @@ in
 
     # Navigate to this project
     hx = "cd ${pathToHumix}";
-    humix-firefox-extension-update = "${mozilla-addons-to-nix}/bin/mozilla-addons-to-nix ${pathToHumix}/addons.json ${pathToHumix}/generated-firefox-addons.nix";
   } // projectAliases;
 
   programs.zsh.initExtra = ''
@@ -117,6 +122,7 @@ in
   home.packages = with pkgs; [
     coreutils
     gh
+    humix-firefox-extension-update
   ];
 
   # Avante requires neovim >= 0.10.1
