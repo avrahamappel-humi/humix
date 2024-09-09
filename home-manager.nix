@@ -14,11 +14,6 @@ let
   inherit (pkgs) vimUtils vimPlugins;
   inherit (config.nur.repos.rycee) firefox-addons mozilla-addons-to-nix;
 
-  # Currently used for:
-  # neovim >= 0.10.1
-  # vimPlugins.render-markdown *
-  pkgs-unstable = import srcs.nixos-unstable { inherit (pkgs) system; };
-
   open-ai-key-cmd = "security find-generic-password -s humi-chatgpt-key -w";
 
   humix-firefox-extension-update = pkgs.writeShellScriptBin "humix-firefox-extension-update" ''
@@ -125,8 +120,6 @@ in
     humix-firefox-extension-update
   ];
 
-  # Avante requires neovim >= 0.10.1
-  programs.neovim.package = lib.mkForce pkgs-unstable.neovim-unwrapped;
   programs.neovim.plugins = [
     {
       # Prettier

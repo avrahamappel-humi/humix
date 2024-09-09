@@ -39,12 +39,6 @@
       "url": "https://github.com/joeveiga/ng.nvim/archive/38af07e77f066e2d6e3f74d966816662075ff4cd.tar.gz",
       "hash": "02dihbc3f8a8ifzfj4hsqbgxri5k1mh50x6r2v8flzn93r8d27hf"
     },
-    "nixos-unstable": {
-      "type": "Channel",
-      "name": "nixos-unstable",
-      "url": "https://releases.nixos.org/nixos/unstable/nixos-24.11pre677397.574d1eac1c20/nixexprs.tar.xz",
-      "hash": "0j66kv4xq4csa5hwizlab5a7j47hd44182xvz541ll3cdfd5a7gx"
-    },
     "vdebug": {
       "type": "Git",
       "repository": {
