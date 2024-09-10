@@ -288,6 +288,20 @@ in
         plugins: []
         max_files: 5000
       '';
+
+      ".rubocop.yml" = /* yaml */ ''
+        NumericLiterals:
+          Enabled: false
+
+        Style/StringLiterals:
+          Description: Checks if uses of quotes match the configured preference.
+          StyleGuide: https://github.com/bbatsov/ruby-style-guide#consistent-string-literals
+          Enabled: true
+          EnforcedStyle: double_quotes
+          SupportedStyles:
+            - single_quotes
+            - double_quotes
+      '';
     };
   };
 
