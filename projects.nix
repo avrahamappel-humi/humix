@@ -128,9 +128,18 @@ in
     files = {
       ".phpactor.json" = /* json */ ''
         {
+          "language_server_phpstan.enabled": true,
           "php_code_sniffer.enabled": true,
           "phpunit.enabled": true
         }
+      '';
+
+      "phpstan.neon" = ''
+        parameters:
+          paths:
+          - app/
+          # Level 9 is the highest level
+          level: 5
       '';
     };
 
