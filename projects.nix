@@ -145,7 +145,7 @@ in
 
     versionChecks = [ "php" "node" ];
 
-    extraScript = ''
+    extraScript = /* bash */ ''
       echo "Setting PHPCodeSniffer config"
       phpcs --config-set default_standard PSR12,PHPCompatibility
       phpcs --config-set severity 1
@@ -153,6 +153,10 @@ in
 
       echo "Checking platform and installed extensions"
       composer check-platform-reqs
+
+      echo "Setting up prod db credentials"
+      db_url="$(pass Humi/hr-prod-db-replica)"
+      echo "DB_UI_PROD=$db_url" >> .env
     '';
   };
 
