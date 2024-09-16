@@ -15,12 +15,6 @@ let
   inherit (config.nur.repos.rycee) firefox-addons mozilla-addons-to-nix;
 
   open-ai-key-cmd = "security find-generic-password -s humi-chatgpt-key -w";
-
-  humix-firefox-extension-update = pkgs.writeShellScriptBin "humix-firefox-extension-update" ''
-    ${mozilla-addons-to-nix}/bin/mozilla-addons-to-nix \
-      ${pathToHumix}/addons.json \
-      ${pathToHumix}/generated-firefox-addons.nix
-  '';
 in
 
 {
@@ -117,7 +111,7 @@ in
   home.packages = with pkgs; [
     coreutils
     gh
-    humix-firefox-extension-update
+    mozilla-addons-to-nix
   ];
 
   programs.neovim.plugins = [

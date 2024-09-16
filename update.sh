@@ -15,7 +15,8 @@ npins update
 
 # Update Firefox addons
 echo "Updating Firefox addons"
-humix-firefox-extension-update
+mozilla-addons-to-nix ./home-manager/addons.json \
+  ./home-manager/generated-firefox-addons.nix
 
 # Update node packages
 echo "Updating Node packages"
