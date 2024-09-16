@@ -9,7 +9,7 @@ let
       (project: { name = project; value = "humility_open ${project} $*"; })
       [ "hr" "payroll" "ui" "admin" "ableScripts" ]);
 
-  srcs = import ./npins;
+  srcs = import ../npins;
 
   inherit (pkgs) vimUtils vimPlugins;
   inherit (config.nur.repos.rycee) firefox-addons mozilla-addons-to-nix;
