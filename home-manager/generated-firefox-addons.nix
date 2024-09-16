@@ -54,4 +54,19 @@
         platforms = platforms.all;
       };
     };
+    "profile-switcher" = buildFirefoxXpiAddon {
+      pname = "profile-switcher";
+      version = "1.3.1";
+      addonId = "profile-switcher-ff@nd.ax";
+      url = "https://addons.mozilla.org/firefox/downloads/file/3945999/profile_switcher-1.3.1.xpi";
+      sha256 = "80ca410ad883a0a2a2dc50cb1f74474dd829223ce106a5911120461c30e4e64f";
+      meta = with lib;
+      {
+        homepage = "https://github.com/null-dev/firefox-profile-switcher";
+        description = "Create, manage and switch between browser profiles seamlessly.";
+        license = licenses.gpl3;
+        mozPermissions = [ "storage" "nativeMessaging" "tabs" ];
+        platforms = platforms.all;
+      };
+    };
   }

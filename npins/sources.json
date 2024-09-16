@@ -15,6 +15,21 @@
       "url": "https://api.github.com/repos/yetone/avante.nvim/tarball/v0.0.2",
       "hash": "1cf78bj82k74lyvgx7ayw6ph9sm2i82mchk18c2k6037mma0nhm7"
     },
+    "firefox-profile-switcher-connector": {
+      "type": "GitRelease",
+      "repository": {
+        "type": "GitHub",
+        "owner": "null-dev",
+        "repo": "firefox-profile-switcher-connector"
+      },
+      "pre_releases": false,
+      "version_upper_bound": null,
+      "release_prefix": null,
+      "version": "v0.1.1",
+      "revision": "46dae2a1ed6496814082051aa4347ba2019befe7",
+      "url": "https://api.github.com/repos/null-dev/firefox-profile-switcher-connector/tarball/v0.1.1",
+      "hash": "1gpjs7ddzqxj3l32ycqmdmnqcamwxga4ilhsivghhh44kwhfjwws"
+    },
     "linear-nvim": {
       "type": "Git",
       "repository": {
