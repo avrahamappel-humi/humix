@@ -1120,13 +1120,13 @@ let
         sha512 = "JU3teHTNjmE2VCGFzuY8EXzCDVwEqB2a8fsIvwaStHhAWJEeVd1o1QD80CU6+ZdEXXSLbSsuLwJjkCBWqRQUVA==";
       };
     };
-    "postcss-8.4.45" = {
+    "postcss-8.4.47" = {
       name = "postcss";
       packageName = "postcss";
-      version = "8.4.45";
+      version = "8.4.47";
       src = fetchurl {
-        url = "https://registry.npmjs.org/postcss/-/postcss-8.4.45.tgz";
-        sha512 = "7KTLTdzdZZYscUc65XmjFiB73vBhBfbPztCYdUNvlaso9PrzjzcmjqBPR0lNGkcVlcO4BjiO5rK/qNz+XAen1Q==";
+        url = "https://registry.npmjs.org/postcss/-/postcss-8.4.47.tgz";
+        sha512 = "56rxCq7G/XfB4EkXq9Egn5GCqugWvDFjafDOThIdMBsI15iqPqR5r15TfSr1YPYeEI19YeaXMCbY6u88Y76GLQ==";
       };
     };
     "postcss-resolve-nested-selector-0.1.6" = {
@@ -1480,13 +1480,13 @@ let
         sha512 = "yGSza74xk0UG8k+pLh5oeoYirvIiWo5t0/o3zHHAO2tRDiZcxWP7fywNlXhqb6/r6sWvwi+RsyQMWhVLe4BVuA==";
       };
     };
-    "typescript-5.5.4" = {
+    "typescript-5.6.2" = {
       name = "typescript";
       packageName = "typescript";
-      version = "5.5.4";
+      version = "5.6.2";
       src = fetchurl {
-        url = "https://registry.npmjs.org/typescript/-/typescript-5.5.4.tgz";
-        sha512 = "Mtq29sKDAEYP7aljRgtPOpTvOfbwRWlS6dPRzwjdE+C0R4brX/GUyhHSecbHMFLNBLcJIPt9nl9yG5TZ1weH+Q==";
+        url = "https://registry.npmjs.org/typescript/-/typescript-5.6.2.tgz";
+        sha512 = "NW8ByodCSNCwZeghjN3o+JX5OFH0Ojg6sadjEKY4huZ52TqbJTJnDo5+Tw98lSy63NZvi4n+ez5m2u5d4PkZyw==";
       };
     };
     "util-deprecate-1.0.2" = {
@@ -1751,7 +1751,7 @@ let
       sources."path-type-4.0.0"
       sources."picocolors-1.1.0"
       sources."picomatch-2.3.1"
-      sources."postcss-8.4.45"
+      sources."postcss-8.4.47"
       sources."postcss-resolve-nested-selector-0.1.6"
       sources."postcss-safe-parser-6.0.0"
       sources."postcss-selector-parser-6.1.2"
@@ -1800,7 +1800,7 @@ let
       sources."trim-newlines-4.1.1"
       sources."tslib-2.6.3"
       sources."type-fest-1.4.0"
-      sources."typescript-5.5.4"
+      sources."typescript-5.6.2"
       sources."util-deprecate-1.0.2"
       sources."validate-npm-package-license-3.0.4"
       sources."vscode-jsonrpc-8.2.0"
