@@ -1,42 +1,29 @@
-{ pkgs, stdenv, vimUtils }:
+{ stdenv, vimUtils, fetchzip }:
 
 let
-  srcs = import ../npins;
+  src = (import ../npins)."avante.nvim";
 
-  avanteSource = stdenv.mkDerivation {
-    name = "avante-source";
-    version = srcs."avante.nvim".version;
+  platform = if stdenv.isDarwin then "macos" else "ubuntu";
+  templatesUrl = "https://github.com/yetone/avante.nvim/releases/download/${src.version}/avante_lib-${platform}-latest-luajit.tar.gz";
 
-    src = srcs."avante.nvim";
-
-    CARGO_HOME = "./cargo";
-    # Fails with SSL error from netskope
-    # CARGO_HTTP_CHECK_REVOKE = "false";
-    # CARGO_NET_GIT_FETCH_WITH_CLI = "true";
-
-    preBuild = ''
-      mkdir $CARGO_HOME
-    '';
-
-    makeFlags = [ "BUILD_FROM_SOURCE=true" ];
-
-    buildInputs = with pkgs; [
-      cargo
-      git
-      # oniguruma
-      # openssl
-      # darwin.apple_sdk.frameworks.Security
-    ];
-
-    nativeBuildInputs = with pkgs; [
-      # pkg-config
-    ];
+  avanteTemplates = fetchzip {
+    pname = "avante-templates-${platform}";
+    inherit (src) version;
+    url = templatesUrl;
+    sha256 = "00fr1jada7cfc9m2xlfa5vkzj1sy5b5hvny8jannsdkfiyrryqi1";
+    stripRoot = false;
   };
 
   avantePlugin = vimUtils.buildVimPlugin {
     pname = "avante.nvim";
-    version = srcs."avante.nvim".version;
-    src = avanteSource;
+    inherit (src) version;
+
+    inherit src;
+
+    postInstall = ''
+      echo "Installing templates"
+      ln -s ${avanteTemplates} $out/build
+    '';
   };
 in
 
