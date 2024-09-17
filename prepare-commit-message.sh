@@ -12,6 +12,7 @@ if [ -n "$BRANCH_NAME" ]; then
     [[ $BRANCH_NAME =~ $REGEX ]]
 
     if [ -n "$BASH_REMATCH" ]; then
-        echo "''${BASH_REMATCH[1]} $(cat $1)" > $1
+        ticket_number="$(echo "${BASH_REMATCH[1]}" | tr '[:lower:]' '[:upper:]')"
+        echo "$ticket_number $(cat $1)" > $1
     fi
 fi
