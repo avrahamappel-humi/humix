@@ -174,7 +174,6 @@ in
         end)
       '';
     }
-    vimPlugins.telescope-nvim
     {
       # Xdebug in vim
       plugin = vimUtils.buildVimPlugin {
