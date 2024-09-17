@@ -236,4 +236,8 @@ in
 
       nativeMessagingHosts = [ (pkgs.callPackage ./firefox-profile-switcher-connector.nix { }) ];
     };
+
+  home.file."Library/Preferences/ax.nd.nulldev.FirefoxProfileSwitcher/config.json".text = /* json */ ''
+    {"browser_binary": "/Applications/Firefox.app/Contents/MacOS/firefox"}
+  '';
 }

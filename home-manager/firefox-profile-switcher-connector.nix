@@ -23,6 +23,16 @@ rustPlatform.buildRustPackage {
 
   nativeBuildInputs = [ cmake ]; # Required by nng-sys
 
+  # Copy manifest file
+  postInstall = ''
+    mkdir -p $out/lib/mozilla/native-messaging-hosts
+    substitute \
+      $src/manifest/${if stdenv.isDarwin then "manifest-mac.json" else "manifest-linux.json"} \
+      $out/lib/mozilla/native-messaging-hosts/ax.nd.profile_switcher_ff.json \
+      --replace-fail ${if stdenv.isDarwin then "/usr/local/bin/ff-pswitch-connector" else "/usr/bin/ff-pswitch-connector"} \
+      $out/bin/firefox_profile_switcher_connector
+  '';
+
   meta = with lib; {
     description = "Native connector software for the 'Profile Switcher for Firefox' extension";
     homepage = "https://github.com/null-dev/firefox-profile-switcher-connector";
