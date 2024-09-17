@@ -1,4 +1,4 @@
-{ pkgs, lib, config, ... }:
+{ pkgs, lib, ... }:
 
 let
   pathToHumility = "~/humility";
@@ -12,12 +12,13 @@ let
   srcs = import ../npins;
 
   inherit (pkgs) vimUtils vimPlugins;
-  inherit (config.nur.repos.rycee) firefox-addons mozilla-addons-to-nix;
 
   open-ai-key-cmd = "security find-generic-password -s humi-chatgpt-key -w";
 in
 
 {
+  imports = [ ./firefox.nix ];
+
   nixpkgs.config.allowUnfree = true;
 
   home.shellAliases = {
@@ -111,7 +112,6 @@ in
   home.packages = with pkgs; [
     coreutils
     gh
-    mozilla-addons-to-nix
   ];
 
   programs.neovim.plugins = [
@@ -209,35 +209,4 @@ in
     "Mail"
     "Slack"
   ];
-
-  # Configure work Firefox profile, and enable profile switcher
-  programs.firefox =
-    let
-      defaults = config.firefoxProfileDefaults;
-
-      local-addons = pkgs.callPackage ./generated-firefox-addons.nix {
-        inherit (firefox-addons) buildFirefoxXpiAddon;
-      };
-    in
-
-    {
-      profiles.default.extensions = [ local-addons.profile-switcher ];
-      profiles.work = defaults // {
-        id = 1;
-        extensions = defaults.extensions ++ [
-          firefox-addons.angular-devtools
-          firefox-addons.okta-browser-plugin
-          local-addons.fellow
-          local-addons.keeper-password-manager
-          local-addons.profile-switcher
-          # humi-feature-flag-portal
-        ];
-      };
-
-      nativeMessagingHosts = [ (pkgs.callPackage ./firefox-profile-switcher-connector.nix { }) ];
-    };
-
-  home.file."Library/Preferences/ax.nd.nulldev.FirefoxProfileSwitcher/config.json".text = /* json */ ''
-    {"browser_binary": "/Applications/Firefox.app/Contents/MacOS/firefox"}
-  '';
 }
