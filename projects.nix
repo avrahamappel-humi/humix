@@ -119,7 +119,8 @@ in
       DB_HOST = "127.0.0.1";
       DB_PORT = "33060";
       REDIS_HOST = "127.0.0.1";
-      DBUI_URL = "mysql://root:root@127.0.0.1:33060/humi";
+      DB_UI_LOCAL = "mysql://root:root@127.0.0.1:33060/humi";
+      DB_UI_PROD = "mysql://aappel@humi-hr-api-production-replica.cvasqtmqv7hm.ca-central-1.rds.amazonaws.com/humi";
       PAYROLL_API_URL = "http://127.0.0.1:3030/v2";
       MAIL_HOST = "127.0.0.1";
       LD_RELAY_REDIS_HOST = "127.0.0.1";
@@ -153,10 +154,6 @@ in
 
       echo "Checking platform and installed extensions"
       composer check-platform-reqs
-
-      echo "Setting up prod db credentials"
-      db_url="$(pass Humi/hr-prod-db-replica)"
-      echo "DB_UI_PROD=$db_url" >> .env
     '';
   };
 
