@@ -445,13 +445,13 @@ let
         sha512 = "oX2ruAFQwf/Orj8m737Y5adxDQO0LAB7/S5MnxCdTNDd4p6BsyIVsv9JQsATbTSq8KHRpLwIHbVlUNatxd+1Ow==";
       };
     };
-    "fast-uri-3.0.1" = {
+    "fast-uri-3.0.2" = {
       name = "fast-uri";
       packageName = "fast-uri";
-      version = "3.0.1";
+      version = "3.0.2";
       src = fetchurl {
-        url = "https://registry.npmjs.org/fast-uri/-/fast-uri-3.0.1.tgz";
-        sha512 = "MWipKbbYiYI0UC7cl8m/i/IWTqfC8YXsqjzybjddLsFjStroQzsHXkc73JutMvBiXmOvapk+axIl79ig5t55Bw==";
+        url = "https://registry.npmjs.org/fast-uri/-/fast-uri-3.0.2.tgz";
+        sha512 = "GR6f0hD7XXyNJa25Tb9BuIdN0tdr+0BMi6/CJPH3wJO1JjNG3n/VsSw38AwRdKZABm8lGbPfakLRkYzx2V9row==";
       };
     };
     "fastest-levenshtein-1.0.16" = {
@@ -1674,7 +1674,7 @@ let
       sources."fast-deep-equal-3.1.3"
       sources."fast-diff-1.3.0"
       sources."fast-glob-3.3.2"
-      sources."fast-uri-3.0.1"
+      sources."fast-uri-3.0.2"
       sources."fastest-levenshtein-1.0.16"
       sources."fastq-1.17.1"
       sources."file-entry-cache-7.0.2"

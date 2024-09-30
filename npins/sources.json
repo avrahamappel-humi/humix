@@ -10,10 +10,10 @@
       "pre_releases": false,
       "version_upper_bound": null,
       "release_prefix": null,
-      "version": "v0.0.2",
-      "revision": "3e65e7a40debd5df6a456f3dcd11044dfe2e03e6",
-      "url": "https://api.github.com/repos/yetone/avante.nvim/tarball/v0.0.2",
-      "hash": "1cf78bj82k74lyvgx7ayw6ph9sm2i82mchk18c2k6037mma0nhm7"
+      "version": "v0.0.8",
+      "revision": "0fb536450e0645c67775f70126f26416cd9b708a",
+      "url": "https://api.github.com/repos/yetone/avante.nvim/tarball/v0.0.8",
+      "hash": "09drdjyj1xvdhzj7frg4zfv8gk5430nn57c76hg27yi1jyxcp6ng"
     },
     "firefox-profile-switcher-connector": {
       "type": "GitRelease",

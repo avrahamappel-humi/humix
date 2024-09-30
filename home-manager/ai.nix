@@ -13,7 +13,7 @@ in
       vimPlugins.nui-nvim
       vimPlugins.dressing-nvim
       {
-        plugin = pkgs-unstable.vimPlugins.render-markdown;
+        plugin = pkgs-unstable.vimPlugins.render-markdown-nvim;
         type = "lua";
         config = /* lua */ ''
           require('render-markdown').setup {
