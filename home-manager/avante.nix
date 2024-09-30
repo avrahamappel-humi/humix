@@ -1,16 +1,16 @@
-{ stdenv, vimUtils, fetchzip }:
+{ vimUtils, fetchzip, hostPlatform }:
 
 let
   src = (import ../npins)."avante.nvim";
 
-  platform = if stdenv.isDarwin then "macos" else "ubuntu";
-  templatesUrl = "https://github.com/yetone/avante.nvim/releases/download/${src.version}/avante_lib-${platform}-latest-luajit.tar.gz";
+  inherit (hostPlatform.parsed) cpu kernel;
+  templatesUrl = "https://github.com/yetone/avante.nvim/releases/download/${src.version}/avante_lib-${kernel.name}-${cpu.name}-luajit.tar.gz";
 
   avanteTemplates = fetchzip {
-    pname = "avante-templates-${platform}";
+    pname = "avante-templates";
     inherit (src) version;
     url = templatesUrl;
-    sha256 = "00fr1jada7cfc9m2xlfa5vkzj1sy5b5hvny8jannsdkfiyrryqi1";
+    hash = "sha256-9mXC/BWm4VBaKktvsp9REXOZLPnqYKvuHGZk6dlXnn8=";
     stripRoot = false;
   };
 
