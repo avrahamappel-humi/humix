@@ -2,10 +2,10 @@
   {
     "fellow" = buildFirefoxXpiAddon {
       pname = "fellow";
-      version = "2.6.9";
+      version = "2.6.12";
       addonId = "{80937ecd-75e5-4e2c-8ed2-2c011f53c452}";
-      url = "https://addons.mozilla.org/firefox/downloads/file/4350287/fellow-2.6.9.xpi";
-      sha256 = "1c573e2797a2b605c0f84b7489ea00772c563eeccd1735fc2a4d72c55d5a0032";
+      url = "https://addons.mozilla.org/firefox/downloads/file/4362147/fellow-2.6.12.xpi";
+      sha256 = "59b706a2b92eec2dfab951dc9b60f59f5a43452f1b2edbf3aefb55f0b2bb9444";
       meta = with lib;
       {
         homepage = "https://fellow.app";
